@@ -1,0 +1,32 @@
+.animatedTitle {
+  $self: &;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  font-size: 14vw;
+  line-height: normal;
+  font-family: var(--font--mono);
+  letter-spacing: 0.045em;
+
+  position: absolute;
+  top: 0;
+  left: 1rem;
+
+  color: var(--color--blue);
+  -webkit-text-stroke: var(--color--blue);
+  -webkit-text-stroke-width: 2px;
+
+  &__nearComplete {
+    & + #{$self}__overlap {
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+.typingIndicator {
+  display: inline-block;
+  position: absolute;
+  height: 12vw;
+  width: 2px;
+  background-color: var(--color--blue);
+}

@@ -1,7 +1,11 @@
-import "./App.scss";
+import Nav from './nav';
 
 function App() {
-  return <h1>Can't wait till it's done</h1>;
+  return (
+    <>
+      <Nav onAnimationEnd={() => {}} />
+    </>
+  );
 }
 
 export default App;

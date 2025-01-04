@@ -1,0 +1,19 @@
+@use 'scss-reset';
+
+:root {
+  --color--dark: #0f0f0f;
+  --color--blue: #0000ff;
+
+  --font--mono: 'Anonymous Pro', monospace;
+  --font--serif: serif;
+}
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100vw;
+  overflow: hidden;
+  font-size: 16px;
+}
