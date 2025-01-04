@@ -13,5 +13,5 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     }
   },
-  base: '/michael-eightnine.github.io'
+  base: 'https://michael-eightnine.github.io/michael-eightnine.github.io/'
 })
