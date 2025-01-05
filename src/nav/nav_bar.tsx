@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { forwardRef, useCallback } from 'react';
 
 import AnimatedTitle from './animated_title';
 import styles from './nav.module.scss';
@@ -8,7 +8,7 @@ type Props = {
   onAnimationEnd: () => void;
 };
 
-const NavBar = ({ onAnimationEnd }: Props) => {
+const NavBar = forwardRef<HTMLDivElement, Props>(({ onAnimationEnd }, ref) => {
   const onTitleAnimationEnd = useCallback(() => {
     console.log('DONE!');
     onAnimationEnd();
@@ -18,8 +18,9 @@ const NavBar = ({ onAnimationEnd }: Props) => {
     <nav className={styles.nav}>
       <Globe className={styles.navLogo} />
       <AnimatedTitle onAnimationEnd={onTitleAnimationEnd} />
+      <div ref={ref} className={styles.dock} />
     </nav>
   );
-};
+});
 
 export default NavBar;

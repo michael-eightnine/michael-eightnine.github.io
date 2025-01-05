@@ -1,78 +1,14 @@
-@use 'sass:math';
-$suspended-duration: 3s;
-$suspended-easing: ease-in-out;
-
-@mixin suspended-floating {
-  animation:
-    floating var(--duration, $suspended-duration) infinite alternate
-      var(--easing, $suspended-easing),
-    rotate var(--duration, $suspended-duration) infinite alternate
-      var(--easing, $suspended-easing);
-}
-
-// Floating animation
-@keyframes floating {
-  0% {
-    transform: translateY(0px);
-  }
-  100% {
-    transform: translateY(
-      var(--translate-y, 10px)
-    ); // Use CSS variable for vertical offset
-  }
-}
-
-// Rotation animation
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(var(--rotate, 3deg)); // Use CSS variable for rotation
-  }
-}
-
-// Element styles
-.element {
-  display: inline-block;
-  background: lightblue;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  transform-origin: center;
-}
-
 .page {
   height: 100%;
   padding: 2em;
 }
 
-.backgroundBlobs {
-  overflow: visible;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(25%, -25%) rotate(7.5deg);
-  pointer-events: none;
-  width: 70vw;
+.main {
+  display: flex;
+  margin: 2.5rem auto 0;
+  max-width: 1280px;
+}
 
-  @for $i from 1 through 7 {
-    :nth-child(#{$i}) {
-      --translate-y: #{math.random(20) -
-        10}px; // math.random vertical range (-10px to +10px)
-      --rotate: #{math.random(6) -
-        3}deg; // math.random rotation range (-3deg to +3deg)
-      --duration: #{(
-          $suspended-duration + math.random(3) - 1
-        )}; // math.random duration (3s to 6s)
-      --easing: ease-in-out; // Adjust if needed
-
-      transform-origin: center center;
-      @include suspended-floating;
-    }
-  }
-
-  :global(.arrow) {
-    animation: none;
-  }
+.section {
+  margin-left: auto;
 }
