@@ -54,6 +54,12 @@
   position: relative;
   display: inline-flex;
   column-gap: 1rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+
+  &__visible {
+    opacity: 1;
+  }
 }
 
 .dockButton {
@@ -66,16 +72,27 @@
   align-items: center;
   position: relative;
 
+  box-shadow:
+    0.5rem -0.5rem 0px var(--color--white),
+    0.5rem -0.5rem 0px 1px var(--color--blue);
+  transition: box-shadow 0.25s ease;
+
   &:hover .dockButtonTooltip {
     opacity: 1;
-    transform: translate(-50%, -100%);
+    transform: translate(-50%, 100%);
+  }
+
+  &:active {
+    box-shadow:
+      0.75rem -0.75rem 0px var(--color--white),
+      0.75rem -0.75rem 0px 1px var(--color--blue);
   }
 }
 
 .dockButtonTooltip {
-  top: -0.5rem;
+  bottom: -0.5rem;
   left: 50%;
-  transform: translate(-50%, -80%);
+  transform: translate(-50%, 80%);
   padding: 0.25rem;
   opacity: 0;
   transition:

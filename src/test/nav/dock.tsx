@@ -3,10 +3,19 @@ import DockButton from './dock_button';
 import { PopupID } from '../popup';
 
 import { Contact, Code, Info } from 'svg';
+import { classnames } from 'utils';
 
-const Dock = () => {
+type Props = {
+  visible: boolean;
+};
+
+const Dock = ({ visible }: Props) => {
   return (
-    <div className={styles.dock}>
+    <div
+      className={classnames(styles.dock, {
+        [styles.dock__visible]: visible
+      })}
+    >
       <DockButton id={PopupID.Welcome} title="About">
         <Info className={styles.dockIcon} />
       </DockButton>

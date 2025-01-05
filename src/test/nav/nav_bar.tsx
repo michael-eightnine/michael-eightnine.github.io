@@ -3,7 +3,7 @@ import styles from './nav.module.scss';
 import { Globe } from 'svg';
 
 import Dock from './dock';
-import { useContext } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { PopupContext } from '../popup';
 
 type Props = {
@@ -11,7 +11,15 @@ type Props = {
 };
 
 const NavBar = ({ onAnimationEnd }: Props) => {
+  const [showDock, setShowDock] = useState(false);
   const { closeAllPopups, closeAllInitiated } = useContext(PopupContext);
+
+  const handleAnimationEnd = useCallback(() => {
+    setShowDock(true);
+    setTimeout(() => {
+      onAnimationEnd();
+    }, 500);
+  }, [onAnimationEnd]);
 
   return (
     <div className={styles.wrapper}>
@@ -24,9 +32,9 @@ const NavBar = ({ onAnimationEnd }: Props) => {
         >
           <Globe />
         </button>
-        <AnimatedTitle onAnimationEnd={onAnimationEnd} />
+        <AnimatedTitle onAnimationEnd={handleAnimationEnd} />
       </nav>
-      <Dock />
+      <Dock visible={showDock} />
     </div>
   );
 };
