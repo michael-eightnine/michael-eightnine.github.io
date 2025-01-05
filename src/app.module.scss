@@ -1,14 +1,11 @@
 .page {
   height: 100%;
   padding: 2em;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .main {
-  display: flex;
-  margin: 2.5rem auto 0;
-  max-width: 1280px;
-}
-
-.section {
-  margin-left: auto;
+  flex: 1 1 100%;
 }

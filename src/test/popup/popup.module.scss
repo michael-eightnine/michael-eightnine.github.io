@@ -7,7 +7,7 @@
   }
 }
 
-.section {
+.popup {
   background-color: var(--color--white);
   border: 1px solid var(--color--blue);
   overflow: hidden;
@@ -48,13 +48,6 @@
       transition-delay: 0.5s;
     }
   }
-}
-
-.sectionButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--color--white);
 }
 
 .header {
