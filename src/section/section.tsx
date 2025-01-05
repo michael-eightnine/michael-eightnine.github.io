@@ -30,17 +30,24 @@ const Section = ({ children, className, title }: Props & ChildrenProps) => {
       sectionId: SectionID.Test,
       sectionElement: sectionRef.current
     });
+
+    setTimeout(() => {
+      setTransitionState((prev) => (prev === 'opening' ? 'open' : 'closed'));
+    }, 750);
   };
 
   return (
     <section
       onClick={onToggleVisibility}
       className={classnames(styles.section, className, {
-        [styles.section__closed]: transitionState === 'closing'
+        [styles.section__closing]:
+          transitionState === 'closing' || transitionState === 'closed',
+        [styles.section__opening]: transitionState === 'opening',
+        [styles.section__open]: transitionState === 'open'
       })}
       ref={sectionRef}
     >
-      {transitionState !== 'closing' && (
+      {transitionState !== 'closed' && (
         <>
           <header className={styles.header}>
             {title}
@@ -49,6 +56,9 @@ const Section = ({ children, className, title }: Props & ChildrenProps) => {
           </header>
           {children}
         </>
+      )}
+      {transitionState === 'closed' && (
+        <div className={styles.sectionButton}>+</div>
       )}
     </section>
   );

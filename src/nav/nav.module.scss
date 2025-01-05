@@ -8,6 +8,13 @@
   }
 }
 
+.wrapper {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  column-gap: 1rem;
+}
+
 .nav {
   display: inline-flex;
   align-items: stretch;
@@ -41,8 +48,12 @@
 }
 
 .dock {
-  border: 1px solid pink;
-  min-width: 5rem;
+  border: 1px solid red;
+  height: 48px;
+  min-width: 48px;
+  margin-left: 2rem;
+  bottom: -1rem;
+  position: relative;
 }
 
 // animated_title.tsx
