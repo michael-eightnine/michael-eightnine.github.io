@@ -24,6 +24,7 @@
 
     /* Aliases */
     "paths": {
+      "svg": ["./src/svg/index.ts"],
       "utils": ["./src/utils/index.ts"]
     }
   },

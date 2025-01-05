@@ -29,7 +29,7 @@ const AnimatedTitle = ({ onAnimationEnd }: Props) => {
           return updatedDisplayText;
         });
       },
-      displayText.length === 0 ? 750 : Math.random() * (180 - 50) + 50
+      displayText.length === 0 ? 750 : 75
     );
 
     return () => clearTimeout(timeoutId); // Clear timeout on cleanup
@@ -41,25 +41,12 @@ const AnimatedTitle = ({ onAnimationEnd }: Props) => {
     }
   }, [animationComplete, onAnimationEnd]);
 
-  console.log('styles.animatedTitle__nearComplete', styles);
-
   return (
     <>
-      <h1
-        className={classnames(styles.animatedTitle, {
-          [styles.animatedTitle__nearComplete]:
-            displayText.length >= TITLE_COPY.length - 3
-        })}
-      >
+      <h1 className={classnames(styles.animatedTitle)}>
         {displayText}
         {!animationComplete && <span className={styles.typingIndicator} />}
       </h1>
-      <span
-        aria-hidden="true"
-        className={`${styles.animatedTitle} ${styles.animatedTitle__overlap}`}
-      >
-        {displayText}
-      </span>
     </>
   );
 };

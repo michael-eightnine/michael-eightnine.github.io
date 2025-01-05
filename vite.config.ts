@@ -13,6 +13,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      svg: path.resolve(__dirname, 'src/svg'),
       utils: path.resolve(__dirname, 'src/utils')
     }
   },

@@ -1,0 +1,29 @@
+@use 'scss-reset';
+
+:root {
+  --color--dark: #0f0f0f;
+  --color--blue: #0000ff;
+  --color--white: #fff;
+  --color--offwhite: #f5f5f5;
+
+  --font--mono: 'Anonymous Pro', monospace;
+  --font--serif: serif;
+
+  --font-size--header: 2rem;
+
+  --padding--small: 1rem;
+  --padding--medium: 2rem;
+  --padding--large: 4rem;
+
+  --logo--size: 3rem;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100vw;
+  font-size: 16px;
+  background-color: var(--color--offwhite);
+  position: relative;
+}

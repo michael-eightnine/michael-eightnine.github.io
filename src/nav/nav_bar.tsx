@@ -1,5 +1,8 @@
 import { useCallback } from 'react';
+
 import AnimatedTitle from './animated_title';
+import styles from './nav.module.scss';
+import { Globe } from 'svg';
 
 type Props = {
   onAnimationEnd: () => void;
@@ -11,7 +14,12 @@ const NavBar = ({ onAnimationEnd }: Props) => {
     onAnimationEnd();
   }, [onAnimationEnd]);
 
-  return <AnimatedTitle onAnimationEnd={onTitleAnimationEnd} />;
+  return (
+    <nav className={styles.nav}>
+      <Globe className={styles.navLogo} />
+      <AnimatedTitle onAnimationEnd={onTitleAnimationEnd} />
+    </nav>
+  );
 };
 
 export default NavBar;
