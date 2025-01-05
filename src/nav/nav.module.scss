@@ -56,6 +56,16 @@
   position: relative;
 }
 
+.dockButton {
+  height: 48px;
+  width: 48px;
+  background-color:red;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 // animated_title.tsx
 .animatedTitle {
   position: relative;

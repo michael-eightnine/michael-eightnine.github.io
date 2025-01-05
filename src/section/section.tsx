@@ -7,12 +7,13 @@ import { useRef, useState } from 'react';
 type Props = {
   className: string;
   title: string;
+  defaultTransitionState?: 'open' | 'closed' | 'closing' | 'opening'
 };
 
-const Section = ({ children, className, title }: Props & ChildrenProps) => {
+const Section = ({ children, className, title, defaultTransitionState = 'open' }: Props & ChildrenProps) => {
   const [transitionState, setTransitionState] = useState<
     'open' | 'closed' | 'closing' | 'opening'
-  >('open');
+  >(defaultTransitionState);
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { toggleSection, closedSections } = usePlacementContext();
 
@@ -36,12 +37,13 @@ const Section = ({ children, className, title }: Props & ChildrenProps) => {
     }, 750);
   };
 
-  return (
+  return !isClosed && (
     <section
       onClick={onToggleVisibility}
       className={classnames(styles.section, className, {
+        [styles.section__closed]: transitionState === 'closed',
         [styles.section__closing]:
-          transitionState === 'closing' || transitionState === 'closed',
+          transitionState === 'closing',
         [styles.section__opening]: transitionState === 'opening',
         [styles.section__open]: transitionState === 'open'
       })}

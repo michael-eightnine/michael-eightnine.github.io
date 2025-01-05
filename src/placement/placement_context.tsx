@@ -17,23 +17,27 @@ type ContextValue = {
   openedSections: SectionID[];
   closedSections: SectionID[];
   toggleSection: (args: UpdateSectionStateInput) => void;
+  mainContentRef: React.MutableRefObject<HTMLDivElement | null>;
 };
 
 const PlacementContext = createContext<ContextValue>({
   openedSections: [],
   closedSections: [],
-  toggleSection: () => {}
+  toggleSection: () => {},
+  mainContentRef: { current: null }
 });
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const usePlacementContext = () => useContext(PlacementContext);
 
 type ProviderProps = {
+  mainContentRef: React.MutableRefObject<HTMLDivElement | null>;
   dockRef: React.MutableRefObject<HTMLDivElement | null>;
 };
 
 const PlacementContextProvider = ({
   children,
+  mainContentRef,
   dockRef
 }: ProviderProps & ChildrenProps) => {
   const [closedSections, setClosedSections] = useState<
@@ -92,6 +96,7 @@ const PlacementContextProvider = ({
       const wasClosed = closedSections.includes(sectionId);
 
       if (wasClosed) {
+        setOpenedSections((prev) => [...prev, sectionId]);
         handleOpenSection(sectionElement);
       } else {
         handleCloseSection(sectionElement);
@@ -113,9 +118,10 @@ const PlacementContextProvider = ({
     () => ({
       toggleSection,
       closedSections,
-      openedSections
+      openedSections,
+      mainContentRef
     }),
-    [closedSections, openedSections, toggleSection]
+    [closedSections, mainContentRef, openedSections, toggleSection]
   );
 
   return (

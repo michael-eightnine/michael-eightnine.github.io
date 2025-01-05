@@ -1,20 +1,14 @@
 import { forwardRef, useMemo } from 'react';
-import { usePlacementContext } from '../placement';
 
 import styles from './nav.module.scss';
+import DockButton from './dock_button';
 
 const Dock = forwardRef<HTMLDivElement>((_, ref) => {
-  const { closedSections } = usePlacementContext();
-
-  const width = useMemo(() => {
-    const baseWidth = 48 * closedSections.length;
-    const withPadding = closedSections.length
-      ? (closedSections.length - 1) * 10
-      : 0;
-    return `${baseWidth + withPadding}px`;
-  }, [closedSections.length]);
-
-  return <div ref={ref} className={styles.dock} style={{ width }}></div>;
+  return (
+    <div ref={ref} className={styles.dock}>
+      <DockButton />
+    </div>
+  );
 });
 
 export default Dock;
