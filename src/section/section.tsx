@@ -18,17 +18,24 @@ const Section = ({ children, className, title }: Props & ChildrenProps) => {
 
   const isClosed = closedSections.includes(SectionID.Test);
 
-  const onToggleVisibility = () => {
+  const onToggleVisibility = async () => {
     if (!sectionRef.current) return;
 
+    const wasClosed = isClosed;
+
     setTransitionState(() => {
-      if (isClosed) return 'opening';
+      if (wasClosed) return 'opening';
       return 'closing';
     });
 
-    toggleSection({
+    await toggleSection({
       sectionId: SectionID.Test,
       sectionElement: sectionRef.current
+    });
+
+    setTransitionState(() => {
+      if (wasClosed) return 'open';
+      return 'closed';
     });
   };
 
@@ -36,11 +43,13 @@ const Section = ({ children, className, title }: Props & ChildrenProps) => {
     <section
       onClick={onToggleVisibility}
       className={classnames(styles.section, className, {
-        [styles.section__closed]: transitionState === 'closing'
+        [styles.section__closed]: isClosed,
+        [styles.section__closing]: transitionState === 'closing',
+        [styles.section__opening]: transitionState === 'opening'
       })}
       ref={sectionRef}
     >
-      {transitionState !== 'closing' && (
+      {!isClosed && (
         <>
           <header className={styles.header}>
             {title}

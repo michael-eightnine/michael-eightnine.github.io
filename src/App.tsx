@@ -2,34 +2,28 @@ import Nav from './nav';
 import styles from './app.module.scss';
 import { Content, Section } from './section';
 import { PlacementContextProvider } from './placement';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+
+import { animateBetweenPortals, getPortals } from './placement/utils';
+
+import Sections from './sections';
 
 function App() {
-  const navigationDockRef = useRef<HTMLDivElement | null>(null);
+  const [c, setC] = useState(0)
+  const { main, dock } = getPortals();
 
+  console.log('main', dock, main);
   return (
     <div className={styles.page}>
-      <PlacementContextProvider dockRef={navigationDockRef}>
-        <Nav onAnimationEnd={() => {}} ref={navigationDockRef} />
+      <PlacementContextProvider>
+        <Nav onAnimationEnd={() => {}} />
         <main className={styles.main}>
-          <Section className={styles.section} title="Something 2 know">
-            <Content>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur.
-            </Content>
-            <Content>
-              Ut enim ad minima veniam, quis nostrum exercitationem ullam
-              corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-              consequatur? Quis autem vel eum iure reprehenderit qui in ea
-              voluptate.
-            </Content>
-          </Section>
+          <div id="main-portal" style={{width: '100%'}} />
+          <Sections />
         </main>
       </PlacementContextProvider>
+      <button onClick={() => setC(prev => prev+1)}>c</button>
     </div>
   );
 }

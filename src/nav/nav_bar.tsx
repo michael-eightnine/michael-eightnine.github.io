@@ -18,7 +18,7 @@ const NavBar = forwardRef<HTMLDivElement, Props>(({ onAnimationEnd }, ref) => {
     <nav className={styles.nav}>
       <Globe className={styles.navLogo} />
       <AnimatedTitle onAnimationEnd={onTitleAnimationEnd} />
-      <div ref={ref} className={styles.dock} />
+      <div id="dock-portal" className={styles.dock} />
     </nav>
   );
 });

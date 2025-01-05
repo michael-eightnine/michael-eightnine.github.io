@@ -7,6 +7,7 @@ import {
 } from 'react';
 
 import { SectionID } from './types';
+import { animateBetweenPortals, getPortals } from './utils';
 
 type UpdateSectionStateInput = {
   sectionId: SectionID;
@@ -16,7 +17,7 @@ type UpdateSectionStateInput = {
 type ContextValue = {
   openedSections: SectionID[];
   closedSections: SectionID[];
-  toggleSection: (args: UpdateSectionStateInput) => void;
+  toggleSection: (args: UpdateSectionStateInput) => void | Promise<void>;
 };
 
 const PlacementContext = createContext<ContextValue>({
@@ -88,25 +89,24 @@ const PlacementContextProvider = ({
   );
 
   const toggleSection = useCallback(
-    ({ sectionId, sectionElement }: UpdateSectionStateInput) => {
+    async ({ sectionId, sectionElement }: UpdateSectionStateInput) => {
       const wasClosed = closedSections.includes(sectionId);
+      const { main, dock } = getPortals();
+      const sourcePortal = wasClosed ? dock : main;
+      const destinationPortal = wasClosed ? main : dock;
+      await animateBetweenPortals({
+        sourcePortal,
+        destinationPortal
+      });
 
-      if (wasClosed) {
-        handleOpenSection(sectionElement);
-      } else {
-        handleCloseSection(sectionElement);
-      }
+      const addToState = (prev: SectionID[]) => [...prev, sectionId];
+      const removeFromState = (prev: SectionID[]) =>
+        prev.filter((id) => id !== sectionId);
 
-      setTimeout(() => {
-        const addToState = (prev: SectionID[]) => [...prev, sectionId];
-        const removeFromState = (prev: SectionID[]) =>
-          prev.filter((id) => id !== sectionId);
-
-        setClosedSections(wasClosed ? removeFromState : addToState);
-        setOpenedSections(wasClosed ? addToState : removeFromState);
-      }, 1000);
+      setClosedSections(wasClosed ? removeFromState : addToState);
+      setOpenedSections(wasClosed ? addToState : removeFromState);
     },
-    [closedSections, handleCloseSection, handleOpenSection]
+    [closedSections]
   );
 
   const contextValue: ContextValue = useMemo(
