@@ -1,7 +1,13 @@
 import styles from '../app.module.scss';
 import { useCallback, useContext, useRef } from 'react';
 
-import { PopupContextProvider, PopupID, WelcomePopup } from './popup';
+import {
+  ContactPopup,
+  PopupContextProvider,
+  PopupID,
+  SkillsPopup,
+  WelcomePopup
+} from './popup';
 import ContentPortal from './content_portal';
 import { PopupContext } from './popup';
 import Nav from './nav';
@@ -21,6 +27,12 @@ function App() {
       <ContentPortal portalRef={mainContentRef}>
         {instances[PopupID.Welcome].map((id) => (
           <WelcomePopup key={id} popupId={PopupID.Welcome} instanceId={id} />
+        ))}
+        {instances[PopupID.Contact].map((id) => (
+          <ContactPopup key={id} popupId={PopupID.Contact} instanceId={id} />
+        ))}
+        {instances[PopupID.Skills].map((id) => (
+          <SkillsPopup key={id} popupId={PopupID.Skills} instanceId={id} />
         ))}
       </ContentPortal>
     </div>

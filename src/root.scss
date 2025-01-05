@@ -1,4 +1,5 @@
 @use 'scss-reset';
+@import 'https://www.nerdfonts.com/assets/css/webfont.css';
 
 :root {
   --color--black: #0f0f0f;
@@ -16,6 +17,8 @@
   --padding--large: 4rem;
 
   --logo--size: 3rem;
+
+  --dock--size: 48px;
 }
 
 html,

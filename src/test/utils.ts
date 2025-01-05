@@ -1,9 +1,10 @@
+import { sleep } from 'utils';
+
 export const getSectionCoordinates = (headerHeight = 0) => {
   // Get the viewport dimensions in pixels
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
-  console.log('headerHeight', headerHeight);
   // Convert vh ranges to pixel values for width and height
   const minHeight = (45 / 100) * viewportHeight;
   const maxHeight = (66.66 / 100) * viewportHeight;
@@ -39,12 +40,12 @@ type TransitionCoordinates = {
   height: number;
 };
 
-export function transitionElement({
+export async function transitionElement({
   element,
   from,
   to,
   transitionStyle,
-  duration = 500
+  duration = 1000
 }: {
   element: HTMLElement;
   from: TransitionCoordinates;
@@ -52,43 +53,28 @@ export function transitionElement({
   transitionStyle: string;
   duration?: number;
 }): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (!element) {
-      reject(new Error('Invalid element provided.'));
-      return;
-    }
+  if (!element) {
+    return;
+  }
 
-    // Apply initial styles
-    element.style.position = 'absolute';
-    element.style.top = `${from.top}px`;
-    element.style.left = `${from.left}px`;
-    element.style.width = `${from.width}px`;
-    element.style.height = `${from.height}px`;
-    element.style.transition = transitionStyle;
+  // Apply initial styles
+  element.style.position = 'absolute';
+  element.style.top = `${from.top}px`;
+  element.style.left = `${from.left}px`;
+  element.style.width = `${from.width}px`;
+  element.style.height = `${from.height}px`;
+  element.style.transition = transitionStyle;
 
-    // Force a reflow to ensure styles are applied before transitioning
-    element.getBoundingClientRect();
+  // Force a reflow to ensure styles are applied before transitioning
+  element.getBoundingClientRect();
 
-    // Set the target styles
-    element.style.top = `${to.top}px`;
-    element.style.left = `${to.left}px`;
-    element.style.width = `${to.width}px`;
-    element.style.height = `${to.height}px`;
+  // Set the target styles
+  element.style.top = `${to.top}px`;
+  element.style.left = `${to.left}px`;
+  element.style.width = `${to.width}px`;
+  element.style.height = `${to.height}px`;
 
-    // Wait for the transition to finish
-    const handleTransitionEnd = () => {
-      element.removeEventListener('transitionend', handleTransitionEnd);
-      resolve();
-    };
-
-    element.addEventListener('transitionend', handleTransitionEnd);
-
-    // Fallback in case the transitionend event is not fired
-    setTimeout(() => {
-      element.removeEventListener('transitionend', handleTransitionEnd);
-      resolve();
-    }, duration + 100);
-  });
+  await sleep(duration);
 }
 
 export const getTransitionStyle = (isOpening: boolean, duration = 500) => {

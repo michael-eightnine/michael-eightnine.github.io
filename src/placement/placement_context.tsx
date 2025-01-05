@@ -59,8 +59,14 @@ const PlacementContextProvider = ({
       const sectionRect = sectionElement.getBoundingClientRect();
 
       // Calculate scale factors and new dimensions
-      const targetWidth = 48;
-      const targetHeight = 48;
+      const dockSize = Number(
+        window
+          .getComputedStyle(document.body)
+          .getPropertyValue('--dock--size')
+          .split('px')[0]
+      );
+      const targetWidth = dockSize;
+      const targetHeight = dockSize;
       const scaleX = targetWidth / sectionRect.width;
       const scaleY = targetHeight / sectionRect.height;
       const newWidth = sectionRect.width * scaleX;

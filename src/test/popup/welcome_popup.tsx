@@ -1,29 +1,25 @@
-import { useContext } from 'react';
-import GenericPopup, { GenericPopupProps } from './generic_popup';
-import PopupContent from './popup_content';
-import { PopupContext } from './popup_context';
+import { GenericPopup, GenericPopupProps, PopupContent } from './core';
 
-const WelcomePopup = (
-  props: Omit<GenericPopupProps, 'children' | 'title' | 'dockButtonRef'>
-) => {
-  const { welcomeDockButtonRef } = useContext(PopupContext);
+const WelcomePopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
   return (
-    <GenericPopup
-      {...props}
-      title="Something 2 Kno"
-      dockButtonRef={welcomeDockButtonRef}
-    >
+    <GenericPopup {...props} title="Welcome!">
       <PopupContent>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur.
+        While titled as a front-end architect, Michael Smith strives to bridge
+        the gap between design and development by pairing a decade of front-end
+        development experience and of visual design expertise. He's primarily
+        focused on React & Svelte development, having concepted and built
+        applications, experiences, and sites for global brands like Enterprise
+        Rent-A-Car and Nationwide as well as smaller, niche brands like Monit,
+        Liberty Fund and Agot AI.
       </PopupContent>
       <PopupContent>
-        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-        suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
-        autem vel eum iure reprehenderit qui in ea voluptate.
+        That's the "professional third person" elevator pitch. On a more casual
+        note, I believe in exactly what the header of this site says. I am fully
+        invested in delivering the best work possible, and helping to elevate
+        teams, brands, and agencies to that same standard. Experimental design
+        and experiences really speak to me, but any project where I can dive
+        into detailed design and development gives me that good day's work
+        feeling.
       </PopupContent>
     </GenericPopup>
   );
