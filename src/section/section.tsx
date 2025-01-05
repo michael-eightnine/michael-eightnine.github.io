@@ -45,7 +45,8 @@ const Section = ({ children, className, title }: Props & ChildrenProps) => {
       className={classnames(styles.section, className, {
         [styles.section__closed]: isClosed,
         [styles.section__closing]: transitionState === 'closing',
-        [styles.section__opening]: transitionState === 'opening'
+        [styles.section__opening]: transitionState === 'opening',
+        [styles.section__open]: transitionState === 'open'
       })}
       ref={sectionRef}
     >

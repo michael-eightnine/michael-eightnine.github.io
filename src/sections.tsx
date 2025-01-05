@@ -18,7 +18,7 @@ function Sections() {
   if (!dock || !main) return null;
 
   const component = (
-    <Section className={`${styles.section} moving-component`} title="Something 2 know">
+    <Section title="Something 2 know">
         <Content>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

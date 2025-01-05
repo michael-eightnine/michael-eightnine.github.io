@@ -1,6 +1,8 @@
 import { MutableRefObject } from 'react';
 import { sleep } from 'utils';
 
+import styles from '../section/section.module.scss';
+
 export const animateBetweenPortals = async ({
   sourcePortal,
   destinationPortal,
@@ -41,13 +43,18 @@ export const animateBetweenPortals = async ({
   clone.style.top = `${sourceRect.top}px`;
   clone.style.width = `${sourceRect.width}px`;
   clone.style.height = `${sourceRect.height}px`;
-  clone.style.transition = 'transform 1s ease-in-out, opacity 1s';
+  clone.style.transition =
+    'transform 1s cubic-bezier(0.68, -0.55, 0.9, 0.3), opacity 1s';
   // clone.style.transformOrigin = 'top left'; // Important for proper scaling
   clone.style.zIndex = '1000'; // Ensure it's on top of everything
 
   // Append the clone to the body and hide the source node
   document.body.appendChild(clone);
   sourceNode.style.opacity = '0';
+
+  setTimeout(() => {
+    clone.classList.add(styles.section__closing);
+  }, 100);
 
   // Trigger the animation
   requestAnimationFrame(() => {
@@ -61,12 +68,11 @@ export const animateBetweenPortals = async ({
   // That way we can reference the size of that zone rather than try to piece together the original main content position
   const reverseCoordinates = {
     left: sourceRect.left * scaleX - destinationRect.left,
-    top: sourceRect.top * scaleY - destinationRect.top,
-
-  }
+    top: sourceRect.top * scaleY - destinationRect.top
+  };
 
   document.body.removeChild(clone);
-  return reverseCoordinates
+  return reverseCoordinates;
 };
 
 export const getPortals = () => {
