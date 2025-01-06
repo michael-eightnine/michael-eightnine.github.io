@@ -12,6 +12,8 @@ function MovingWordmark({ className }: Props) {
   useEffect(() => {
     const element = elementRef.current;
 
+    if (window.innerWidth < 600) return;
+
     if (!element) return;
 
     let animationFrameId: number | null = null;

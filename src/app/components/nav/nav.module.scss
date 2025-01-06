@@ -13,6 +13,11 @@
   display: flex;
   align-items: flex-end;
   column-gap: 1rem;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    column-gap: 0;
+  }
 }
 
 .nav {
@@ -32,6 +37,10 @@
   animation-delay: 0.25s;
   transition: transform 0.25s ease;
   transform-origin: center center;
+
+  @media screen and (max-width: 600px) {
+    align-items: center;
+  }
 }
 
 .navLogo {
