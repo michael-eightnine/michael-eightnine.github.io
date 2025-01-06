@@ -92,7 +92,7 @@
     flex: none;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     transition: background-color 0.25s ease;
 
     &:hover {
