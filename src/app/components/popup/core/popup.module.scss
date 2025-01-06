@@ -65,22 +65,26 @@
   border-bottom: 1px solid var(--color--blue);
   background-color: var(--color--offwhite);
   font-family: var(--font--mono);
-  font-size: 1.5rem;
-  letter-spacing: 0.045em;
   text-transform: uppercase;
   color: var(--color--blue);
-  line-height: 0.5;
   display: flex;
   width: 100%;
   align-items: stretch;
-  height: 45px;
+  font-weight: bold;
+
+  span {
+    font-size: 1.25rem;
+    letter-spacing: 0.045em;
+    align-self: center;
+    margin-left: 1rem;
+  }
 
   button {
     color: var(--color--blue);
     line-height: 0.5;
     padding: 0.5rem;
     margin-left: auto;
-    border: 1px solid var(--color--blue);
+    border-left: 1px solid var(--color--blue);
     border-top: none;
     border-right: none;
     height: 45px;
@@ -94,10 +98,6 @@
     &:hover {
       background-color: var(--color--white);
     }
-  }
-
-  span {
-    padding: var(--padding--small);
   }
 }
 
