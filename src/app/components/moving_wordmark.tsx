@@ -56,7 +56,7 @@ function MovingWordmark({ className }: Props) {
   }, []);
 
   return (
-    <div ref={elementRef} className={className}>
+    <div className={className} ref={elementRef}>
       <Wordmark />
     </div>
   );

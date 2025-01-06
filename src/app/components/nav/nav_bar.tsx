@@ -26,10 +26,10 @@ const NavBar = ({ onAnimationEnd }: Props) => {
     <div className={styles.wrapper}>
       <nav className={styles.nav}>
         <button
-          onClick={closeAllPopups}
           className={styles.navLogo}
-          title="Close all popups"
           disabled={closeAllInitiated}
+          onClick={closeAllPopups}
+          title="Close all popups"
         >
           <Globe />
         </button>

@@ -1,50 +1,50 @@
 const Background = ({ className }: SVGProps) => (
   <svg
     className={className}
-    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 700 700"
+    xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
       <filter
+        colorInterpolationFilters="linearRGB"
+        filterUnits="objectBoundingBox"
+        height="140%"
         id="a"
+        primitiveUnits="userSpaceOnUse"
+        width="140%"
         x="-20%"
         y="-20%"
-        width="140%"
-        height="140%"
-        filterUnits="objectBoundingBox"
-        primitiveUnits="userSpaceOnUse"
-        colorInterpolationFilters="linearRGB"
       >
         <feTurbulence
-          type="fractalNoise"
           baseFrequency=".062"
+          height="100%"
           numOctaves="4"
+          result="turbulence"
           seed="15"
           stitchTiles="stitch"
+          type="fractalNoise"
+          width="100%"
           x="0%"
           y="0%"
-          width="100%"
-          height="100%"
-          result="turbulence"
         />
         <feSpecularLighting
-          surfaceScale="14"
-          specularConstant=".7"
-          specularExponent="20"
-          lightingColor="#00f"
-          x="0%"
-          y="0%"
-          width="100%"
           height="100%"
           in="turbulence"
+          lightingColor="#00f"
           result="specularLighting"
+          specularConstant=".7"
+          specularExponent="20"
+          surfaceScale="14"
+          width="100%"
+          x="0%"
+          y="0%"
         >
           <feDistantLight azimuth="3" elevation="122" />
         </feSpecularLighting>
       </filter>
     </defs>
-    <path fill="transparent" d="M0 0h700v700H0z" />
-    <path fill="#00f" filter="url(#a)" d="M0 0h700v700H0z" />
+    <path d="M0 0h700v700H0z" fill="transparent" />
+    <path d="M0 0h700v700H0z" fill="#00f" filter="url(#a)" />
   </svg>
 );
 

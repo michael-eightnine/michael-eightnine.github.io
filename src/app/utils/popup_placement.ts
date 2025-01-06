@@ -31,18 +31,18 @@ export const getSectionCoordinates = (headerHeight = 0) => {
   const left = Math.random() * (maxLeft - buffer) + buffer; // Ensure left edge has a buffer of 24px
 
   return {
-    width,
     height,
+    left,
     top,
-    left
+    width
   };
 };
 
 type TransitionCoordinates = {
-  top: number;
-  left: number;
-  width: number;
   height: number;
+  left: number;
+  top: number;
+  width: number;
 };
 
 export const transitionElement = async ({

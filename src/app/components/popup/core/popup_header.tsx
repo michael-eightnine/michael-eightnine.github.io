@@ -13,7 +13,7 @@ const PopupHeader = ({ title, onClose, children }: Props & ChildrenProps) => {
       <div className={styles.headerIconContainer}>{children}</div>
       <span>{title}</span>
 
-      <button onClick={onClose} className={styles.headerButton}>
+      <button className={styles.headerButton} onClick={onClose}>
         <Close className={styles.headerButtonIcon} />
       </button>
     </header>

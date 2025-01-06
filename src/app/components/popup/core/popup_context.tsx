@@ -10,25 +10,25 @@ import {
 import { PopupID } from './types';
 
 type ContextValue = {
-  registerDockButton: (popupId: PopupID, ref: HTMLElement | null) => void;
-  getDockButtonRef: (popupId: PopupID) => HTMLElement | null;
   addInstance: (popupId: PopupID) => void;
-  removeInstance: (instanceId: number) => void;
-  instances: { popupId: PopupID; instanceId: number }[];
   closeAllInitiated: boolean;
   closeAllPopups: () => void;
+  getDockButtonRef: (popupId: PopupID) => HTMLElement | null;
+  instances: { popupId: PopupID; instanceId: number }[];
+  registerDockButton: (popupId: PopupID, ref: HTMLElement | null) => void;
+  removeInstance: (instanceId: number) => void;
 };
 
 const defaultInstances: ContextValue['instances'] = [];
 
 const PopupContext = createContext<ContextValue>({
-  registerDockButton: () => {},
-  getDockButtonRef: () => null,
   addInstance: () => {},
-  removeInstance: () => {},
-  instances: defaultInstances,
   closeAllInitiated: false,
-  closeAllPopups: () => {}
+  closeAllPopups: () => {},
+  getDockButtonRef: () => null,
+  instances: defaultInstances,
+  registerDockButton: () => {},
+  removeInstance: () => {}
 });
 
 const PopupContextProvider = ({ children }: ChildrenProps) => {
@@ -48,7 +48,7 @@ const PopupContextProvider = ({ children }: ChildrenProps) => {
   const addInstance = useCallback((popupId: PopupID) => {
     setInstances((prev) => [
       ...prev,
-      { popupId, instanceId: new Date().getTime() }
+      { instanceId: new Date().getTime(), popupId }
     ]);
   }, []);
 
@@ -72,13 +72,13 @@ const PopupContextProvider = ({ children }: ChildrenProps) => {
 
   const contextValue: ContextValue = useMemo(
     () => ({
+      addInstance,
+      closeAllInitiated,
+      closeAllPopups,
+      getDockButtonRef,
       instances,
       registerDockButton,
-      getDockButtonRef,
-      addInstance,
-      removeInstance,
-      closeAllPopups,
-      closeAllInitiated
+      removeInstance
     }),
     [addInstance, closeAllInitiated, closeAllPopups, instances, removeInstance]
   );

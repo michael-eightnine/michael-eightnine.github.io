@@ -115,11 +115,11 @@ const GenericPopup = ({
 
   return (
     <div
-      ref={ref}
       className={classnames(styles.popup, styles[`popup__${transitionState}`])}
+      ref={ref}
       style={{ zIndex: `${indexOfPopup + 1}` }}
     >
-      <PopupHeader title={title} onClose={handleClose}>
+      <PopupHeader onClose={handleClose} title={title}>
         {getHeaderIcon(popupId)}
       </PopupHeader>
       <div className={styles.contentContainer}>{children}</div>

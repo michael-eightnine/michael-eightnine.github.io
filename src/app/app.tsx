@@ -31,25 +31,25 @@ function App() {
         case PopupID.Welcome:
           return (
             <WelcomePopup
+              instanceId={instanceId}
               key={instanceId}
               popupId={PopupID.Welcome}
-              instanceId={instanceId}
             />
           );
         case PopupID.Skills:
           return (
             <SkillsPopup
+              instanceId={instanceId}
               key={instanceId}
               popupId={PopupID.Skills}
-              instanceId={instanceId}
             />
           );
         case PopupID.Contact:
           return (
             <ContactPopup
+              instanceId={instanceId}
               key={instanceId}
               popupId={PopupID.Contact}
-              instanceId={instanceId}
             />
           );
         default:

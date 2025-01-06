@@ -10,6 +10,16 @@ console.log('__dirname', __dirname);
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: './',
+  css: {
+    modules: {
+      // Enable CSS Modules for all .scss files
+      localsConvention: 'dashes'
+    }
+  },
+  optimizeDeps: {
+    include: ['**/*.scss'] // Include all .scss files
+  },
   plugins: [react()],
   resolve: {
     alias: {
@@ -17,15 +27,5 @@ export default defineConfig({
       svg: path.resolve(__dirname, 'src/app/svg'),
       utils: path.resolve(__dirname, 'src/app/utils')
     }
-  },
-  optimizeDeps: {
-    include: ['**/*.scss'] // Include all .scss files
-  },
-  css: {
-    modules: {
-      // Enable CSS Modules for all .scss files
-      localsConvention: 'dashes'
-    }
-  },
-  base: './'
+  }
 });
