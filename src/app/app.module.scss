@@ -1,0 +1,31 @@
+.page {
+  height: 100%;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  main {
+    flex: 1 1 100%;
+  }
+}
+
+.background {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.75;
+}
+
+.wordmark {
+  width: 20vw;
+  position: absolute;
+  top: 75%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}

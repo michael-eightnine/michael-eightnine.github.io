@@ -13,8 +13,9 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      svg: path.resolve(__dirname, 'src/svg'),
-      utils: path.resolve(__dirname, 'src/utils')
+      components: path.resolve(__dirname, 'src/app/components'),
+      svg: path.resolve(__dirname, 'src/app/svg'),
+      utils: path.resolve(__dirname, 'src/app/utils')
     }
   },
   optimizeDeps: {
