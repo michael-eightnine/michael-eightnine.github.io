@@ -20,10 +20,6 @@
   height: var(--dock--size);
   width: var(--dock--size);
   background-color: var(--color--blue);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
 
   box-shadow:
@@ -59,9 +55,11 @@
   background-color: var(--color--blue);
   color: var(--color--white);
   text-align: center;
+  pointer-events: none;
 }
 
 .dockIcon {
   height: 2rem;
   width: 2rem;
+  color: var(--color--white);
 }

@@ -1,5 +1,7 @@
 import sleep from './sleep';
 
+const DEFAULT_TRANSITION_DURATION = 500;
+
 export const getSectionCoordinates = (isMobile: boolean, headerHeight = 0) => {
   // Get the viewport dimensions in pixels
   const viewportWidth = window.innerWidth;
@@ -50,7 +52,7 @@ export const transitionElement = async ({
   from,
   to,
   transitionStyle,
-  duration = 1000
+  duration = DEFAULT_TRANSITION_DURATION
 }: {
   element: HTMLElement;
   from: TransitionCoordinates;
@@ -82,7 +84,10 @@ export const transitionElement = async ({
   await sleep(duration);
 };
 
-export const getTransitionStyle = (isOpening: boolean, duration = 500) => {
+export const getTransitionStyle = (
+  isOpening: boolean,
+  duration = DEFAULT_TRANSITION_DURATION
+) => {
   const openingEase = 'cubic-bezier(0.3, 1.2, 0.68, 1.15)';
   const closingEase = 'cubic-bezier(0.68, -0.55, 0.9, 0.3)';
   const properties = ['top', 'left', 'height', 'width', 'box-shadow'];

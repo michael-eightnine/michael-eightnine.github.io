@@ -11,7 +11,8 @@ import {
   transitionElement,
   getSectionCoordinates,
   getTransitionStyle,
-  classnames
+  classnames,
+  sleep
 } from 'utils';
 import { Code, Contact, Info } from 'svg';
 
@@ -40,7 +41,8 @@ const GenericPopup = ({
   instanceId
 }: GenericPopupProps & ChildrenProps) => {
   const transitionActiveRef = useRef(false);
-  const { removeInstance, closeAllInitiated, instances, getDockButtonRef } =
+  const closingFromAllRef = useRef(false);
+  const { removeInstance, closeAllProcessing, instances, getDockButtonRef } =
     useContext(PopupContext);
 
   const dockButtonElement = useMemo(
@@ -105,19 +107,31 @@ const GenericPopup = ({
   }, [dockButtonElement, instanceId, removeInstance]);
 
   useEffect(() => {
-    if (closeAllInitiated && !transitionActiveRef.current) {
+    const closeWithCloseAll = async () => {
+      closingFromAllRef.current = true;
+
       // Stagger closing all popups by 50ms per popup
       const delay = indexOfPopup * 50;
-      setTimeout(() => {
-        handleClose();
-      }, delay);
+      await sleep(delay);
+      await handleClose();
+
+      closingFromAllRef.current = false;
+    };
+
+    if (
+      closeAllProcessing &&
+      !transitionActiveRef.current &&
+      !closingFromAllRef.current
+    ) {
+      closeWithCloseAll();
     }
-  }, [closeAllInitiated, handleClose, indexOfPopup]);
+  }, [closeAllProcessing, handleClose, indexOfPopup]);
 
   return (
     <div
       className={classnames(styles.popup, styles[`popup__${transitionState}`])}
       ref={ref}
+      role="dialog"
       style={{ zIndex: `${indexOfPopup + 1}` }}
     >
       <PopupHeader onClose={handleClose} title={title}>
