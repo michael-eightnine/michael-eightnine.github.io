@@ -1,0 +1,35 @@
+@use 'scss-reset';
+@import 'https://www.nerdfonts.com/assets/css/webfont.css';
+
+:root {
+  --color--black: #0f0f0f;
+  --color--blue: #0000ff;
+  --color--white: #fff;
+  --color--offwhite: #f5f5f5;
+
+  --font--mono: 'Consolas', monospace;
+  --font--serif: 'Domine', serif;
+
+  --font-size--header: 2rem;
+
+  --padding--small: 1rem;
+  --padding--medium: 2rem;
+  --padding--large: 4rem;
+
+  --logo--size: 3rem;
+
+  --dock--size: 48px;
+
+  --bp--mobile: (max-width: 600px);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100vw;
+  font-size: 16px;
+  background-color: var(--color--offwhite);
+  position: relative;
+  overflow: hidden;
+}

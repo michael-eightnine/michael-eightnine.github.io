@@ -20,7 +20,14 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Aliases */
+    "paths": {
+      "components/*": ["./src/app/components/*"],
+      "svg": ["./src/app/svg/index.ts"],
+      "utils": ["./src/app/utils/index.ts"]
+    }
   },
   "include": ["src"]
 }
