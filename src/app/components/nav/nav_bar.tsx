@@ -13,7 +13,7 @@ type Props = {
 
 const NavBar = ({ onAnimationEnd }: Props) => {
   const [showDock, setShowDock] = useState(false);
-  const { closeAllPopups, closeAllInitiated } = useContext(PopupContext);
+  const { closeAllPopups, closeAllProcessing } = useContext(PopupContext);
 
   const handleAnimationEnd = useCallback(() => {
     setShowDock(true);
@@ -27,7 +27,7 @@ const NavBar = ({ onAnimationEnd }: Props) => {
       <nav className={styles.nav}>
         <button
           className={styles.navLogo}
-          disabled={closeAllInitiated}
+          disabled={closeAllProcessing}
           onClick={closeAllPopups}
           title="Close all popups"
         >

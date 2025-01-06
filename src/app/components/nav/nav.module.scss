@@ -51,8 +51,16 @@
   transition: transform 0.25s ease;
   transform-origin: center center;
   flex: none;
+  border-radius: 100%;
 
-  &:hover {
+  &:active {
     transform: scale(1.25);
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &:active {
+      transform: scale(1.25);
+    }
   }
 }

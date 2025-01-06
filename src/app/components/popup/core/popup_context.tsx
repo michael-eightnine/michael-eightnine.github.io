@@ -11,8 +11,8 @@ import { PopupID } from './types';
 
 type ContextValue = {
   addInstance: (popupId: PopupID) => void;
-  closeAllInitiated: boolean;
   closeAllPopups: () => void;
+  closeAllProcessing: boolean;
   getDockButtonRef: (popupId: PopupID) => HTMLElement | null;
   instances: { popupId: PopupID; instanceId: number }[];
   registerDockButton: (popupId: PopupID, ref: HTMLElement | null) => void;
@@ -23,8 +23,8 @@ const defaultInstances: ContextValue['instances'] = [];
 
 const PopupContext = createContext<ContextValue>({
   addInstance: () => {},
-  closeAllInitiated: false,
   closeAllPopups: () => {},
+  closeAllProcessing: false,
   getDockButtonRef: () => null,
   instances: defaultInstances,
   registerDockButton: () => {},
@@ -32,7 +32,7 @@ const PopupContext = createContext<ContextValue>({
 });
 
 const PopupContextProvider = ({ children }: ChildrenProps) => {
-  const [closeAllInitiated, setCloseAllInitiated] = useState(false);
+  const [closeAllProcessing, setCloseAllProcessing] = useState(false);
   const [instances, setInstances] =
     useState<ContextValue['instances']>(defaultInstances);
   const dockButtonRefs = useRef<Map<PopupID, HTMLElement | null>>(new Map());
@@ -59,28 +59,28 @@ const PopupContextProvider = ({ children }: ChildrenProps) => {
   }, []);
 
   useEffect(() => {
-    if (closeAllInitiated && instances.length === 0) {
-      setCloseAllInitiated(false);
+    if (closeAllProcessing && instances.length === 0) {
+      setCloseAllProcessing(false);
     }
-  }, [closeAllInitiated, instances]);
+  }, [closeAllProcessing, instances]);
 
   const closeAllPopups = useCallback(() => {
     if (instances.length > 0) {
-      setCloseAllInitiated(true);
+      setCloseAllProcessing(true);
     }
   }, [instances]);
 
   const contextValue: ContextValue = useMemo(
     () => ({
       addInstance,
-      closeAllInitiated,
       closeAllPopups,
+      closeAllProcessing,
       getDockButtonRef,
       instances,
       registerDockButton,
       removeInstance
     }),
-    [addInstance, closeAllInitiated, closeAllPopups, instances, removeInstance]
+    [addInstance, closeAllProcessing, closeAllPopups, instances, removeInstance]
   );
 
   return (

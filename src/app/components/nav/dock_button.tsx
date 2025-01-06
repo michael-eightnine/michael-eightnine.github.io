@@ -12,7 +12,8 @@ type Props = {
 const DockButton = ({ id, children, title }: Props & ChildrenProps) => {
   const ref = useRef<HTMLButtonElement | null>(null);
   const buttonId = useId();
-  const { addInstance, registerDockButton } = useContext(PopupContext);
+  const { addInstance, registerDockButton, closeAllProcessing } =
+    useContext(PopupContext);
 
   useEffect(() => {
     registerDockButton(id, ref.current);
@@ -21,8 +22,10 @@ const DockButton = ({ id, children, title }: Props & ChildrenProps) => {
 
   return (
     <button
+      aria-haspopup
       aria-labelledby={buttonId}
       className={styles.dockButton}
+      disabled={closeAllProcessing}
       onClick={() => addInstance(id)}
       ref={ref}
     >
