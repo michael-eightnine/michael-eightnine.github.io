@@ -5,7 +5,7 @@ import { Background } from 'svg';
 
 import {
   ContactPopup,
-  PopupContextProvider,
+  // PopupContextProvider,
   PopupID,
   SkillsPopup,
   WelcomePopup
@@ -13,10 +13,11 @@ import {
 import { PopupContext } from 'components/popup';
 import Nav from 'components/nav';
 import MovingWordmark from 'components/moving_wordmark';
+import { Scene } from './game';
 
 import styles from './app.module.scss';
 
-function App() {
+export function App() {
   const [headerLoaded, setHeaderLoaded] = useState(false);
   const { instances, addInstance } = useContext(PopupContext);
 
@@ -73,9 +74,10 @@ function App() {
 }
 
 const AppWithContext = () => (
-  <PopupContextProvider>
-    <App />
-  </PopupContextProvider>
+  // <PopupContextProvider>
+  //   <App />
+  // </PopupContextProvider>
+  <Scene />
 );
 
 export default AppWithContext;

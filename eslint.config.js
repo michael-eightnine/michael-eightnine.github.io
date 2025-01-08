@@ -28,7 +28,7 @@ export default tseslint.config(
       'react/jsx-sort-props': [
         'warn'
       ],
-      'sort-keys': ["warn", "asc", {"caseSensitive": true, "natural": false, "minKeys": 2}]
+      'sort-keys': ["off", "asc", {"caseSensitive": true, "natural": false, "minKeys": 2}]
     },
   },
 )
