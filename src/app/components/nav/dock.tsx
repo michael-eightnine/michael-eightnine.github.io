@@ -1,4 +1,4 @@
-import { Contact, Code, Info } from 'svg';
+import { Contact, Code, Info, Game } from 'svg';
 import { classnames } from 'utils';
 import { PopupID } from 'components/popup';
 
@@ -6,10 +6,11 @@ import DockButton from './dock_button';
 import styles from './dock.module.scss';
 
 type Props = {
+  onOpenGame: () => void;
   visible: boolean;
 };
 
-const Dock = ({ visible }: Props) => {
+const Dock = ({ onOpenGame, visible }: Props) => {
   return (
     <div
       className={classnames(styles.dock, {
@@ -25,6 +26,17 @@ const Dock = ({ visible }: Props) => {
       <DockButton id={PopupID.Contact} title="Contact">
         <Contact className={styles.dockIcon} />
       </DockButton>
+      <button
+        aria-haspopup
+        aria-labelledby={'game'}
+        className={styles.dockButton}
+        onClick={onOpenGame}
+      >
+        <Game className={styles.dockIcon} />
+        <span className={styles.dockButtonTooltip} id={'game'}>
+          Dungeon Crawl
+        </span>
+      </button>
     </div>
   );
 };

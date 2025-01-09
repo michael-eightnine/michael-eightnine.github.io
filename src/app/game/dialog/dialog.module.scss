@@ -1,0 +1,30 @@
+.container {
+  flex: 1 1 100%;
+  width: 100%;
+  padding: 2rem;
+  border: 1px solid var(--color--blue);
+  display: flex;
+  flex-direction: column;
+
+  header {
+    font-size: 18px;
+    text-transform: uppercase;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color--black);
+    color: var(--color--blue);
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+  }
+
+  p {
+    padding: 1rem 0;
+    color: var(--color--black);
+  }
+
+  button {
+    display: block;
+    padding: 1rem 0;
+    color: var(--color--blue);
+    text-align: left;
+  }
+}

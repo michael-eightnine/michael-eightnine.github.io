@@ -9,9 +9,10 @@ import Dock from './dock';
 
 type Props = {
   onAnimationEnd: () => void;
+  onOpenGame: () => void;
 };
 
-const NavBar = ({ onAnimationEnd }: Props) => {
+const NavBar = ({ onAnimationEnd, onOpenGame }: Props) => {
   const [showDock, setShowDock] = useState(false);
   const { closeAllPopups, closeAllProcessing } = useContext(PopupContext);
 
@@ -35,7 +36,7 @@ const NavBar = ({ onAnimationEnd }: Props) => {
         </button>
         <AnimatedTitle onAnimationEnd={handleAnimationEnd} />
       </nav>
-      <Dock visible={showDock} />
+      <Dock onOpenGame={onOpenGame} visible={showDock} />
     </div>
   );
 };
