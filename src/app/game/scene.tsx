@@ -5,6 +5,14 @@ import { DialogBox } from './dialog';
 import { AreaId, ItemId } from './types';
 import { MapDisplay } from './map';
 import { Close } from 'svg';
+import CathedralImage from './images/cathedral.jpg';
+import CaveImage from './images/cave.jpg';
+import ChestImage from './images/chest.jpg';
+import FloristImage from './images/florist.jpg';
+import GraveImage from './images/grave.jpg';
+import LilyCaseImage from './images/lily case.jpg';
+import MarshImage from './images/marsh.jpg';
+import TownSquareImage from './images/town_square.jpg';
 
 const getCurrentlyHeldItem = (inventory: Record<ItemId, boolean>) => {
   if (inventory.Door) {
@@ -26,6 +34,27 @@ const getCurrentlyHeldItem = (inventory: Record<ItemId, boolean>) => {
   return 'Nothing at all';
 };
 
+const getImage = (areaId: AreaId) => {
+  switch (areaId) {
+    case AreaId.Cathedral:
+      return CathedralImage;
+    case AreaId.Cave:
+      return CaveImage;
+    case AreaId.Chest:
+      return ChestImage;
+    case AreaId.Florist:
+      return FloristImage;
+    case AreaId.Grave:
+      return GraveImage;
+    case AreaId.LilyCase:
+      return LilyCaseImage;
+    case AreaId.Marsh:
+      return MarshImage;
+    case AreaId.TownSquare:
+      return TownSquareImage;
+  }
+};
+
 type Props = {
   onExitGame: () => void;
 };
@@ -38,14 +67,8 @@ const Scene = ({ onExitGame }: Props) => {
     handlePickupItem,
     inventory
   } = useGameState();
-  const {
-    areaId,
-    navigationDirections,
-    item,
-    parentAreaId,
-    subAreaId,
-    imageSrc
-  } = currentArea;
+  const { areaId, navigationDirections, item, parentAreaId, subAreaId } =
+    currentArea;
 
   return (
     <div className={styles.container}>
@@ -57,7 +80,7 @@ const Scene = ({ onExitGame }: Props) => {
         <div
           className={styles.image}
           style={{
-            backgroundImage: `url(/images/${imageSrc})`
+            backgroundImage: `url(${getImage(areaId)})`
           }}
         >
           <div className={styles.heldItem}>
