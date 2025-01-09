@@ -1,25 +1,29 @@
 .container {
-  width: 100%;
   flex: 1 1 100%;
-  padding: 1rem;
+  width: 100%;
+  padding: 2rem;
   border: 1px solid var(--color--blue);
-  font-family: var(--font--mono);
+  display: flex;
+  flex-direction: column;
 
   header {
     font-size: 18px;
     text-transform: uppercase;
-    padding: 1rem;
+    padding-bottom: 1rem;
     border-bottom: 1px solid var(--color--black);
+    color: var(--color--blue);
+    font-weight: bold;
+    letter-spacing: 0.1rem;
   }
 
   p {
-    padding: 1rem;
+    padding: 1rem 0;
     color: var(--color--black);
   }
 
   button {
     display: block;
-    padding: 1rem;
+    padding: 1rem 0;
     color: var(--color--blue);
     text-align: left;
   }

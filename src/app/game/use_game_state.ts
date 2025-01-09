@@ -51,7 +51,8 @@ const useGameState = () => {
     currentArea,
     getAreaItemAvailable,
     handleChangeArea,
-    handlePickupItem
+    handlePickupItem,
+    inventory
   };
 };
 

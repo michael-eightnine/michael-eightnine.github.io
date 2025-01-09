@@ -10,19 +10,28 @@
   justify-content: center;
   align-items: center;
   flex: none;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: all 0.25s ease;
+  user-select: none;
+
+  &:hover {
+    color: var(--color--blue);
+    background-color: var(--color--white);
+    box-shadow: inset 0 0 0 1px var(--color--blue);
+  }
 
   $offset: calc(1rem - 2px);
 
   &__N {
     top: $offset;
     left: 50%;
-    transform: translateX(-50%) rotate(-90deg);
+    transform: translateX(-50%);
   }
 
   &__S {
     bottom: $offset;
     left: 50%;
-    transform: translateX(-50%) rotate((90deg));
+    transform: translateX(-50%);
   }
 
   &__E {
@@ -34,6 +43,6 @@
   &__W {
     top: 50%;
     left: $offset;
-    transform: translateY(-50%) rotate(-180deg);
+    transform: translateY(-50%);
   }
 }

@@ -1,3 +1,3 @@
-import Scene from './scene';
+import GameScene from './scene';
 
-export { Scene };
+export { GameScene };

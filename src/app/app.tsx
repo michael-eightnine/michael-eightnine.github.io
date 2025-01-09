@@ -5,7 +5,7 @@ import { Background } from 'svg';
 
 import {
   ContactPopup,
-  // PopupContextProvider,
+  PopupContextProvider,
   PopupID,
   SkillsPopup,
   WelcomePopup
@@ -13,11 +13,12 @@ import {
 import { PopupContext } from 'components/popup';
 import Nav from 'components/nav';
 import MovingWordmark from 'components/moving_wordmark';
-import { Scene } from './game';
+import { GameScene } from './game';
 
 import styles from './app.module.scss';
 
 export function App() {
+  const [showGame, setShowGame] = useState(false);
   const [headerLoaded, setHeaderLoaded] = useState(false);
   const { instances, addInstance } = useContext(PopupContext);
 
@@ -59,7 +60,9 @@ export function App() {
     });
   }, [instances]);
 
-  return (
+  return showGame ? (
+    <GameScene onExitGame={() => setShowGame(false)} />
+  ) : (
     <div
       className={classnames(styles.page, {
         [styles.page__load]: headerLoaded
@@ -67,17 +70,19 @@ export function App() {
     >
       <Background className={styles.background} />
       <MovingWordmark className={styles.wordmark} />
-      <Nav onAnimationEnd={onAnimationEnd} />
+      <Nav
+        onAnimationEnd={onAnimationEnd}
+        onOpenGame={() => setShowGame(true)}
+      />
       <main>{mappedInstances}</main>
     </div>
   );
 }
 
 const AppWithContext = () => (
-  // <PopupContextProvider>
-  //   <App />
-  // </PopupContextProvider>
-  <Scene />
+  <PopupContextProvider>
+    <App />
+  </PopupContextProvider>
 );
 
 export default AppWithContext;

@@ -40,7 +40,7 @@ export const ITEM_DIALOG: Record<
 };
 
 export const RETURN_DIALOG: Partial<Record<AreaId, string>> = {
-  [AreaId.LilyCase]: 'Back away from the lily case.',
+  [AreaId.LilyCase]: 'Back away from the display case.',
   [AreaId.Chest]: 'Return to the cave entrance.',
   [AreaId.Grave]: 'Leave the grave, knowing it will see you one day.'
 };
@@ -81,7 +81,7 @@ export const AREA_DIALOG: Record<AreaId, { title: string; message: string }> = {
       'A solitary tomb of heavy stone. Large. Large enough for two? Its headstone cast aside is not blank, it was simply never engraved. A wilted lily in a vase sits to the side.'
   },
   [AreaId.LilyCase]: {
-    title: 'The Lily',
+    title: 'Porcelain Flower',
     message:
       'Encased in glass. Astonishingly pale. A small note rests on the floor near it. "Nothing needed comes without cost."'
   },
