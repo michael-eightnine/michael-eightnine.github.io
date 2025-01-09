@@ -9,8 +9,9 @@ export const ITEM_DIALOG: Record<
       'The hinges are rusted and the handles glisten with black slime. Open the doors, you can wash your hands later.',
     failure:
       'The doors are locked. The heavy slabs refuse to budge. Your hands are covered in slime. All for nothing. The bell tolls incessantly.',
-    success: 'You made it 2 heaven',
-    alreadyHeld: ''
+    success:
+      'You made it 2 heaven. A fleeting moment. A harsh return. Your journey continues beyond this world',
+    alreadyHeld: 'Please. There must be something else you can do.'
   },
   [ItemId.Coins]: {
     attempt: 'Force the chest open.',
