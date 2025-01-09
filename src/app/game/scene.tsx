@@ -57,7 +57,7 @@ const Scene = ({ onExitGame }: Props) => {
         <div
           className={styles.image}
           style={{
-            backgroundImage: `url(${new URL(imageSrc, import.meta.url).href})`
+            backgroundImage: `url(/images/${imageSrc})`
           }}
         >
           <div className={styles.heldItem}>

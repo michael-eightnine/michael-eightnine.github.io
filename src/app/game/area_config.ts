@@ -31,7 +31,7 @@ const TownSquareArea: Area = {
   },
   parentAreaId: null,
   subAreaId: null,
-  imageSrc: './images/town_square.jpg'
+  imageSrc: 'town_square.jpg'
 };
 
 // Florist
@@ -41,7 +41,7 @@ const FloristArea: Area = {
   navigationDirections: { [NavDirection.East]: AreaId.TownSquare },
   parentAreaId: null,
   subAreaId: AreaId.LilyCase,
-  imageSrc: './images/florist.jpg'
+  imageSrc: 'florist.jpg'
 };
 
 const LilyCaseArea: Area = {
@@ -50,7 +50,7 @@ const LilyCaseArea: Area = {
   navigationDirections: {},
   parentAreaId: AreaId.Florist,
   subAreaId: null,
-  imageSrc: './images/lily case.jpg'
+  imageSrc: 'lily case.jpg'
 };
 
 // Cave
@@ -60,7 +60,7 @@ const CaveArea: Area = {
   navigationDirections: { [NavDirection.North]: AreaId.TownSquare },
   parentAreaId: null,
   subAreaId: AreaId.Chest,
-  imageSrc: './images/cave.jpg'
+  imageSrc: 'cave.jpg'
 };
 
 const ChestArea: Area = {
@@ -69,7 +69,7 @@ const ChestArea: Area = {
   navigationDirections: {},
   parentAreaId: AreaId.Cave,
   subAreaId: null,
-  imageSrc: './images/chest.jpg'
+  imageSrc: 'chest.jpg'
 };
 
 // Marsh
@@ -79,7 +79,7 @@ const MarshArea: Area = {
   navigationDirections: { [NavDirection.West]: AreaId.TownSquare },
   parentAreaId: null,
   subAreaId: AreaId.Grave,
-  imageSrc: './images/marsh.jpg'
+  imageSrc: 'marsh.jpg'
 };
 
 const GraveArea: Area = {
@@ -88,7 +88,7 @@ const GraveArea: Area = {
   navigationDirections: {},
   parentAreaId: AreaId.Marsh,
   subAreaId: null,
-  imageSrc: './images/grave.jpg'
+  imageSrc: 'grave.jpg'
 };
 
 // Cathedral
@@ -98,7 +98,7 @@ const CathedralArea: Area = {
   navigationDirections: { [NavDirection.South]: AreaId.TownSquare },
   parentAreaId: null,
   subAreaId: null,
-  imageSrc: './images/cathedral.jpg'
+  imageSrc: 'cathedral.jpg'
 };
 
 export const AREAS_BY_ID: Record<AreaId, Area> = {
