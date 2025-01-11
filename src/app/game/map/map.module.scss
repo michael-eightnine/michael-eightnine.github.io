@@ -1,25 +1,32 @@
-$segmentSize: 25px;
-
 .container {
+  --segment-size: 25px;
+
   background-color: var(--color--white);
   flex: none;
-  width: (calc(#{$segmentSize} * 3 + 1rem));
+  width: (calc(var(--segment-size) * 3 + 1rem));
   position: absolute;
   top: 5rem;
   left: 5rem;
   padding: 0.5rem;
+
+  @media screen and (max-width: 600px) {
+    top: 2.5rem;
+    left: 2.5rem;
+
+    --segment-size: 14px;
+  }
 }
 
 .map {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Create a 3x3 grid */
   background-color: var(--color--white);
-  width: calc(#{$segmentSize} * 3);
+  width: calc(var(--segment-size) * 3);
 }
 
 .segment {
-  width: $segmentSize;
-  height: $segmentSize;
+  width: var(--segment-size);
+  height: var(--segment-size);
   box-sizing: border-box; /* Ensures the border is inside the size of the element */
   position: relative;
   flex: none;

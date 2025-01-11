@@ -87,7 +87,10 @@ const DialogBox = ({
       )}
 
       {parentAreaDialog && parentAreaId && (
-        <button onClick={() => handleChangeArea(parentAreaId)}>
+        <button
+          className={styles.navAction}
+          onClick={() => handleChangeArea(parentAreaId)}
+        >
           {parentAreaDialog}
         </button>
       )}

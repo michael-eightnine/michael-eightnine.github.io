@@ -4,7 +4,6 @@ import { Navigation } from './navigation';
 import { DialogBox } from './dialog';
 import { AreaId, ItemId } from './types';
 import { MapDisplay } from './map';
-import { Close } from 'svg';
 import CathedralImage from './images/cathedral.jpg';
 import CaveImage from './images/cave.jpg';
 import ChestImage from './images/chest.jpg';
@@ -100,7 +99,7 @@ const Scene = ({ onExitGame }: Props) => {
         />
       </div>
       <button className={styles.exitButton} onClick={onExitGame}>
-        <Close />
+        Exit
       </button>
     </div>
   );
