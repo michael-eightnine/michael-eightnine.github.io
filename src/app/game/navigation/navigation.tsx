@@ -1,14 +1,50 @@
 import styles from './navigation.module.scss';
-import { Area, AreaId } from '../types';
+import { Area, AreaId, NavDirection } from '../types';
 
 import Button from './button';
+import { useEffect } from 'react';
 
 type Props = {
   onClick: (id: AreaId) => void;
   navigationDirections: Area['navigationDirections'];
 };
 
+const keyToDirection = (key: string) => {
+  switch (key) {
+    case 'ArrowRight':
+      return NavDirection.East;
+    case 'ArrowLeft':
+      return NavDirection.West;
+    case 'ArrowUp':
+      return NavDirection.North;
+    case 'ArrowDown':
+      return NavDirection.South;
+    default:
+      return null;
+  }
+};
+
 const Navigation = ({ onClick, navigationDirections }: Props) => {
+  useEffect(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      const { key } = e;
+      const directionForKey = keyToDirection(key);
+
+      if (!directionForKey) return null;
+      e.preventDefault();
+
+      if (navigationDirections[directionForKey]) {
+        onClick(navigationDirections[directionForKey]);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeydown);
+    };
+  }, [navigationDirections, onClick]);
+
   return (
     <div className={styles.navigation}>
       {Object.entries(navigationDirections).map(([direction, destination]) => {

@@ -17,7 +17,7 @@ import { GameScene } from './game';
 
 import styles from './app.module.scss';
 
-const useQueryNav = () => {
+const useQueryState = () => {
   const url = new URL(window.location.href);
   const params = url.searchParams;
   const [gameEnabled, setGameEnabled] = useState(
@@ -42,7 +42,7 @@ const useQueryNav = () => {
 };
 
 export function App() {
-  const { gameEnabled, toggleGameParam } = useQueryNav();
+  const { gameEnabled, toggleGameParam } = useQueryState();
   const [headerLoaded, setHeaderLoaded] = useState(false);
   const { instances, addInstance } = useContext(PopupContext);
 
