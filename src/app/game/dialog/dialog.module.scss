@@ -3,18 +3,18 @@
   --header-size: 18px;
   --body-size: 16px;
 
-  @media screen and (max-width: 600px) {
-    --padding: 0.5rem;
-    --header-size: 16px;
-    --body-size: 14px;
-  }
-
   flex: 1 1 100%;
   width: 100%;
   padding: calc(var(--padding) * 2);
   border: 1px solid var(--color--blue);
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 600px) {
+    --padding: 0.5rem;
+    --header-size: 16px;
+    --body-size: 14px;
+  }
 
   header {
     font-size: var(--header-size);

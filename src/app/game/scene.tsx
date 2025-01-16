@@ -63,6 +63,7 @@ const Scene = ({ onExitGame }: Props) => {
     currentArea,
     handleChangeArea,
     getAreaItemAvailable,
+    // gameComplete,
     handlePickupItem,
     inventory
   } = useGameState();
