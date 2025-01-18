@@ -14,7 +14,9 @@ const getDefaultInventory = () => {
 };
 
 const useGameState = () => {
-  const [currentArea, setCurrentArea] = useState(AREAS_BY_ID[DEFAULT_AREA_ID]);
+  const [currentArea, setCurrentArea] = useState<
+    null | (typeof AREAS_BY_ID)[AreaId]
+  >(null);
   const [inventory, setInventory] = useState(getDefaultInventory());
   const [gameComplete, setGameComplete] = useState(false);
 
@@ -25,6 +27,11 @@ const useGameState = () => {
       setGameComplete(true);
     }
   }, []);
+
+  const handleStartGame = useCallback(
+    () => setCurrentArea(AREAS_BY_ID[DEFAULT_AREA_ID]),
+    []
+  );
 
   const handlePickupItem = useCallback(
     (item: Item) => {
@@ -58,6 +65,7 @@ const useGameState = () => {
     getAreaItemAvailable,
     handleChangeArea,
     handlePickupItem,
+    handleStartGame,
     inventory
   };
 };

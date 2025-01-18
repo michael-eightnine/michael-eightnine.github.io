@@ -86,3 +86,13 @@
     }
   }
 }
+
+.innerSanctum {
+  font-size: 1.25rem;
+  font-family: var(--font--mono);
+  color: var(--color--blue);
+  position: absolute;
+  top: calc(var(--segment-size) / 2 - 2px);
+  left: 50%;
+  transform: translateX(-50%);
+}
