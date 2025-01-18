@@ -9,7 +9,7 @@ const WelcomeInterstitial = ({ onStartGame }: Props) => {
     <InterstitialBase
       actionLabel="Wake Anew"
       contentList={[
-        'Eyes closed. A ringing headache, or something more. A unique, but common treatment. Whatever happens...you may think it all a mere bad dream...'
+        'Eyes closed. A sharp pain behind them, or something more. A unique, but common treatment. Whatever happens...you may think it all a mere bad dream...'
       ]}
       onAction={onStartGame}
       title="You've come to the right place"

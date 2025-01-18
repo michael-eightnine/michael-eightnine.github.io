@@ -9,7 +9,7 @@ const ExitInterstitial = ({ onEndGame }: Props) => {
     <InterstitialBase
       actionLabel="Complete this chapter"
       contentList={[
-        "You've done it! All there is to be done has been done. No worse for wear, one can hope.",
+        'All there is to be done has been done. No worse for wear, one can hope.',
         'Thanks for playing. I made this game over a few days out of admiration for the click and point games I grew up with, and my continued love for Fallout and Soulsborne games.'
       ]}
       onAction={onEndGame}
