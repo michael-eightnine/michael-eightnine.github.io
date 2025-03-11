@@ -32,3 +32,7 @@ body,
   position: relative;
   overflow: hidden;
 }
+
+.no-select {
+  user-select: none;
+}
