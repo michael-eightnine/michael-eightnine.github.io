@@ -13,38 +13,16 @@ import {
 import { PopupContext } from 'components/popup';
 import Nav from 'components/nav';
 import MovingWordmark from 'components/moving_wordmark';
-import { GameScene } from './game';
+import { GameScene, useGameQueryParam } from './game';
 
 import styles from './app.module.scss';
 
-const useQueryState = () => {
-  const url = new URL(window.location.href);
-  const params = url.searchParams;
-  const [gameEnabled, setGameEnabled] = useState(
-    params.get('game') === 'enabled'
-  );
-
-  const toggleGameParam = () => {
-    if (gameEnabled) {
-      params.delete('game');
-      setGameEnabled(false);
-    } else {
-      params.set('game', 'enabled');
-      setGameEnabled(true);
-    }
-    window.history.pushState(null, '', url.toString());
-  };
-
-  return {
-    toggleGameParam,
-    gameEnabled
-  };
-};
-
 export function App() {
-  const { gameEnabled, toggleGameParam } = useQueryState();
+  const { instances, addInstance, resetInstances } = useContext(PopupContext);
+  const { gameEnabled, toggleGameParam } = useGameQueryParam({
+    onGameEnabled: resetInstances
+  });
   const [headerLoaded, setHeaderLoaded] = useState(false);
-  const { instances, addInstance } = useContext(PopupContext);
 
   const onAnimationEnd = useCallback(() => {
     addInstance(PopupID.Welcome);
@@ -84,9 +62,11 @@ export function App() {
     });
   }, [instances]);
 
-  return gameEnabled ? (
-    <GameScene onExitGame={toggleGameParam} />
-  ) : (
+  if (gameEnabled) {
+    return <GameScene onExitGame={toggleGameParam} />;
+  }
+
+  return (
     <div
       className={classnames(styles.page, {
         [styles.page__load]: headerLoaded

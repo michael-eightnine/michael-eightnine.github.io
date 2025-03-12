@@ -20,7 +20,7 @@
   justify-content: center;
   align-items: stretch;
   font-family: var(--font--mono);
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeIn var(--transition--slow) ease-in;
 
   @media screen and (max-width: 600px) {
     padding: 0.5rem;
@@ -83,7 +83,9 @@
   height: 2rem;
   border: 1px solid var(--color--blue);
   font-weight: bold;
-  transition: all 0.25s ease;
+  transition:
+    color var(--transition--standard) ease,
+    background-color var(--transition--standard) ease;
 
   @media screen and (max-width: 600px) {
     top: 0rem;

@@ -3,7 +3,9 @@ import { GenericPopup, GenericPopupProps, PopupContent } from './core';
 const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
   return (
     <GenericPopup {...props} title="Get in touch">
-      <PopupContent>Reach out, let's build something together!</PopupContent>
+      <PopupContent>
+        Reach out, let's build something great together! 🚀
+      </PopupContent>
       <PopupContent>
         <ul>
           <li>
@@ -17,13 +19,13 @@ const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              For code
+              For written code
             </a>
           </li>
           <li>
             Resume:{' '}
             <a href="#" rel="noopener noreferrer" target="_blank">
-              For history
+              For work history
             </a>
           </li>
           <li>
@@ -33,7 +35,7 @@ const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              For business
+              For connecting
             </a>
           </li>
         </ul>

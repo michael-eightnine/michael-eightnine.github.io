@@ -5,14 +5,15 @@
   display: inline-flex;
   column-gap: 1rem;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity var(--transition--slow) ease;
 
   &__visible {
     opacity: 1;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 950px) {
     position: static;
+    align-self: flex-end;
   }
 }
 
@@ -25,7 +26,7 @@
   box-shadow:
     0.5rem -0.5rem 0px var(--color--white),
     0.5rem -0.5rem 0px 1px var(--color--blue);
-  transition: box-shadow 0.25s ease;
+  transition: box-shadow var(--transition--standard) ease;
 
   &:hover .dockButtonTooltip {
     opacity: 1;
@@ -46,8 +47,8 @@
   padding: 0.25rem;
   opacity: 0;
   transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
+    opacity var(--transition--standard) ease,
+    transform var(--transition--standard) ease;
   font-family: var(--font--mono);
   min-width: 100%;
   font-size: 14px;

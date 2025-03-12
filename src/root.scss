@@ -19,7 +19,9 @@
 
   --dock--size: 48px;
 
-  --bp--mobile: (max-width: 600px);
+  --transition--fast: 0.15s;
+  --transition--standard: 0.25s;
+  --transition--slow: 0.5s;
 }
 
 html,
@@ -31,8 +33,20 @@ body,
   background-color: var(--color--black);
   position: relative;
   overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    font-size: 14px;
+  }
 }
 
 .no-select {
   user-select: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline-width: 1px;
+  outline-color: var(--color--blue);
+  outline-style: dashed;
+  outline-offset: 3px;
 }

@@ -40,8 +40,8 @@
     text-align: left;
     position: relative;
     transition:
-      color 0.25s ease,
-      background-color 0.25s ease;
+      color var(--transition--standard) ease,
+      background-color var(--transition--standard) ease;
     font-size: var(--body-size);
 
     &::before {
@@ -52,7 +52,7 @@
       left: 0;
       color: currentColor;
       transform: translateY(-50%);
-      transition: transform 0.25s ease;
+      transition: transform var(--transition--standard) ease;
     }
 
     @media (hover: hover) {

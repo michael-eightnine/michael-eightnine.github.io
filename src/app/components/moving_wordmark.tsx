@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Wordmark } from 'svg';
 
@@ -8,13 +8,10 @@ type Props = {
 
 function MovingWordmark({ className }: Props) {
   const elementRef = useRef<HTMLDivElement | null>(null);
+  const [movingDisabled, setMovingDisabled] = useState(false);
 
   useEffect(() => {
     const element = elementRef.current;
-
-    if (window.innerWidth < 600) return;
-
-    if (!element) return;
 
     let animationFrameId: number | null = null;
 
@@ -33,7 +30,8 @@ function MovingWordmark({ className }: Props) {
 
       // Normalize the vector to get the direction and scale by an offset
       const magnitude = Math.sqrt(dx * dx + dy * dy) || 1; // Prevent division by 0
-      const offsetX = (dx / magnitude) * 75; // Scale the direction vector (e.g., 50px)
+      // Scale the direction by a vector of 75
+      const offsetX = (dx / magnitude) * 75;
       const offsetY = (dy / magnitude) * 75;
 
       // Use requestAnimationFrame to update the element's position smoothly
@@ -45,15 +43,45 @@ function MovingWordmark({ className }: Props) {
       }
     };
 
-    // Attach mousemove event listener
-    document.addEventListener('mousemove', handleMouseMove);
-
-    // Cleanup on unmount
-    return () => {
+    const cleanup = () => {
       document.removeEventListener('mousemove', handleMouseMove);
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
+    };
+
+    // Don't bind mousemove if on mobile and cleanup any previously bound listeners
+    if (movingDisabled || !element) {
+      cleanup();
+      return;
+    }
+
+    // Attach mousemove event listener
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      cleanup();
+    };
+  }, [movingDisabled]);
+
+  // Handles initializing a resize observer as the wordmark should not respond to mouse move events on smaller viewports
+  useEffect(() => {
+    const handleResize = () => {
+      setMovingDisabled(window.innerWidth < 700);
+    };
+
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+
+    resizeObserver.observe(document.body);
+
+    // Initial check
+    handleResize();
+
+    // Disconnect on unmount
+    return () => {
+      resizeObserver.disconnect();
     };
   }, []);
 
