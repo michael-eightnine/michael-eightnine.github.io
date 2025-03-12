@@ -6,10 +6,36 @@ const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
       <PopupContent>Reach out, let's build something together!</PopupContent>
       <PopupContent>
         <ul>
-          <li>Contact: [email]</li>
-          <li>GitHub: [gh link]</li>
-          <li>Resume: [resume link]</li>
-          <li>LinkedIn: [linkedin link]</li>
+          <li>
+            Contact:{' '}
+            <a href="mailto:msmith0892@gmail.com">msmith0892[at]gmail</a>
+          </li>
+          <li>
+            GitHub:{' '}
+            <a
+              href="https://github.com/michael-eightnine"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              For code
+            </a>
+          </li>
+          <li>
+            Resume:{' '}
+            <a href="#" rel="noopener noreferrer" target="_blank">
+              For history
+            </a>
+          </li>
+          <li>
+            LinkedIn:{' '}
+            <a
+              href="https://www.linkedin.com/in/michael-smith-103716139/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              For business
+            </a>
+          </li>
         </ul>
       </PopupContent>
     </GenericPopup>

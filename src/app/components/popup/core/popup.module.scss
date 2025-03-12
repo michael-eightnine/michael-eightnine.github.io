@@ -137,13 +137,18 @@
   flex: 1 1 100%;
   overflow: hidden;
   overflow: auto;
+
+  hr {
+    background: var(--color--blue);
+  }
 }
 
 .content {
   padding: var(--padding--small);
-  font-size: 1.25rem;
-  line-height: 1.25;
+  font-size: 1rem;
+  line-height: 1.5;
   color: var(--color--black);
+  font-family: var(--font--serif);
 
   & + & {
     padding-top: 0;
