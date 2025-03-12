@@ -28,6 +28,7 @@ const NavBar = ({ onAnimationEnd, onOpenGame }: Props) => {
     <div className={styles.wrapper}>
       <nav className={styles.nav}>
         <button
+          aria-label="Close all popups"
           className={styles.navLogo}
           disabled={closeAllProcessing || !instances.length}
           onClick={closeAllPopups}
