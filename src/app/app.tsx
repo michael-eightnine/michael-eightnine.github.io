@@ -13,14 +13,16 @@ import {
 import { PopupContext } from 'components/popup';
 import Nav from 'components/nav';
 import MovingWordmark from 'components/moving_wordmark';
-import { GameScene } from './game';
+import { GameScene, useGameQueryParam } from './game';
 
 import styles from './app.module.scss';
 
 export function App() {
-  const [showGame, setShowGame] = useState(false);
+  const { instances, addInstance, resetInstances } = useContext(PopupContext);
+  const { gameEnabled, toggleGameParam } = useGameQueryParam({
+    onGameEnabled: resetInstances
+  });
   const [headerLoaded, setHeaderLoaded] = useState(false);
-  const { instances, addInstance } = useContext(PopupContext);
 
   const onAnimationEnd = useCallback(() => {
     addInstance(PopupID.Welcome);
@@ -60,9 +62,11 @@ export function App() {
     });
   }, [instances]);
 
-  return showGame ? (
-    <GameScene onExitGame={() => setShowGame(false)} />
-  ) : (
+  if (gameEnabled) {
+    return <GameScene onExitGame={toggleGameParam} />;
+  }
+
+  return (
     <div
       className={classnames(styles.page, {
         [styles.page__load]: headerLoaded
@@ -70,10 +74,7 @@ export function App() {
     >
       <Background className={styles.background} />
       <MovingWordmark className={styles.wordmark} />
-      <Nav
-        onAnimationEnd={onAnimationEnd}
-        onOpenGame={() => setShowGame(true)}
-      />
+      <Nav onAnimationEnd={onAnimationEnd} onOpenGame={toggleGameParam} />
       <main>{mappedInstances}</main>
     </div>
   );

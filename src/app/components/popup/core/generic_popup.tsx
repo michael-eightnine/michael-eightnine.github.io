@@ -20,6 +20,7 @@ import styles from './popup.module.scss';
 import { GenericPopupProps, PopupID } from './types';
 import { PopupContext } from './popup_context';
 import PopupHeader from './popup_header';
+import useDraggablePopup from './use_draggable_popup';
 
 const getHeaderIcon = (popupId: GenericPopupProps['popupId']) => {
   switch (popupId) {
@@ -40,6 +41,13 @@ const GenericPopup = ({
   popupId,
   instanceId
 }: GenericPopupProps & ChildrenProps) => {
+  const {
+    handleDragStart,
+    isDragging,
+    placementStyle,
+    setPlacementCoordinates
+  } = useDraggablePopup();
+
   const transitionActiveRef = useRef(false);
   const closingFromAllRef = useRef(false);
   const { removeInstance, closeAllProcessing, instances, getDockButtonRef } =
@@ -53,7 +61,7 @@ const GenericPopup = ({
   const [transitionState, setTransitionState] = useState<
     'open' | 'opening' | 'closed' | 'closing'
   >('closed');
-  const ref = useRef<HTMLDivElement | null>(null);
+  const popupContainerRef = useRef<HTMLDivElement | null>(null);
 
   const indexOfPopup = useMemo(() => {
     return instances.findIndex(
@@ -61,42 +69,51 @@ const GenericPopup = ({
     );
   }, [instanceId, instances]);
 
+  // When a popup mounts initialize the opening transition
   useEffect(() => {
     if (!dockButtonElement || transitionActiveRef.current) return;
 
     transitionActiveRef.current = true;
 
     const headerRect = dockButtonElement.getBoundingClientRect();
-    const isMobile = window.innerWidth < 600;
+    const isMobile = window.innerWidth < 700;
     const headerHeight = headerRect.height + headerRect.top;
     const endCoordinates = getSectionCoordinates(isMobile, headerHeight);
 
     const startTransition = async () => {
-      if (ref.current && dockButtonElement) {
+      if (popupContainerRef.current && dockButtonElement) {
         setTransitionState('opening');
         await transitionElement({
-          element: ref.current,
+          element: popupContainerRef.current,
           from: dockButtonElement.getBoundingClientRect(),
           to: endCoordinates,
           transitionStyle: getTransitionStyle(true)
         });
         setTransitionState('open');
       }
+      const { top, left } = endCoordinates;
+      setPlacementCoordinates({ top, left });
       transitionActiveRef.current = false;
     };
 
     startTransition();
-  }, [dockButtonElement]);
+  }, [dockButtonElement, setPlacementCoordinates]);
 
+  // Handles closing a single popup instance by triggering the close transition and then
+  // removing the instance from context once fully transitioned to closed
   const handleClose = useCallback(async () => {
-    if (!ref.current || !dockButtonElement || transitionActiveRef.current)
+    if (
+      !popupContainerRef.current ||
+      !dockButtonElement ||
+      transitionActiveRef.current
+    )
       return;
     transitionActiveRef.current = true;
     setTransitionState('closing');
 
     await transitionElement({
-      element: ref.current,
-      from: ref.current.getBoundingClientRect(),
+      element: popupContainerRef.current,
+      from: popupContainerRef.current.getBoundingClientRect(),
       to: dockButtonElement.getBoundingClientRect(),
       transitionStyle: getTransitionStyle(false)
     });
@@ -106,6 +123,8 @@ const GenericPopup = ({
     transitionActiveRef.current = false;
   }, [dockButtonElement, instanceId, removeInstance]);
 
+  // If all popups are closing (indicated by `closeAllProcessing`) close this popup instance after a
+  // delay derived from the index of the current popup to create a staggered closing animation
   useEffect(() => {
     const closeWithCloseAll = async () => {
       closingFromAllRef.current = true;
@@ -129,12 +148,22 @@ const GenericPopup = ({
 
   return (
     <div
-      className={classnames(styles.popup, styles[`popup__${transitionState}`])}
-      ref={ref}
+      className={classnames(styles.popup, styles[`popup__${transitionState}`], {
+        [styles.popup__dragging]: isDragging
+      })}
+      ref={popupContainerRef}
       role="dialog"
-      style={{ zIndex: `${indexOfPopup + 1}` }}
+      style={{
+        zIndex: `${indexOfPopup + 1}`,
+        ...placementStyle
+      }}
     >
-      <PopupHeader onClose={handleClose} title={title}>
+      <PopupHeader
+        isDragging={isDragging}
+        onClose={handleClose}
+        onDragStart={handleDragStart}
+        title={title}
+      >
         {getHeaderIcon(popupId)}
       </PopupHeader>
       <div className={styles.contentContainer}>{children}</div>

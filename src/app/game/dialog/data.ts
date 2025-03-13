@@ -10,8 +10,9 @@ export const ITEM_DIALOG: Record<
     failure:
       'The doors are locked. The heavy slabs refuse to budge. Your hands are covered in slime. All for nothing. The bell tolls incessantly.',
     success:
-      'You made it 2 heaven. A fleeting moment. A harsh return. Your journey continues beyond this world',
-    alreadyHeld: 'Please. There must be something else you can do.'
+      'The key sticks, then turns. The doors swing inward. The hinges scream. A white light reveals and blinds. A fleeting moment. A harsh return. Your journey here is nearly complete. One step more...',
+    alreadyHeld:
+      'The doors stand open. A blinding light beyond their threshold. What waits beyond? What could you be waiting for?'
   },
   [ItemId.Coins]: {
     attempt: 'Force the chest open.',
@@ -55,6 +56,14 @@ export const ENTER_DIALOG: Partial<Record<AreaId, string>> = {
     'The grave compels. A familiarity or a glimpse of what is to come? Walk forward.'
 };
 
+export const COMPLETION_DIALOG: Record<
+  AreaId.InnerSanctum | AreaId.Cathedral,
+  string
+> = {
+  [AreaId.InnerSanctum]: 'Complete your journey on the world wide web.',
+  [AreaId.Cathedral]: 'Go forward. Into the light. Nothing blocks your way.'
+};
+
 export const AREA_DIALOG: Record<AreaId, { title: string; message: string }> = {
   [AreaId.Cathedral]: {
     title: 'Frozen Cathedral',
@@ -80,6 +89,11 @@ export const AREA_DIALOG: Record<AreaId, { title: string; message: string }> = {
     title: 'Untended Tomb',
     message:
       'A solitary tomb of heavy stone. Large. Large enough for two? Its headstone cast aside is not blank, it was simply never engraved. A wilted lily in a vase sits to the side.'
+  },
+  [AreaId.InnerSanctum]: {
+    title: 'Inner Sanctum',
+    message:
+      'To make it this far. Surely a testament to something. The white light encompasses all senses. The taste of iron between your teeth. A place to rest. Majula.'
   },
   [AreaId.LilyCase]: {
     title: 'Porcelain Flower',

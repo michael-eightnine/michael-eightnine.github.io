@@ -9,21 +9,22 @@
 }
 
 .wrapper {
-  width: 100%;
+  width: fit-content;
   display: flex;
   align-items: flex-end;
   column-gap: 1rem;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 950px) {
     flex-direction: column;
     column-gap: 0;
+    align-items: flex-start;
   }
 }
 
 .nav {
   flex: none;
   display: inline-flex;
-  align-items: stretch;
+  align-items: center;
   column-gap: 1rem;
   padding: var(--padding--small) var(--padding--medium);
   border: 1px solid var(--color--blue);
@@ -33,14 +34,10 @@
     1rem 1rem 0px 1px var(--color--blue);
 
   opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
-  animation-delay: 0.25s;
-  transition: transform 0.25s ease;
+  animation: fadeIn var(--transition--slow) ease forwards;
+  animation-delay: var(--transition--standard);
+  transition: transform var(--transition--standard) ease;
   transform-origin: center center;
-
-  @media screen and (max-width: 600px) {
-    align-items: center;
-  }
 }
 
 .navLogo {
@@ -48,19 +45,19 @@
   color: var(--color--blue);
   height: var(--logo--size);
   width: var(--logo--size);
-  transition: transform 0.25s ease;
+  transition: transform var(--transition--standard) ease;
   transform-origin: center center;
   flex: none;
   border-radius: 100%;
 
-  &:active {
-    transform: scale(1.25);
-  }
-
   @media (hover: hover) {
     &:hover,
     &:active {
-      transform: scale(1.25);
+      transform: scale(1.15);
     }
+  }
+
+  &:active {
+    transform: scale(1.25);
   }
 }

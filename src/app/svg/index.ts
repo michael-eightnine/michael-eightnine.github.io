@@ -1,3 +1,4 @@
+import Arrow from './arrow';
 import Background from './background';
 import Close from './close';
 import Code from './code';
@@ -9,6 +10,7 @@ import Resume from './resume';
 import Wordmark from './wordmark';
 
 export {
+  Arrow,
   Background,
   Close,
   Code,

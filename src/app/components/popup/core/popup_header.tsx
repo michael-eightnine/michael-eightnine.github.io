@@ -1,16 +1,32 @@
 import { Close } from 'svg';
+import { classnames } from 'utils';
 
 import styles from './popup.module.scss';
 
 type Props = {
-  title: string;
+  isDragging: boolean;
   onClose: () => void;
+  onDragStart: React.MouseEventHandler<HTMLElement>;
+  title: string;
 };
 
-const PopupHeader = ({ title, onClose, children }: Props & ChildrenProps) => {
+const PopupHeader = ({
+  children,
+  isDragging,
+  onClose,
+  onDragStart,
+  title
+}: Props & ChildrenProps) => {
   return (
     <header className={styles.header}>
-      <div className={styles.headerIconContainer}>{children}</div>
+      <div
+        className={classnames(styles.headerIconContainer, {
+          [styles.headerIconContainer__dragging]: isDragging
+        })}
+        onMouseDown={onDragStart}
+      >
+        {children}
+      </div>
       <span>{title}</span>
 
       <button className={styles.headerButton} onClick={onClose}>

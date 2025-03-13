@@ -2,12 +2,18 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Area, AreaId, Item } from '../types';
 import styles from './dialog.module.scss';
 
-import { ITEM_DIALOG, RETURN_DIALOG, ENTER_DIALOG, AREA_DIALOG } from './data';
+import {
+  ITEM_DIALOG,
+  RETURN_DIALOG,
+  ENTER_DIALOG,
+  AREA_DIALOG,
+  COMPLETION_DIALOG
+} from './data';
 
 type Props = {
   handlePickupItem: (item: Item) => boolean;
   getAreaItemAvailable: (areaId: AreaId) => boolean;
-  handleChangeArea: (areaId: AreaId) => void;
+  handleChangeArea: (areaId: AreaId | null) => void;
 } & Pick<Area, 'areaId' | 'item' | 'subAreaId' | 'parentAreaId'>;
 const DialogBox = ({
   areaId,
@@ -87,8 +93,23 @@ const DialogBox = ({
       )}
 
       {parentAreaDialog && parentAreaId && (
-        <button onClick={() => handleChangeArea(parentAreaId)}>
+        <button
+          className={styles.navAction}
+          onClick={() => handleChangeArea(parentAreaId)}
+        >
           {parentAreaDialog}
+        </button>
+      )}
+
+      {areaId === AreaId.Cathedral && !getAreaItemAvailable(areaId) && (
+        <button onClick={() => handleChangeArea(AreaId.InnerSanctum)}>
+          {COMPLETION_DIALOG[AreaId.Cathedral]}
+        </button>
+      )}
+
+      {areaId === AreaId.InnerSanctum && (
+        <button onClick={() => handleChangeArea(null)}>
+          {COMPLETION_DIALOG[AreaId.InnerSanctum]}
         </button>
       )}
     </section>

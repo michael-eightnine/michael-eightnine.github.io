@@ -65,7 +65,6 @@ export const transitionElement = async ({
   }
 
   // Apply initial styles
-  element.style.position = 'absolute';
   element.style.top = `${from.top}px`;
   element.style.left = `${from.left}px`;
   element.style.width = `${from.width}px`;

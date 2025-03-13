@@ -14,6 +14,7 @@
   box-shadow: none;
   display: flex;
   flex-direction: column;
+  position: absolute;
 
   &::after {
     content: '';
@@ -26,8 +27,9 @@
     right: 0;
     bottom: 0;
     display: block;
-    transition: opacity 0.15s ease;
+    transition: opacity var(--transition--fast) ease;
   }
+
   &__closing,
   &__opening,
   &__closed {
@@ -42,7 +44,7 @@
   }
 
   &__closing {
-    animation: fadeOut 0.25s ease forwards;
+    animation: fadeOut var(--transition--standard) ease forwards;
     animation-delay: 0.35s;
   }
 
@@ -56,8 +58,16 @@
 
     &::after {
       opacity: 0;
-      transition-delay: 0.5s;
+      transition-delay: var(--transition--slow);
     }
+  }
+
+  &__dragging {
+    // Overrides inline styles applied by transition JS. Without this override we'd have to store the previous
+    // transition styling in state, which changes based on opening or closing. !important is a bit of a red flag but
+    // if I say sorry enough I'm sure it's ok, right?
+    transition: none !important;
+    box-shadow: 3px 3px 7px 4px rgba(0, 0, 0, 0.35);
   }
 }
 
@@ -93,7 +103,7 @@
     display: flex;
     justify-content: center;
     align-items: stretch;
-    transition: background-color 0.25s ease;
+    transition: background-color var(--transition--standard) ease;
 
     &:hover {
       background-color: var(--color--white);
@@ -106,28 +116,56 @@
   height: 45px;
   width: 45px;
   flex: none;
+  cursor: grab;
+
+  &__dragging {
+    cursor: grabbing;
+
+    .headerIcon {
+      background-color: color-mix(in srgb, var(--color--blue) 90%, black 15%);
+    }
+  }
 }
 
 .headerIcon {
   background-color: var(--color--blue);
   color: var(--color--white);
   padding: 0.25rem;
+  transition: background-color var(--transition--fast) ease;
 }
 
 .contentContainer {
   flex: 1 1 100%;
   overflow: hidden;
   overflow: auto;
+
+  hr {
+    background: var(--color--blue);
+  }
 }
 
 .content {
   padding: var(--padding--small);
-  font-size: 1.25rem;
-  line-height: 1.25;
+  font-size: 1rem;
+  line-height: 1.5;
   color: var(--color--black);
+  font-family: var(--font--serif);
 
   & + & {
     padding-top: 0;
+  }
+
+  h4 {
+    text-transform: uppercase;
+    padding: 0.25rem;
+    font-size: 0.875rem;
+    letter-spacing: 0.1rem;
+    color: var(--color--white);
+    background-color: var(--color--blue);
+    display: inline-block;
+    line-height: 1;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   ul {
@@ -138,6 +176,7 @@
   li {
     position: relative;
     padding-left: 1.5rem;
+    line-height: 1.25;
 
     &::before {
       content: '';
@@ -145,13 +184,18 @@
       height: 0.25rem;
       width: 0.25rem;
       background-color: var(--color--blue);
-      top: 0.5rem;
+      top: 0.55rem;
       left: 0.5rem;
       position: absolute;
     }
 
     & + li {
-      margin-top: 0.25rem;
+      margin-top: 0.75rem;
     }
+  }
+
+  a,
+  a:visited {
+    color: var(--color--blue);
   }
 }

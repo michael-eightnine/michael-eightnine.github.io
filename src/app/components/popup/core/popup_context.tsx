@@ -17,6 +17,7 @@ type ContextValue = {
   instances: { popupId: PopupID; instanceId: number }[];
   registerDockButton: (popupId: PopupID, ref: HTMLElement | null) => void;
   removeInstance: (instanceId: number) => void;
+  resetInstances: () => void;
 };
 
 const defaultInstances: ContextValue['instances'] = [];
@@ -28,7 +29,8 @@ const PopupContext = createContext<ContextValue>({
   getDockButtonRef: () => null,
   instances: defaultInstances,
   registerDockButton: () => {},
-  removeInstance: () => {}
+  removeInstance: () => {},
+  resetInstances: () => {}
 });
 
 const PopupContextProvider = ({ children }: ChildrenProps) => {
@@ -70,6 +72,10 @@ const PopupContextProvider = ({ children }: ChildrenProps) => {
     }
   }, [instances]);
 
+  const resetInstances = useCallback(() => {
+    setInstances(defaultInstances);
+  }, []);
+
   const contextValue: ContextValue = useMemo(
     () => ({
       addInstance,
@@ -78,9 +84,17 @@ const PopupContextProvider = ({ children }: ChildrenProps) => {
       getDockButtonRef,
       instances,
       registerDockButton,
-      removeInstance
+      removeInstance,
+      resetInstances
     }),
-    [addInstance, closeAllProcessing, closeAllPopups, instances, removeInstance]
+    [
+      addInstance,
+      closeAllPopups,
+      closeAllProcessing,
+      instances,
+      removeInstance,
+      resetInstances
+    ]
   );
 
   return (

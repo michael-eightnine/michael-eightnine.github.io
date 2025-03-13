@@ -8,6 +8,8 @@ type Props = {
 };
 
 const MapDisplay = ({ activeAreaId }: Props) => {
+  const withinInnerSanctum = activeAreaId === AreaId.InnerSanctum;
+
   return (
     <div className={styles.container}>
       <div className={styles.map}>
@@ -23,6 +25,7 @@ const MapDisplay = ({ activeAreaId }: Props) => {
         <div className={`${styles.segment} ${styles.segment__spacer}`} />
         <MapSegment activeAreaId={activeAreaId} segmentId={AreaId.Cave} />
         <div className={`${styles.segment} ${styles.segment__spacer}`} />
+        {withinInnerSanctum && <div className={styles.innerSanctum}>?</div>}
       </div>
     </div>
   );

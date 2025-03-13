@@ -4,7 +4,6 @@ import { Navigation } from './navigation';
 import { DialogBox } from './dialog';
 import { AreaId, ItemId } from './types';
 import { MapDisplay } from './map';
-import { Close } from 'svg';
 import CathedralImage from './images/cathedral.jpg';
 import CaveImage from './images/cave.jpg';
 import ChestImage from './images/chest.jpg';
@@ -13,6 +12,8 @@ import GraveImage from './images/grave.jpg';
 import LilyCaseImage from './images/lily case.jpg';
 import MarshImage from './images/marsh.jpg';
 import TownSquareImage from './images/town_square.jpg';
+import InnerSanctumImage from './images/inner_sanctum.jpg';
+import { ExitInterstitial, WelcomeInterstitial } from './interstitial';
 
 const getCurrentlyHeldItem = (inventory: Record<ItemId, boolean>) => {
   if (inventory.Door) {
@@ -46,6 +47,8 @@ const getImage = (areaId: AreaId) => {
       return FloristImage;
     case AreaId.Grave:
       return GraveImage;
+    case AreaId.InnerSanctum:
+      return InnerSanctumImage;
     case AreaId.LilyCase:
       return LilyCaseImage;
     case AreaId.Marsh:
@@ -63,10 +66,21 @@ const Scene = ({ onExitGame }: Props) => {
   const {
     currentArea,
     handleChangeArea,
+    handleStartGame,
     getAreaItemAvailable,
+    gameComplete,
     handlePickupItem,
     inventory
   } = useGameState();
+
+  if (!currentArea) {
+    return <WelcomeInterstitial onStartGame={handleStartGame} />;
+  }
+
+  if (gameComplete) {
+    return <ExitInterstitial onEndGame={onExitGame} />;
+  }
+
   const { areaId, navigationDirections, item, parentAreaId, subAreaId } =
     currentArea;
 
@@ -100,7 +114,7 @@ const Scene = ({ onExitGame }: Props) => {
         />
       </div>
       <button className={styles.exitButton} onClick={onExitGame}>
-        <Close />
+        Exit
       </button>
     </div>
   );

@@ -8,7 +8,7 @@
   align-self: center;
   font-weight: bold;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     font-size: 24px;
     max-width: 50dvw;
   }
@@ -21,7 +21,7 @@
   width: 2px;
   background-color: var(--color--blue);
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 700px) {
     height: calc(56px / 2);
   }
 }

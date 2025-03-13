@@ -14,7 +14,8 @@ type Props = {
 
 const NavBar = ({ onAnimationEnd, onOpenGame }: Props) => {
   const [showDock, setShowDock] = useState(false);
-  const { closeAllPopups, closeAllProcessing } = useContext(PopupContext);
+  const { closeAllPopups, closeAllProcessing, instances } =
+    useContext(PopupContext);
 
   const handleAnimationEnd = useCallback(() => {
     setShowDock(true);
@@ -27,8 +28,9 @@ const NavBar = ({ onAnimationEnd, onOpenGame }: Props) => {
     <div className={styles.wrapper}>
       <nav className={styles.nav}>
         <button
+          aria-label="Close all popups"
           className={styles.navLogo}
-          disabled={closeAllProcessing}
+          disabled={closeAllProcessing || !instances.length}
           onClick={closeAllPopups}
           title="Close all popups"
         >

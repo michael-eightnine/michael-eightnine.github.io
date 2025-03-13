@@ -1,3 +1,4 @@
+import { Arrow } from 'svg';
 import { NavDirection } from '../types';
 
 import styles from './navigation.module.scss';
@@ -29,7 +30,8 @@ const Button = ({ direction, onClick }: Props) => {
       onClick={onClick}
       title={getDirectionLabel(direction)}
     >
-      {direction}
+      <Arrow />
+      <span>{direction}</span>
     </button>
   );
 };

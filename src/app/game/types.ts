@@ -4,6 +4,7 @@ export enum AreaId {
   Chest = 'Chest',
   Florist = 'Florist',
   Grave = 'Grave',
+  InnerSanctum = 'InnerSanctum',
   LilyCase = 'LilyCase',
   Marsh = 'Marsh',
   TownSquare = 'TownSquare'
@@ -34,5 +35,4 @@ export type Area = {
   parentAreaId: AreaId | null;
   navigationDirections: Partial<Record<NavDirection, AreaId>>;
   item: Item | null;
-  imageSrc: string;
 };

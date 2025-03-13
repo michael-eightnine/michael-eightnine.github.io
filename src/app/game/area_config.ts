@@ -30,8 +30,7 @@ const TownSquareArea: Area = {
     [NavDirection.West]: AreaId.Florist
   },
   parentAreaId: null,
-  subAreaId: null,
-  imageSrc: 'town_square.jpg'
+  subAreaId: null
 };
 
 // Florist
@@ -40,8 +39,7 @@ const FloristArea: Area = {
   item: null,
   navigationDirections: { [NavDirection.East]: AreaId.TownSquare },
   parentAreaId: null,
-  subAreaId: AreaId.LilyCase,
-  imageSrc: 'florist.jpg'
+  subAreaId: AreaId.LilyCase
 };
 
 const LilyCaseArea: Area = {
@@ -49,8 +47,7 @@ const LilyCaseArea: Area = {
   item: ITEMS[ItemId.Lily],
   navigationDirections: {},
   parentAreaId: AreaId.Florist,
-  subAreaId: null,
-  imageSrc: 'lily case.jpg'
+  subAreaId: null
 };
 
 // Cave
@@ -59,8 +56,7 @@ const CaveArea: Area = {
   item: null,
   navigationDirections: { [NavDirection.North]: AreaId.TownSquare },
   parentAreaId: null,
-  subAreaId: AreaId.Chest,
-  imageSrc: 'cave.jpg'
+  subAreaId: AreaId.Chest
 };
 
 const ChestArea: Area = {
@@ -68,8 +64,7 @@ const ChestArea: Area = {
   item: ITEMS[ItemId.Coins],
   navigationDirections: {},
   parentAreaId: AreaId.Cave,
-  subAreaId: null,
-  imageSrc: 'chest.jpg'
+  subAreaId: null
 };
 
 // Marsh
@@ -78,8 +73,7 @@ const MarshArea: Area = {
   item: null,
   navigationDirections: { [NavDirection.West]: AreaId.TownSquare },
   parentAreaId: null,
-  subAreaId: AreaId.Grave,
-  imageSrc: 'marsh.jpg'
+  subAreaId: AreaId.Grave
 };
 
 const GraveArea: Area = {
@@ -87,8 +81,7 @@ const GraveArea: Area = {
   item: ITEMS[ItemId.Key],
   navigationDirections: {},
   parentAreaId: AreaId.Marsh,
-  subAreaId: null,
-  imageSrc: 'grave.jpg'
+  subAreaId: null
 };
 
 // Cathedral
@@ -97,8 +90,15 @@ const CathedralArea: Area = {
   item: ITEMS[ItemId.Door],
   navigationDirections: { [NavDirection.South]: AreaId.TownSquare },
   parentAreaId: null,
-  subAreaId: null,
-  imageSrc: 'cathedral.jpg'
+  subAreaId: null
+};
+
+const InnerSanctumArea: Area = {
+  areaId: AreaId.InnerSanctum,
+  item: null,
+  navigationDirections: {},
+  parentAreaId: null,
+  subAreaId: null
 };
 
 export const AREAS_BY_ID: Record<AreaId, Area> = {
@@ -107,6 +107,7 @@ export const AREAS_BY_ID: Record<AreaId, Area> = {
   [AreaId.Chest]: ChestArea,
   [AreaId.Florist]: FloristArea,
   [AreaId.Grave]: GraveArea,
+  [AreaId.InnerSanctum]: InnerSanctumArea,
   [AreaId.LilyCase]: LilyCaseArea,
   [AreaId.Marsh]: MarshArea,
   [AreaId.TownSquare]: TownSquareArea
