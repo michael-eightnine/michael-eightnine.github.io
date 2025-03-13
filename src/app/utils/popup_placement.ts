@@ -11,15 +11,22 @@ export const getSectionCoordinates = (isMobile: boolean, headerHeight = 0) => {
   const buffer = 24;
 
   // Convert vh ranges to pixel values for width and height
-  const minHeight = (isMobile ? 60 / 100 : 45 / 100) * viewportHeight;
+  const minHeight = (isMobile ? 55 / 100 : 45 / 100) * viewportHeight;
   const maxHeight = (isMobile ? 75 / 100 : 66.66 / 100) * viewportHeight;
 
   const minWidth = (isMobile ? 70 / 100 : 35 / 100) * viewportWidth;
-  const maxWidth = (isMobile ? 95 / 100 : 45 / 100) * viewportWidth;
+  const maxWidth = (isMobile ? 90 / 100 : 45 / 100) * viewportWidth;
 
   // Generate randomized dimensions within the specified ranges
-  const height = Math.random() * (maxHeight - minHeight) + minHeight;
-  const width = Math.random() * (maxWidth - minWidth) + minWidth;
+  // But use `Math.min` to ensure these dimensions do not extend outside of the available space
+  const height = Math.min(
+    Math.random() * (maxHeight - minHeight) + minHeight,
+    viewportHeight - buffer * 2 - headerHeight
+  );
+  const width = Math.min(
+    Math.random() * (maxWidth - minWidth) + minWidth,
+    viewportWidth - buffer * 2
+  );
 
   // Calculate top placement:
   // Element must be placed below the header, and top must be at least 24px from the header

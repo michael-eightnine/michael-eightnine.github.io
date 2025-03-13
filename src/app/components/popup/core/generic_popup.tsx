@@ -129,8 +129,9 @@ const GenericPopup = ({
     const closeWithCloseAll = async () => {
       closingFromAllRef.current = true;
 
-      // Stagger closing all popups by 50ms per popup
-      const delay = indexOfPopup * 50;
+      // Stagger closing all popups by 50ms per popup, with the most recent popup closing first
+      const delay = (instances.length - indexOfPopup - 1) * 50;
+      console.log('delay', delay);
       await sleep(delay);
       await handleClose();
 
@@ -144,7 +145,7 @@ const GenericPopup = ({
     ) {
       closeWithCloseAll();
     }
-  }, [closeAllProcessing, handleClose, indexOfPopup]);
+  }, [closeAllProcessing, handleClose, indexOfPopup, instances.length]);
 
   return (
     <div

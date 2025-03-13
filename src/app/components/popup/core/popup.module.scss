@@ -105,8 +105,11 @@
     align-items: stretch;
     transition: background-color var(--transition--standard) ease;
 
-    &:hover {
-      background-color: var(--color--white);
+    @media (hover: hover) {
+      &:hover,
+      &:focus-visible {
+        background-color: var(--color--white);
+      }
     }
   }
 }

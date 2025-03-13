@@ -92,8 +92,11 @@
     right: 0rem;
   }
 
-  &:hover {
-    background-color: var(--color--blue);
-    color: var(--color--white);
+  @media (hover: hover) {
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color--blue);
+      color: var(--color--white);
+    }
   }
 }

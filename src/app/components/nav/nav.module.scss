@@ -50,8 +50,13 @@
   flex: none;
   border-radius: 100%;
 
+  svg {
+    overflow: visible;
+  }
+
   @media (hover: hover) {
     &:hover,
+    &:focus-visible,
     &:active {
       transform: scale(1.15);
     }

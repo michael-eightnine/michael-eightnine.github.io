@@ -56,7 +56,8 @@
     }
 
     @media (hover: hover) {
-      &:hover {
+      &:hover,
+      &:focus-visible {
         background-color: var(--color--blue);
         color: var(--color--white);
 
