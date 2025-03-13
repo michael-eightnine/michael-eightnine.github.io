@@ -102,3 +102,16 @@
     color: var(--color--white);
   }
 }
+
+.mobileAdvisory {
+  font-size: 0.875rem;
+  color: var(--color--black);
+  display: none;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-style: italic;
+
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
+}

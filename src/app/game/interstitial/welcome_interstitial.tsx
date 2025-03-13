@@ -11,6 +11,7 @@ const WelcomeInterstitial = ({ onStartGame }: Props) => {
       contentList={[
         'Eyes closed. A sharp pain behind them, or something more. A unique, but common treatment. Whatever happens...you may think it all a mere bad dream...'
       ]}
+      mobileAdvisory='Consider "Waking Anew" on a desktop device for the best experience'
       onAction={onStartGame}
       title="You've come to the right place"
     />

@@ -1,17 +1,19 @@
 import styles from './interstitial_base.module.scss';
 
 type Props = {
-  title: string;
-  contentList: string[];
   actionLabel: string;
+  contentList: string[];
+  mobileAdvisory?: string;
   onAction: () => void;
+  title: string;
 };
 
 const InterstitialBase = ({
-  title,
-  contentList,
   actionLabel,
-  onAction
+  contentList,
+  mobileAdvisory,
+  onAction,
+  title
 }: Props) => {
   return (
     <div className={styles.container}>
@@ -25,6 +27,9 @@ const InterstitialBase = ({
         <button className={styles.action} onClick={onAction}>
           {actionLabel}
         </button>
+        {!!mobileAdvisory && (
+          <p className={styles.mobileAdvisory}>{mobileAdvisory}</p>
+        )}
       </div>
     </div>
   );
