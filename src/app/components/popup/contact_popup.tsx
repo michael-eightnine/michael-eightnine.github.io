@@ -12,16 +12,7 @@ const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
             <span>Contact:</span>
             <a href="mailto:msmith0892@gmail.com">msmith0892[at]gmail</a>
           </li>
-          <li>
-            <span>GitHub:</span>
-            <a
-              href="https://github.com/michael-eightnine"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              For written code
-            </a>
-          </li>
+
           <li>
             <span>Resume:</span>
             <a
@@ -30,6 +21,16 @@ const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
               target="_blank"
             >
               For work history
+            </a>
+          </li>
+          <li>
+            <span>GitHub:</span>
+            <a
+              href="https://github.com/michael-eightnine"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              For written code
             </a>
           </li>
           <li>

@@ -1,7 +1,3 @@
-import sleep from './sleep';
-
-const DEFAULT_TRANSITION_DURATION = 500;
-
 export const getSectionCoordinates = (headerHeight = 0) => {
   // Get the viewport dimensions in pixels
   const viewportWidth = window.innerWidth;
@@ -62,8 +58,7 @@ export const transitionElement = async ({
   element,
   from,
   to,
-  transitionStyle,
-  duration = DEFAULT_TRANSITION_DURATION
+  transitionStyle
 }: {
   element: HTMLElement;
   from: TransitionCoordinates;
@@ -71,33 +66,41 @@ export const transitionElement = async ({
   transitionStyle: string;
   duration?: number;
 }): Promise<void> => {
-  if (!element) {
-    return;
-  }
+  return new Promise((resolve, reject) => {
+    if (!element) {
+      reject(new Error('Element not found'));
+      return;
+    }
 
-  // Apply initial styles
-  element.style.top = `${from.top}px`;
-  element.style.left = `${from.left}px`;
-  element.style.width = `${from.width}px`;
-  element.style.height = `${from.height}px`;
-  element.style.transition = transitionStyle;
+    // Apply initial styles
+    element.style.top = `${from.top}px`;
+    element.style.left = `${from.left}px`;
+    element.style.width = `${from.width}px`;
+    element.style.height = `${from.height}px`;
+    element.style.transition = transitionStyle;
 
-  // Force a reflow to ensure styles are applied before transitioning
-  element.getBoundingClientRect();
+    // Force a reflow to ensure styles are applied before transitioning
+    element.getBoundingClientRect();
 
-  // Set the target styles
-  element.style.top = `${to.top}px`;
-  element.style.left = `${to.left}px`;
-  element.style.width = `${to.width}px`;
-  element.style.height = `${to.height}px`;
+    // Set the target styles
+    element.style.top = `${to.top}px`;
+    element.style.left = `${to.left}px`;
+    element.style.width = `${to.width}px`;
+    element.style.height = `${to.height}px`;
 
-  await sleep(duration);
+    // Listen for the transition end event
+    const onTransitionEnd = (event: TransitionEvent) => {
+      if (event.target === element) {
+        element.removeEventListener('transitionend', onTransitionEnd);
+        resolve();
+      }
+    };
+
+    element.addEventListener('transitionend', onTransitionEnd);
+  });
 };
 
-export const getTransitionStyle = (
-  isOpening: boolean,
-  duration = DEFAULT_TRANSITION_DURATION
-) => {
+export const getTransitionStyle = (isOpening: boolean, duration = 500) => {
   const openingEase = 'cubic-bezier(0.3, 1.2, 0.68, 1.15)';
   const closingEase = 'cubic-bezier(0.68, -0.55, 0.9, 0.3)';
   const properties = ['top', 'left', 'height', 'width', 'box-shadow'];
