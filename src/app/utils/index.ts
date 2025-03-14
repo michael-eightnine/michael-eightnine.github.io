@@ -1,4 +1,5 @@
 import classnames from './classnames';
+import isTouchDevice from './is_touch_device';
 import sleep from './sleep';
 import {
   getSectionCoordinates,
@@ -8,6 +9,7 @@ import {
 
 export {
   classnames,
+  isTouchDevice,
   sleep,
   getSectionCoordinates,
   transitionElement,

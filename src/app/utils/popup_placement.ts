@@ -2,20 +2,24 @@ import sleep from './sleep';
 
 const DEFAULT_TRANSITION_DURATION = 500;
 
-export const getSectionCoordinates = (isMobile: boolean, headerHeight = 0) => {
+export const getSectionCoordinates = (headerHeight = 0) => {
   // Get the viewport dimensions in pixels
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
+
+  const withinSmallViewport = viewportWidth < 700;
 
   // Add buffer (24px) to ensure the element's edges are not too close to the viewport edges
   const buffer = 24;
 
   // Convert vh ranges to pixel values for width and height
-  const minHeight = (isMobile ? 55 / 100 : 45 / 100) * viewportHeight;
-  const maxHeight = (isMobile ? 75 / 100 : 66.66 / 100) * viewportHeight;
+  const minHeight =
+    (withinSmallViewport ? 55 / 100 : 45 / 100) * viewportHeight;
+  const maxHeight =
+    (withinSmallViewport ? 75 / 100 : 66.66 / 100) * viewportHeight;
 
-  const minWidth = (isMobile ? 70 / 100 : 35 / 100) * viewportWidth;
-  const maxWidth = (isMobile ? 90 / 100 : 45 / 100) * viewportWidth;
+  const minWidth = (withinSmallViewport ? 70 / 100 : 35 / 100) * viewportWidth;
+  const maxWidth = (withinSmallViewport ? 90 / 100 : 45 / 100) * viewportWidth;
 
   // Generate randomized dimensions within the specified ranges
   // But use `Math.min` to ensure these dimensions do not extend outside of the available space

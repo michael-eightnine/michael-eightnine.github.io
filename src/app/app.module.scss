@@ -26,17 +26,46 @@
 .wordmark {
   width: 20dvw;
   position: absolute;
-  top: 75%;
-  left: 25%;
+  top: 15%;
+  right: 0;
   transition: transform 0.1s ease;
   min-width: 250px;
+
+  @media (hover: hover) {
+    path {
+      transition:
+        fill var(--transition--slow) ease,
+        stroke var(--transition--slow) ease;
+    }
+    &:hover {
+      path {
+        fill: var(--color--blue);
+        stroke: transparent;
+      }
+    }
+  }
+
+  // TODO: Sort out different placements for different device types and sizes
+  // Probably nest different width queries within two pointer/hover queries for easy cascading
+  // @media (pointer: coarse) and (hover: none) {
+  //   transform: none !important; // Overrides inline JS styles
+  //   top: auto;
+  //   bottom: 2rem;
+  //   left: 2rem;
+  // }
+
+  @media screen and (max-width: 1275px) {
+    top: 75%;
+    left: 25%;
+    right: auto;
+  }
 
   @media screen and (max-width: 700px) {
     width: 55dvw;
     left: 2rem;
     top: auto;
     bottom: 2rem;
-    transform: none !important; // Overrides inline JS styles
     min-width: none;
+    transform: none !important; // Overrides inline JS styles
   }
 }

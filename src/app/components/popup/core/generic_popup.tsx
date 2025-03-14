@@ -76,9 +76,9 @@ const GenericPopup = ({
     transitionActiveRef.current = true;
 
     const headerRect = dockButtonElement.getBoundingClientRect();
-    const isMobile = window.innerWidth < 700;
+
     const headerHeight = headerRect.height + headerRect.top;
-    const endCoordinates = getSectionCoordinates(isMobile, headerHeight);
+    const endCoordinates = getSectionCoordinates(headerHeight);
 
     const startTransition = async () => {
       if (popupContainerRef.current && dockButtonElement) {

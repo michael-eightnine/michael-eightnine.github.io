@@ -5,10 +5,10 @@ const WelcomePopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
     <GenericPopup {...props} title="Welcome!">
       <PopupContent>
         I'm a Front-End Architect with over 10 years of experience building
-        scalable, modern web applications. I've worked with global brands, niche
-        companies, and startups, tackling complex codebases and transforming
-        them by instilling best practices, applying upgrades, and modernizing
-        architectures.
+        scalable, modern React applications. I've worked with global brands,
+        niche companies, and startups, tackling complex codebases and
+        transforming them by instilling best practices, applying upgrades, and
+        modernizing architectures.
       </PopupContent>
       <PopupContent>
         I believe a highly collaborative, iterative process is essential to
