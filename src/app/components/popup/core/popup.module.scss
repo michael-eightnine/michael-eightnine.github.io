@@ -105,8 +105,11 @@
     align-items: stretch;
     transition: background-color var(--transition--standard) ease;
 
-    &:hover {
-      background-color: var(--color--white);
+    @media (hover: hover) {
+      &:hover,
+      &:focus-visible {
+        background-color: var(--color--white);
+      }
     }
   }
 }
@@ -192,10 +195,21 @@
     & + li {
       margin-top: 0.75rem;
     }
+
+    span {
+      min-width: 6rem;
+      min-width: 6.5rem;
+      display: inline-block;
+    }
   }
 
   a,
   a:visited {
+    text-decoration: none;
     color: var(--color--blue);
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 }

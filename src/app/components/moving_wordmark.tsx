@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { Wordmark } from 'svg';
+import { isTouchDevice } from 'utils';
 
 type Props = {
   className: string;
@@ -67,7 +68,9 @@ function MovingWordmark({ className }: Props) {
   // Handles initializing a resize observer as the wordmark should not respond to mouse move events on smaller viewports
   useEffect(() => {
     const handleResize = () => {
-      setMovingDisabled(window.innerWidth < 700);
+      const onTouchDevice = isTouchDevice();
+      const isSmallViewport = window.innerWidth < 700;
+      setMovingDisabled(onTouchDevice || isSmallViewport);
     };
 
     const resizeObserver = new ResizeObserver(() => {

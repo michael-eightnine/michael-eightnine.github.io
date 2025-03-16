@@ -15,7 +15,7 @@
   width: 100dvw;
   height: 100dvh;
   background-color: var(--color--black);
-  padding: 2rem;
+  padding: var(--padding--medium);
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -39,7 +39,7 @@
   background-color: var(--color--white);
 
   @media screen and (max-width: 600px) {
-    padding: 2rem;
+    padding: var(--padding--medium);
   }
 }
 
@@ -92,8 +92,11 @@
     right: 0rem;
   }
 
-  &:hover {
-    background-color: var(--color--blue);
-    color: var(--color--white);
+  @media (hover: hover) {
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color--blue);
+      color: var(--color--white);
+    }
   }
 }

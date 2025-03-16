@@ -76,8 +76,8 @@ const useDraggablePopup = () => {
     if (!placementCoordinates) return {};
 
     return {
-      top: `${placementCoordinates.top}px`,
-      left: `${placementCoordinates.left}px`
+      left: `${placementCoordinates.left}px`,
+      top: `${placementCoordinates.top}px`
     };
   }, [placementCoordinates]);
 

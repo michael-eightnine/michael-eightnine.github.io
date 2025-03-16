@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 
+/**
+ * Tracks if the game is active via a query param and syncs the query param
+ * value to the game enabled state. Also attaches a `popstate` event listener
+ * to enable the browser's back button to exit the game
+ */
 const useGameQueryParam = ({
   onGameEnabled
 }: {
@@ -40,8 +45,8 @@ const useGameQueryParam = ({
   }, [toggleGameParam]);
 
   return {
-    toggleGameParam,
-    gameEnabled
+    gameEnabled,
+    toggleGameParam
   };
 };
 

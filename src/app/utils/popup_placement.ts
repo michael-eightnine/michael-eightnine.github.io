@@ -1,25 +1,36 @@
-import sleep from './sleep';
+import { sleep } from 'utils';
 
 const DEFAULT_TRANSITION_DURATION = 500;
 
-export const getSectionCoordinates = (isMobile: boolean, headerHeight = 0) => {
+export const getSectionCoordinates = (headerHeight = 0) => {
   // Get the viewport dimensions in pixels
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
-  // Add buffer (24px) to ensure the element's edges are not too close to the viewport edges
+  const withinSmallViewport = viewportWidth < 700;
+
+  // Add buffer to ensure the element's edges are not too close to the viewport edges
   const buffer = 24;
 
   // Convert vh ranges to pixel values for width and height
-  const minHeight = (isMobile ? 60 / 100 : 45 / 100) * viewportHeight;
-  const maxHeight = (isMobile ? 75 / 100 : 66.66 / 100) * viewportHeight;
+  const minHeight =
+    (withinSmallViewport ? 55 / 100 : 45 / 100) * viewportHeight;
+  const maxHeight =
+    (withinSmallViewport ? 75 / 100 : 66.66 / 100) * viewportHeight;
 
-  const minWidth = (isMobile ? 70 / 100 : 35 / 100) * viewportWidth;
-  const maxWidth = (isMobile ? 95 / 100 : 45 / 100) * viewportWidth;
+  const minWidth = (withinSmallViewport ? 70 / 100 : 35 / 100) * viewportWidth;
+  const maxWidth = (withinSmallViewport ? 90 / 100 : 45 / 100) * viewportWidth;
 
   // Generate randomized dimensions within the specified ranges
-  const height = Math.random() * (maxHeight - minHeight) + minHeight;
-  const width = Math.random() * (maxWidth - minWidth) + minWidth;
+  // But use `Math.min` to ensure these dimensions do not extend outside of the available space
+  const height = Math.min(
+    Math.random() * (maxHeight - minHeight) + minHeight,
+    viewportHeight - buffer * 2 - headerHeight
+  );
+  const width = Math.min(
+    Math.random() * (maxWidth - minWidth) + minWidth,
+    viewportWidth - buffer * 2
+  );
 
   // Calculate top placement:
   // Element must be placed below the header, and top must be at least 24px from the header
@@ -80,6 +91,8 @@ export const transitionElement = async ({
   element.style.width = `${to.width}px`;
   element.style.height = `${to.height}px`;
 
+  // Cubic bezier easing causes a `onTransitionEnd` event listener to be unreliable, as the animated element technically returns to its original
+  // size in the middle of the transition. A timeout, potentially less accurate, avoids this scenario and is sufficient for this use case
   await sleep(duration);
 };
 

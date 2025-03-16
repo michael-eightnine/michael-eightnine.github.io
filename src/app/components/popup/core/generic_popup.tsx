@@ -76,9 +76,9 @@ const GenericPopup = ({
     transitionActiveRef.current = true;
 
     const headerRect = dockButtonElement.getBoundingClientRect();
-    const isMobile = window.innerWidth < 700;
+
     const headerHeight = headerRect.height + headerRect.top;
-    const endCoordinates = getSectionCoordinates(isMobile, headerHeight);
+    const endCoordinates = getSectionCoordinates(headerHeight);
 
     const startTransition = async () => {
       if (popupContainerRef.current && dockButtonElement) {
@@ -91,8 +91,8 @@ const GenericPopup = ({
         });
         setTransitionState('open');
       }
-      const { top, left } = endCoordinates;
-      setPlacementCoordinates({ top, left });
+      const { left, top } = endCoordinates;
+      setPlacementCoordinates({ left, top });
       transitionActiveRef.current = false;
     };
 
@@ -129,8 +129,8 @@ const GenericPopup = ({
     const closeWithCloseAll = async () => {
       closingFromAllRef.current = true;
 
-      // Stagger closing all popups by 50ms per popup
-      const delay = indexOfPopup * 50;
+      // Stagger closing all popups by 50ms per popup, with the most recent popup closing first
+      const delay = (instances.length - indexOfPopup - 1) * 50;
       await sleep(delay);
       await handleClose();
 
@@ -144,7 +144,7 @@ const GenericPopup = ({
     ) {
       closeWithCloseAll();
     }
-  }, [closeAllProcessing, handleClose, indexOfPopup]);
+  }, [closeAllProcessing, handleClose, indexOfPopup, instances.length]);
 
   return (
     <div

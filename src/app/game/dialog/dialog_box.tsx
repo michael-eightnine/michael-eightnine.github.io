@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Area, AreaId, Item } from '../types';
+import { Area, AreaId, Item, ItemStatus } from '../types';
 import styles from './dialog.module.scss';
 
 import {
@@ -33,15 +33,17 @@ const DialogBox = ({
   const allowItemPickup = areaHasItem && itemAvailable;
 
   // Initialize item status state
-  const [itemStatus, setItemStatus] = useState<
-    'obtained' | 'denied' | 'none' | 'held'
-  >(areaHasItem && !itemAvailable ? 'held' : 'none');
+  const [itemStatus, setItemStatus] = useState<ItemStatus>(
+    areaHasItem && !itemAvailable ? ItemStatus.Held : ItemStatus.None
+  );
 
   // Update item status when the area ID changes
   useEffect(() => {
     if (areaId && areaId !== loadedAreaId.current) {
       setItemStatus(
-        areaHasItem && !getAreaItemAvailable(areaId) ? 'held' : 'none'
+        areaHasItem && !getAreaItemAvailable(areaId)
+          ? ItemStatus.Held
+          : ItemStatus.None
       );
       loadedAreaId.current = areaId;
     }
@@ -57,20 +59,20 @@ const DialogBox = ({
   const onItemPickupAttempt = useCallback(() => {
     if (!allowItemPickup) return;
 
-    const itemAddSuccess = handlePickupItem(item);
-    setItemStatus(itemAddSuccess ? 'obtained' : 'denied');
+    const pickupSuccessful = handlePickupItem(item);
+    setItemStatus(pickupSuccessful ? ItemStatus.Obtained : ItemStatus.Denied);
   }, [allowItemPickup, handlePickupItem, item]);
 
   // Determine description text based on item status
   const renderedDescription = useMemo(() => {
     switch (itemStatus) {
-      case 'none':
+      case ItemStatus.None:
         return areaDialog.message;
-      case 'denied':
+      case ItemStatus.Denied:
         return itemDialog?.failure;
-      case 'held':
+      case ItemStatus.Held:
         return itemDialog?.alreadyHeld;
-      case 'obtained':
+      case ItemStatus.Obtained:
         return itemDialog?.success;
       default:
         return areaDialog.message;
