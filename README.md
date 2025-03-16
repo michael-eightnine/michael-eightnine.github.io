@@ -1,4 +1,4 @@
-# Welcome to my website
+![image](https://github.com/user-attachments/assets/6ccefe6d-7d4c-4cb0-a329-f2354150ba9e)
 
 Small repo that contains my current professional website. Built with Vite, React & Typescript.
 
