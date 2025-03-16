@@ -1,6 +1,6 @@
 .page {
   height: 100dvh;
-  padding: 2em;
+  padding: var(--padding--medium);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -25,8 +25,6 @@
 .wordmark {
   width: 20dvw;
   position: absolute;
-  top: 15%;
-  right: 0;
   transition: transform 0.1s ease;
   min-width: 250px;
 
@@ -44,27 +42,39 @@
     }
   }
 
-  // TODO: Sort out different placements for different device types and sizes
-  // Probably nest different width queries within two pointer/hover queries for easy cascading
-  // @media (pointer: coarse) and (hover: none) {
-  //   transform: none !important; // Overrides inline JS styles
-  //   top: auto;
-  //   bottom: 2rem;
-  //   left: 2rem;
-  // }
+  // Touch device positioning, no JS transforms applied
+  @media (pointer: coarse) and (hover: none) {
+    transform: none !important; // Overrides any potential inline JS style
+    top: 10%;
+    right: 5%;
 
-  @media screen and (max-width: 1275px) {
-    top: 75%;
-    left: 25%;
-    right: auto;
+    @media screen and (max-width: 1275px) {
+      top: auto;
+      right: auto;
+      left: var(--padding--medium);
+      bottom: var(--padding--medium);
+    }
   }
 
-  @media screen and (max-width: 700px) {
-    width: 55dvw;
-    left: 2rem;
-    top: auto;
-    bottom: 2rem;
-    min-width: none;
-    transform: none !important; // Overrides inline JS styles
+  // Mouse based devices, a JS transform will be applied
+  @media (pointer: fine) {
+    top: 15%;
+    right: 0;
+
+    @media screen and (max-width: 1275px) {
+      top: auto;
+      bottom: 10%;
+      left: 25%;
+      right: auto;
+    }
+
+    @media screen and (max-width: 700px) {
+      width: 55dvw;
+      left: var(--padding--medium);
+      top: auto;
+      bottom: var(--padding--medium);
+      min-width: 0;
+      transform: none !important; // Overrides inline JS styles
+    }
   }
 }

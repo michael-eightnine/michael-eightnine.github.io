@@ -36,3 +36,10 @@ export type Area = {
   navigationDirections: Partial<Record<NavDirection, AreaId>>;
   item: Item | null;
 };
+
+export enum ItemStatus {
+  Denied = 'denied',
+  Held = 'held',
+  None = 'none',
+  Obtained = 'obtained'
+}

@@ -102,7 +102,6 @@ const Scene = ({ onExitGame }: Props) => {
           </div>
         </div>
         <MapDisplay activeAreaId={areaId} />
-
         <DialogBox
           areaId={areaId}
           getAreaItemAvailable={getAreaItemAvailable}

@@ -91,8 +91,8 @@ const GenericPopup = ({
         });
         setTransitionState('open');
       }
-      const { top, left } = endCoordinates;
-      setPlacementCoordinates({ top, left });
+      const { left, top } = endCoordinates;
+      setPlacementCoordinates({ left, top });
       transitionActiveRef.current = false;
     };
 

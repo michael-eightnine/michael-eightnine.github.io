@@ -1,3 +1,7 @@
+import { sleep } from 'utils';
+
+const DEFAULT_TRANSITION_DURATION = 500;
+
 export const getSectionCoordinates = (headerHeight = 0) => {
   // Get the viewport dimensions in pixels
   const viewportWidth = window.innerWidth;
@@ -5,7 +9,7 @@ export const getSectionCoordinates = (headerHeight = 0) => {
 
   const withinSmallViewport = viewportWidth < 700;
 
-  // Add buffer (24px) to ensure the element's edges are not too close to the viewport edges
+  // Add buffer to ensure the element's edges are not too close to the viewport edges
   const buffer = 24;
 
   // Convert vh ranges to pixel values for width and height
@@ -58,7 +62,8 @@ export const transitionElement = async ({
   element,
   from,
   to,
-  transitionStyle
+  transitionStyle,
+  duration = DEFAULT_TRANSITION_DURATION
 }: {
   element: HTMLElement;
   from: TransitionCoordinates;
@@ -66,41 +71,35 @@ export const transitionElement = async ({
   transitionStyle: string;
   duration?: number;
 }): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    if (!element) {
-      reject(new Error('Element not found'));
-      return;
-    }
+  if (!element) {
+    return;
+  }
 
-    // Apply initial styles
-    element.style.top = `${from.top}px`;
-    element.style.left = `${from.left}px`;
-    element.style.width = `${from.width}px`;
-    element.style.height = `${from.height}px`;
-    element.style.transition = transitionStyle;
+  // Apply initial styles
+  element.style.top = `${from.top}px`;
+  element.style.left = `${from.left}px`;
+  element.style.width = `${from.width}px`;
+  element.style.height = `${from.height}px`;
+  element.style.transition = transitionStyle;
 
-    // Force a reflow to ensure styles are applied before transitioning
-    element.getBoundingClientRect();
+  // Force a reflow to ensure styles are applied before transitioning
+  element.getBoundingClientRect();
 
-    // Set the target styles
-    element.style.top = `${to.top}px`;
-    element.style.left = `${to.left}px`;
-    element.style.width = `${to.width}px`;
-    element.style.height = `${to.height}px`;
+  // Set the target styles
+  element.style.top = `${to.top}px`;
+  element.style.left = `${to.left}px`;
+  element.style.width = `${to.width}px`;
+  element.style.height = `${to.height}px`;
 
-    // Listen for the transition end event
-    const onTransitionEnd = (event: TransitionEvent) => {
-      if (event.target === element) {
-        element.removeEventListener('transitionend', onTransitionEnd);
-        resolve();
-      }
-    };
-
-    element.addEventListener('transitionend', onTransitionEnd);
-  });
+  // Cubic bezier easing causes a `onTransitionEnd` event listener to be unreliable, as the animated element technically returns to its original
+  // size in the middle of the transition. A timeout, potentially less accurate, avoids this scenario and is sufficient for this use case
+  await sleep(duration);
 };
 
-export const getTransitionStyle = (isOpening: boolean, duration = 500) => {
+export const getTransitionStyle = (
+  isOpening: boolean,
+  duration = DEFAULT_TRANSITION_DURATION
+) => {
   const openingEase = 'cubic-bezier(0.3, 1.2, 0.68, 1.15)';
   const closingEase = 'cubic-bezier(0.68, -0.55, 0.9, 0.3)';
   const properties = ['top', 'left', 'height', 'width', 'box-shadow'];

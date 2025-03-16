@@ -19,7 +19,7 @@
 
 .map {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Create a 3x3 grid */
+  grid-template-columns: repeat(3, 1fr);
   background-color: var(--color--white);
   width: calc(var(--segment-size) * 3);
 }
@@ -27,9 +27,7 @@
 .segment {
   width: var(--segment-size);
   height: var(--segment-size);
-  box-sizing: border-box; /* Ensures the border is inside the size of the element */
   position: relative;
-  flex: none;
 
   &:nth-child(2),
   &:nth-child(4),

@@ -30,9 +30,12 @@ const Navigation = ({ onClick, navigationDirections }: Props) => {
       const { key } = e;
       const directionForKey = keyToDirection(key);
 
-      if (!directionForKey) return null;
-      e.preventDefault();
+      // Only handle known directional keys
+      if (!directionForKey) {
+        return;
+      }
 
+      e.preventDefault();
       if (navigationDirections[directionForKey]) {
         onClick(navigationDirections[directionForKey]);
       }

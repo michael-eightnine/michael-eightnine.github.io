@@ -44,7 +44,7 @@ const Background = ({ className }: SVGProps) => (
       </filter>
     </defs>
     <path d="M0 0h700v700H0z" fill="transparent" />
-    <path d="M0 0h700v700H0z" fill="#00f" filter="url(#a)" />
+    <path d="M0 0h700v700H0z" fill="var(--color--blue)" filter="url(#a)" />
   </svg>
 );
 
