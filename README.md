@@ -1,6 +1,6 @@
 # Welcome to my website
 
-Small repo that contains my current professional website. Currently build with Vite, React & Typescript.
+Small repo that contains my current professional website. Built with Vite, React & Typescript.
 
 Features your standard portfolio content, displayed via modular dialog components that mimic old web popup experiences.
 
