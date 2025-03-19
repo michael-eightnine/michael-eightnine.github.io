@@ -1,0 +1,24 @@
+.layout {
+  flex: 1 1 100%;
+  display: flex;
+  width: 100%;
+}
+
+.copy {
+  margin-top: auto;
+  margin-left: auto;
+  padding-right: calc(var(--padding--page) * 2);
+  padding-bottom: calc(var(--padding--page) * 2);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  row-gap: 2rem;
+  font-size: 0.875rem;
+  align-self: flex-end;
+  max-width: 650px;
+
+  p {
+    line-height: 1.5;
+    font-family: var(--font--mono);
+  }
+}

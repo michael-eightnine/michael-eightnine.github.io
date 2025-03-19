@@ -1,5 +1,5 @@
 import { Routes, Route, Outlet } from 'react-router';
-import { Home, Offering } from 'routes';
+import { Home, Offering, Origins } from 'routes';
 
 import styles from './app.module.scss';
 import NavBar from 'components/nav';
@@ -25,6 +25,7 @@ const App = () => {
       <Route element={<AppLayout />}>
         <Route element={<Home />} path="/" />
         <Route element={<Offering />} path="/offering/:id" />
+        <Route element={<Origins />} path="/origins" />
       </Route>
     </Routes>
   );
