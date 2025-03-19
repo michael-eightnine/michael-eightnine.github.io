@@ -1,9 +1,9 @@
-const START_DATE = new Date('2023-05-29');
+const START_DATE_TIME = new Date('2023-05-29').getTime();
 
 const OriginsCopy = () => {
   const today = new Date();
   const daysSince = Math.floor(
-    (today.getTime() - START_DATE.getTime()) / (1000 * 60 * 60 * 24)
+    (today.getTime() - START_DATE_TIME) / (1000 * 60 * 60 * 24)
   );
 
   return (
