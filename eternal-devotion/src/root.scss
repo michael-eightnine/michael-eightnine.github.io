@@ -1,0 +1,45 @@
+@use 'scss-reset';
+
+:root {
+  --color--black: #0f0f0f;
+  --color--white: #fff;
+  --color--paper: #f5f5f5;
+  --color--rule: #ecb7ac;
+
+  --font--mono: 'Consolas', monospace;
+  --font--serif: 'Libre Baskerville', serif;
+
+  --padding--page: 3rem;
+
+  --padding--small: 1rem;
+  --padding--medium: 2rem;
+
+  --transition--fast: 0.15s;
+  --transition--standard: 0.25s;
+  --transition--slow: 0.5s;
+}
+
+html,
+body,
+#root {
+  height: 100dvh;
+  width: 100dvw;
+  font-size: 16px;
+  background-color: var(--color--white);
+  color: var(--color--black);
+  position: relative;
+  overflow: hidden;
+
+  @media screen and (max-width: 600px) {
+    // Allow rem based values to scale down for smaller viewports
+    font-size: 14px;
+  }
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline-width: 1px;
+  outline-color: var(--color--black);
+  outline-style: dashed;
+  outline-offset: 3px;
+}

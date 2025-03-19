@@ -1,9 +1,15 @@
-import { useParams } from 'react-router';
+import { PaintingRow, PositionIndicator } from 'components/offering';
+// import { useParams } from 'react-router';
 
 const Offering = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
 
-  return <div>Viewing id: {id}</div>;
+  return (
+    <>
+      <PaintingRow />
+      <PositionIndicator />
+    </>
+  );
 };
 
 export default Offering;
