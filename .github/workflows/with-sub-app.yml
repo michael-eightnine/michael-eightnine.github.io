@@ -1,0 +1,72 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Vite 2 GH - Multi Repo
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "yarn"
+
+      # Build Main App
+      - name: Install dependencies (Portfolio)
+        run: yarn install --frozen-lockfile
+      - name: Build Portfolio
+        run: yarn build
+      - name: Move Portfolio Build
+        run: mv dist main_dist
+
+      # Build Contained Eternal Devotion App
+      - name: Install dependencies (Eternal Devotion)
+        run: |
+          cd eternal-devotion
+          yarn install --frozen-lockfile
+      - name: Build Eternal Devotion
+        run: |
+          cd eternal-devotion
+          yarn build
+      - name: Move Eternal Devotion Build
+        run: mv eternal-devotion/dist main_dist/eternal-devotion
+
+      # Prepare GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # Upload artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./main_dist"
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
