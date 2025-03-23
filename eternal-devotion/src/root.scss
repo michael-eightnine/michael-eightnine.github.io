@@ -36,8 +36,7 @@ body,
   }
 }
 
-a:focus-visible,
-button:focus-visible {
+*:focus-visible {
   outline-width: 1px;
   outline-color: var(--color--black);
   outline-style: dashed;

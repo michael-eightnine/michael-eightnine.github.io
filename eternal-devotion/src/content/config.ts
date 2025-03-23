@@ -68,11 +68,11 @@ const WakingAnew: OfferingWithoutId = {
 };
 
 const offeringsConfig: Record<Offering['id'], Offering> = [
+  Hellbound,
   BurningBush,
   ChangeWithMe,
   Dead2Day,
   HeavenAboveHere,
-  Hellbound,
   HelpWitU,
   Hidden2,
   Late4Heaven,
