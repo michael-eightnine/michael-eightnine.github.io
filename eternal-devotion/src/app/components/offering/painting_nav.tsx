@@ -43,14 +43,14 @@ const PaintingNav = () => {
       >{`${diceMatchCount} / 3`}</span>
       {dice && (
         <img
-          alt={`Your rolled ${dice[0]}`}
+          alt={`Your rolled ${dice[0].value}`}
           className={styles.paintingDie}
           src={dice[0].src}
         />
       )}
       {dice && (
         <img
-          alt={`Your rolled ${dice[1]}`}
+          alt={`Your rolled ${dice[1].value}`}
           className={styles.paintingDie}
           src={dice[1].src}
         />
@@ -63,7 +63,7 @@ const PaintingNav = () => {
         />
         {dice && (
           <img
-            alt={`Your rolled ${dice[2]}`}
+            alt={`Your rolled ${dice[2].value}`}
             className={styles.paintingDie}
             src={dice[2].src}
           />

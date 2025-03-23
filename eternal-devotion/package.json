@@ -7,7 +7,7 @@
     "generateDice": "node ./scripts/generate_dice.js",
     "generateImages": "node ./scripts/generate_images.js",
     "dev": "vite",
-    "build": "tsc -b && yarn generateImages && vite build",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
