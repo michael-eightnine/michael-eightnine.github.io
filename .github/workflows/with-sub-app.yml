@@ -36,13 +36,11 @@ jobs:
           node-version: 20
           cache: "yarn"
 
-      # Build Main App
+      # Build Main Portfolio App
       - name: Install dependencies (Portfolio)
         run: yarn install --frozen-lockfile
       - name: Build Portfolio
         run: yarn build
-      - name: Move Portfolio Build
-        run: mv dist main_dist
 
       # Build Contained Eternal Devotion App
       - name: Install dependencies (Eternal Devotion)
@@ -53,8 +51,7 @@ jobs:
         run: |
           cd eternal-devotion
           yarn build
-      - name: Move Eternal Devotion Build
-        run: mv eternal-devotion/dist main_dist/eternal-devotion
+          mv dist ../dist/eternal-devotion # Move into main dist folder
 
       # Prepare GitHub Pages
       - name: Setup Pages
@@ -64,7 +61,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./main_dist"
+          path: "./dist" # Uploads the final structure
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
