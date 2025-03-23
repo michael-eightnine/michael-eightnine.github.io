@@ -5,16 +5,19 @@ import { classnames } from 'utils';
 
 type Props = {
   isActive?: boolean;
+  enabled?: boolean;
   label: string;
   path: string;
 };
 
-const NavLink = ({ isActive = false, label, path }: Props) => {
+const NavLink = ({ isActive = false, enabled = true, label, path }: Props) => {
   return (
     <RouterNavLink
+      aria-disabled={!enabled}
       className={({ isActive: directLinkActive }) =>
         classnames(styles.navLink, {
-          [styles.navLink__active]: directLinkActive || isActive
+          [styles.navLink__active]: directLinkActive || isActive,
+          [styles.navLink__hidden]: !enabled
         })
       }
       to={path}

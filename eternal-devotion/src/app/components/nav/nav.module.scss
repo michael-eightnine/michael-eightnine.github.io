@@ -54,4 +54,10 @@
       color: var(--color--white);
     }
   }
+
+  &__hidden {
+    text-decoration: line-through;
+    opacity: 0.75;
+    pointer-events: none;
+  }
 }

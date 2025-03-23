@@ -22,6 +22,7 @@ export default defineConfig({
   resolve: {
     alias: {
       components: path.resolve(__dirname, 'src/app/components'),
+      content: path.resolve(__dirname, 'src/content'),
       routes: path.resolve(__dirname, 'src/app/routes'),
       svg: path.resolve(__dirname, 'src/app/svg'),
       utils: path.resolve(__dirname, 'src/app/utils')
