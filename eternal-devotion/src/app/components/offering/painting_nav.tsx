@@ -40,12 +40,13 @@ const PaintingNav = () => {
           [styles.diceCount__large]: diceMatchCount === 2,
           [styles.diceCount__huge]: diceMatchCount === 3
         })}
-      >{`${diceMatchCount} / 3`}</span>
+      >{`${diceMatchCount} out of 3`}</span>
       {dice && (
         <img
           alt={`Your rolled ${dice[0].value}`}
           className={styles.paintingDie}
           src={dice[0].src}
+          title={`Your rolled ${dice[0].value}`}
         />
       )}
       {dice && (
@@ -53,6 +54,7 @@ const PaintingNav = () => {
           alt={`Your rolled ${dice[1].value}`}
           className={styles.paintingDie}
           src={dice[1].src}
+          title={`Your rolled ${dice[1].value}`}
         />
       )}
       <div className={styles.paintingNavGroup}>
@@ -66,6 +68,7 @@ const PaintingNav = () => {
             alt={`Your rolled ${dice[2].value}`}
             className={styles.paintingDie}
             src={dice[2].src}
+            title={`Your rolled ${dice[2].value}`}
           />
         )}
         <NavLink

@@ -7,6 +7,11 @@ type OfferingWithoutId = Omit<Offering, 'id'>;
 const description =
   "aiding in: unhappiness, release of fear, insomnia, mysteries unveiled... gave a gift to die where you're from n we plan to collect";
 
+const BodyOvMine: OfferingWithoutId = {
+  description,
+  filename: 'body-ov-mine'
+};
+
 const BurningBush: OfferingWithoutId = {
   description,
   filename: 'burning-bush'
@@ -15,6 +20,11 @@ const BurningBush: OfferingWithoutId = {
 const ChangeWithMe: OfferingWithoutId = {
   description,
   filename: 'change-with-me'
+};
+
+const Cups: OfferingWithoutId = {
+  description,
+  filename: 'cups'
 };
 
 const Dead2Day: OfferingWithoutId = {
@@ -69,6 +79,8 @@ const WakingAnew: OfferingWithoutId = {
 
 const offeringsConfig: Record<Offering['id'], Offering> = [
   Hellbound,
+  BodyOvMine,
+  Cups,
   BurningBush,
   ChangeWithMe,
   Dead2Day,
