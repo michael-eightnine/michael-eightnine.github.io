@@ -1,0 +1,37 @@
+.lightbox {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    flex: none;
+  }
+
+  button {
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    flex: none;
+    font-size: 0.875rem;
+    font-style: italic;
+    color: var(--color--white);
+    letter-spacing: 0.15em;
+    padding: 0.25rem;
+    padding-left: 0.45rem;
+    font-family: var(--font--serif);
+    text-decoration: none;
+    background-color: var(--color--black);
+  }
+}

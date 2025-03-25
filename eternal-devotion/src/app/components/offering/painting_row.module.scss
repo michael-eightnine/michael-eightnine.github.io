@@ -1,0 +1,24 @@
+// Painting Row
+.paintingRow {
+  margin-top: 5dvw;
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0 5dvw;
+  flex: 1 1 100%;
+  column-gap: 10dvw;
+  position: relative;
+  z-index: 1;
+}
+
+// Painting Display
+.painting {
+  aspect-ratio: 4/3;
+  background-color: var(--color--paper);
+  max-height: 60dvh;
+  max-width: 60%;
+  flex: none;
+  display: block;
+  box-shadow: 0 0 0 1px var(--color--black);
+  cursor: pointer;
+}
