@@ -78,19 +78,19 @@ const WakingAnew: OfferingWithoutId = {
 };
 
 const offeringsConfig: Record<Offering['id'], Offering> = [
-  Hellbound,
   BodyOvMine,
-  Cups,
-  BurningBush,
+  NewWays2Feel,
+  Penance,
+  OpenMyHeart,
   ChangeWithMe,
   Dead2Day,
+  Hellbound,
+  Late4Heaven,
+  Hidden2,
   HeavenAboveHere,
   HelpWitU,
-  Hidden2,
-  Late4Heaven,
-  NewWays2Feel,
-  OpenMyHeart,
-  Penance,
+  Cups,
+  BurningBush,
   WakingAnew
 ].reduce((acc, current, index) => {
   const offering: Offering = {
