@@ -7,7 +7,7 @@ type OfferingWithoutId = Omit<Offering, 'id'>;
 
 const BodyOvMine: OfferingWithoutId = {
   description:
-    "no, don't mourn him. he was dead long before we ever touched him. this stuff means nothing — it all goes",
+    "no, don't mourn him. he was dead long before we ever touched him. this stuff means nothing — it all goes.",
   filename: 'body-ov-mine'
 };
 
@@ -18,7 +18,7 @@ const BurningBush: OfferingWithoutId = {
 
 const ChangeWithMe: OfferingWithoutId = {
   description:
-    'everyday feelings... joined without passion in our prisons. where even the mountains get halos — my head remains unadorned',
+    'everyday feelings... joined without passion in our prisons. where even the mountains get halos — my head remains unadorned.',
   filename: 'change-with-me'
 };
 
@@ -30,61 +30,61 @@ const Cups: OfferingWithoutId = {
 
 const Dead2Day: OfferingWithoutId = {
   description:
-    "crimson spot on the white vest of the man b'side me, glad to see it ain't me; I've got enough scars inside me",
+    "crimson spot on the white vest of the man b'side me, glad to see it ain't me; I've got enough scars inside me.",
   filename: 'dead-2-day'
 };
 
 const HeavenAboveHere: OfferingWithoutId = {
   description:
-    'nothing below, everything above. nothing below, everything above. reassurances spoken by those undeserving of any',
+    'nothing below, everything above. nothing below, everything above. reassurances spoken by those undeserving of any; a mantra for going to war.',
   filename: 'heaven-above-here'
 };
 
 const Hellbound: OfferingWithoutId = {
   description:
-    "if I don't go to hell when I die I might go to heaven. the sun smiles when his brother dies, I'm merely between them",
+    "if I don't go to hell when I die I might go to heaven. the sun smiles when his brother dies, I'm merely between them.",
   filename: 'hellbound'
 };
 
 const HelpWitU: OfferingWithoutId = {
   description:
-    'my heart slowed and shuttered. the hinges rip free and all that is me spills forth. a forced salvation equalled as punishment',
+    'my heart slowed and shuttered. the hinges rip free and all that is me spills forth. a forced salvation equalled as punishment.',
   filename: 'help-wit-u'
 };
 
 const Hidden2: OfferingWithoutId = {
   description:
-    "to live inside the walled garden till it's good to get out. why don't you just come back to us? (I don't think I can get out of me anymore)",
+    "to live inside the walled garden till it's good to get out. why don't you just come back to us? the soil between my lips only grows colder.",
   filename: 'hidden-2'
 };
 
 const Late4Heaven: OfferingWithoutId = {
   description:
-    "ain't gonna let you in baby, I know how cold it is out there. trust me that it ain't better inside the gaze of such judgement",
+    "ain't gonna let you in baby, I know how cold it is out there. trust me that it ain't better inside the gaze of such judgement.",
   filename: 'late-4-heaven'
 };
 
 const NewWays2Feel: OfferingWithoutId = {
   description:
-    "such heat in the pool right now — you took too much man, you took too much, 2 much. don't try and fight there's no comin' down",
+    "such heat in the pool right now — you took too much man, you took too much, 2 much. don't try and fight there's no comin' down.",
   filename: 'new-ways-2-feel'
 };
 
 const OpenMyHeart: OfferingWithoutId = {
   description:
-    "observed in all its solemnities, a feast from my own flesh. a reckoning never recovered from — who can overcome the sin they're designed for",
+    "observed in all its solemnities, a feast from my own flesh. a reckoning never recovered from — who can overcome the sin they're designed for.",
   filename: 'open-my-heart'
 };
 
 const Penance: OfferingWithoutId = {
   description:
-    'with one on each side of him — each worthless beyond reason — he stepped down, shed his blood, forgot us & left us',
+    'with one on each side of him — each worthless beyond reason — he stepped down, shed his blood, forgot us & left us.',
   filename: 'penance'
 };
 
 const WakingAnew: OfferingWithoutId = {
   description:
-    'every moment the end of an era. brutal times inflicted on the weak and maladjusted. an entire city underwater at once before the surface breaks',
+    'every moment the end of an era. brutal times inflicted on the weak and maladjusted. an entire city underwater at once before the surface breaks.',
   filename: 'waking-anew'
 };
 
