@@ -197,9 +197,15 @@
     }
 
     span {
-      min-width: 6rem;
-      min-width: 6.5rem;
+      min-width: 7rem;
       display: inline-block;
+    }
+
+    @media screen and (max-width: 600px) {
+      span {
+        min-width: 6rem;
+        display: inline-block;
+      }
     }
   }
 
