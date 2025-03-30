@@ -66,7 +66,7 @@ const Late4Heaven: OfferingWithoutId = {
 
 const NewWays2Feel: OfferingWithoutId = {
   description:
-    "such heat in the pool right now — you took too much man, you took too much, 2 much. don't try and fight there's no comin' down.",
+    "such heat in the pool right now — you took too much man, you took too much. don't try and fight; there's no comin' down.",
   filename: 'new-ways-2-feel'
 };
 
