@@ -1,5 +1,5 @@
-import offeringsConfig from './config';
+import offeringsConfig, { IMAGE_SIZES } from './config';
 
-export { offeringsConfig };
+export { offeringsConfig, IMAGE_SIZES };
 export * from './types';
 export * from './utils';

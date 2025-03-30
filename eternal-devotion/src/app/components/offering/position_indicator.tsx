@@ -15,7 +15,7 @@ const PositionIndicator = () => {
       >
         {current}
       </span>
-      <span>/</span>
+      <span style={{ width: '1ch' }}>/</span>
       <span style={{ width: '1ch' }}>{totalOne}</span>
       <span style={{ width: '1ch' }}>{totalTwo}</span>
     </div>

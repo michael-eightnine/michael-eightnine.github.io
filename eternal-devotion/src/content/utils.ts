@@ -65,8 +65,8 @@ export const createContentPathname = (filename: string, isDice = false) => {
 const generateDiceNumber = () => Math.floor(Math.random() * DICE_COUNT) + 1;
 
 export const rollTheDice = (): Die[] => {
-  const diceCount = 3;
-  return Array.from({ length: diceCount }).map(() => {
+  const displayedDiceCount = 3;
+  return Array.from({ length: displayedDiceCount }).map(() => {
     const value = generateDiceNumber();
     return {
       src: createContentPathname(`${value}.jpg`, true),

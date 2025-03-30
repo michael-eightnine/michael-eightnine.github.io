@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-import { Offering, createContentPathname } from 'content';
+import { Offering, createContentPathname, IMAGE_SIZES } from 'content';
 import Lightbox from './lightbox';
 
 type Props = {
@@ -8,7 +8,6 @@ type Props = {
   className: React.HTMLProps<HTMLElement>['className'];
 };
 
-const sizes = [420, 940, 1280, 1920] as const;
 const formats = ['avif', 'webp'] as const;
 
 // TODO: Lightbox feature
@@ -20,7 +19,7 @@ const PaintingDisplay = ({ className, filename }: Props) => {
     .reduce((acc, format) => {
       return [
         ...acc,
-        ...sizes.map(
+        ...IMAGE_SIZES.map(
           (size) =>
             `${createContentPathname(`${filename}-${size}.${format}`)} ${size}w`
         )
@@ -29,12 +28,10 @@ const PaintingDisplay = ({ className, filename }: Props) => {
     .join(', ');
 
   const sizesProp =
-    sizes
-      .map(
-        (size, index) =>
-          `(max-width: ${size}px) ${index === 0 ? size / 2 : sizes[index - 1]}px`
-      )
-      .join(', ') + `, ${sizes[sizes.length - 1]}px`;
+    IMAGE_SIZES.map(
+      (size, index) =>
+        `(max-width: ${size}px) ${index === 0 ? size / 2 : IMAGE_SIZES[index - 1]}px`
+    ).join(', ') + `, ${IMAGE_SIZES[IMAGE_SIZES.length - 1]}px`;
 
   const renderImage = (
     isLightbox = false,

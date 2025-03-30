@@ -30,6 +30,14 @@ body,
   position: relative;
   overflow: hidden;
 
+  @media screen and (max-width: 1240px) {
+    --padding--page: 2rem;
+  }
+
+  @media screen and (max-width: 940px) {
+    --padding--page: 1rem;
+  }
+
   @media screen and (max-width: 600px) {
     // Allow rem based values to scale down for smaller viewports
     font-size: 14px;
