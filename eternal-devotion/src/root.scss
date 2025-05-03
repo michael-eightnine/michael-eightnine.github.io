@@ -30,6 +30,14 @@ body,
   position: relative;
   overflow: hidden;
 
+  @media screen and (max-width: 1240px) {
+    --padding--page: 2rem;
+  }
+
+  @media screen and (max-width: 940px) {
+    --padding--page: 1rem;
+  }
+
   @media screen and (max-width: 600px) {
     // Allow rem based values to scale down for smaller viewports
     font-size: 14px;
@@ -41,4 +49,18 @@ body,
   outline-color: var(--color--black);
   outline-style: dashed;
   outline-offset: 3px;
+}
+
+@keyframes in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#root {
+  opacity: 0;
+  animation: in 1s ease-in forwards;
 }

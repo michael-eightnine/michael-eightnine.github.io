@@ -10,9 +10,10 @@ const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
         <ul>
           <li>
             <span>Contact:</span>
-            <a href="mailto:msmith0892@gmail.com">msmith0892[at]gmail</a>
+            <a href="mailto:goodthingswell@gmail.com">
+              goodthingswell[at]gmail
+            </a>
           </li>
-
           <li>
             <span>Resume:</span>
             <a
@@ -41,6 +42,16 @@ const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
               target="_blank"
             >
               For connecting
+            </a>
+          </li>
+          <li>
+            <span>Paintings:</span>
+            <a
+              href="/eternal-devotion"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              For viewing
             </a>
           </li>
         </ul>

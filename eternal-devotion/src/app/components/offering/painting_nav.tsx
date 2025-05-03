@@ -7,6 +7,15 @@ import { rollTheDice, useOfferingNavigationIds, type Die } from 'content';
 import PaintingDescription from './painting_description';
 import styles from './painting_nav.module.scss';
 
+const PaintingDie = ({ die }: { die: Die }) => (
+  <img
+    alt={`Your rolled ${die.value}`}
+    className={styles.paintingDie}
+    src={die.src}
+    title={`Your rolled ${die.value}`}
+  />
+);
+
 const PaintingNav = () => {
   const [dice, setDice] = useState<Die[] | null>(null);
   const { id } = useParams();
@@ -41,36 +50,15 @@ const PaintingNav = () => {
           [styles.diceCount__huge]: diceMatchCount === 3
         })}
       >{`${diceMatchCount} out of 3`}</span>
-      {dice && (
-        <img
-          alt={`Your rolled ${dice[0].value}`}
-          className={styles.paintingDie}
-          src={dice[0].src}
-          title={`Your rolled ${dice[0].value}`}
-        />
-      )}
-      {dice && (
-        <img
-          alt={`Your rolled ${dice[1].value}`}
-          className={styles.paintingDie}
-          src={dice[1].src}
-          title={`Your rolled ${dice[1].value}`}
-        />
-      )}
+      {dice && <PaintingDie die={dice[0]} />}
+      {dice && <PaintingDie die={dice[1]} />}
       <div className={styles.paintingNavGroup}>
         <NavLink
           enabled={prevEnabled}
           label="prev"
           path={createOfferingPath(prevId.toString())}
         />
-        {dice && (
-          <img
-            alt={`Your rolled ${dice[2].value}`}
-            className={styles.paintingDie}
-            src={dice[2].src}
-            title={`Your rolled ${dice[2].value}`}
-          />
-        )}
+        {dice && <PaintingDie die={dice[2]} />}
         <NavLink
           enabled={nextEnabled}
           label="next"

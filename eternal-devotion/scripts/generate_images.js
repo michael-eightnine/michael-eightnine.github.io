@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const INPUT_DIR = path.join(__dirname, '../public/original_assets');
 const OUTPUT_DIR = path.join(__dirname, '../public/optimized_images');
 
-const SIZES = [420, 940, 1280, 1920];
+const SIZES =  [320, 420, 640, 940, 1280, 1920];
 
 async function processImages() {
   await fs.ensureDir(OUTPUT_DIR);
@@ -34,6 +34,7 @@ async function processImages() {
         .toFormat('webp', { quality: 80 })
         .toFile(`${filePathAndName}.webp`);
     }
+    console.log(`Processed ${fileNameWithoutExt}`)
   }
 
   return imageFiles.length;

@@ -1,79 +1,90 @@
 import type { Offering } from './types';
 
 export const DICE_COUNT = 9 as const;
+export const IMAGE_SIZES = [320, 420, 640, 940, 1280, 1920] as const;
 
 type OfferingWithoutId = Omit<Offering, 'id'>;
 
-const description =
-  "aiding in: unhappiness, release of fear, insomnia, mysteries unveiled... gave a gift to die where you're from n we plan to collect";
-
 const BodyOvMine: OfferingWithoutId = {
-  description,
+  description:
+    "no, don't mourn him. he was dead long before we ever touched him. this stuff means nothing — it all goes.",
   filename: 'body-ov-mine'
 };
 
 const BurningBush: OfferingWithoutId = {
-  description,
+  description: `a fierce light, the smoking of crisped skin. a dark silhouette outlined in red. "don't be afraid" — how could I not?`,
   filename: 'burning-bush'
 };
 
 const ChangeWithMe: OfferingWithoutId = {
-  description,
+  description:
+    'everyday feelings... joined without passion in our prisons. where even the mountains get halos — my head remains unadorned.',
   filename: 'change-with-me'
 };
 
 const Cups: OfferingWithoutId = {
-  description,
+  description:
+    'not quite a cup of blessings, poured full strength into the vessel of his anger. still, it overflows and sits aching within us.',
   filename: 'cups'
 };
 
 const Dead2Day: OfferingWithoutId = {
-  description,
+  description:
+    "crimson spot on the white vest of the man b'side me, glad to see it ain't me; I've got enough scars inside me.",
   filename: 'dead-2-day'
 };
 
 const HeavenAboveHere: OfferingWithoutId = {
-  description,
+  description:
+    'nothing below, everything above. nothing below, everything above. reassurances spoken by those undeserving of any; a mantra for going to war.',
   filename: 'heaven-above-here'
 };
 
 const Hellbound: OfferingWithoutId = {
-  description,
+  description:
+    "if I don't go to hell when I die I might go to heaven. the sun smiles when his brother dies, I'm merely between them.",
   filename: 'hellbound'
 };
 
 const HelpWitU: OfferingWithoutId = {
-  description,
+  description:
+    'my heart slowed and shuttered. the hinges rip free and all that is me spills forth. a forced salvation equalled as punishment.',
   filename: 'help-wit-u'
 };
 
 const Hidden2: OfferingWithoutId = {
-  description,
+  description:
+    "to live inside the walled garden till it's good to get out. why don't you just come back to us? the soil between my lips only grows colder.",
   filename: 'hidden-2'
 };
 
 const Late4Heaven: OfferingWithoutId = {
-  description,
+  description:
+    "ain't gonna let you in baby, I know how cold it is out there. alone together; a shroud, a headstone or the promise of rest.",
   filename: 'late-4-heaven'
 };
 
 const NewWays2Feel: OfferingWithoutId = {
-  description,
+  description:
+    "such heat in the pool right now — you took too much man, you took too much. don't try and fight; there's no comin' down.",
   filename: 'new-ways-2-feel'
 };
 
 const OpenMyHeart: OfferingWithoutId = {
-  description,
+  description:
+    "observed in all its solemnities, a feast from my own flesh. a reckoning never recovered from — who can overcome the sin they're designed for.",
   filename: 'open-my-heart'
 };
 
 const Penance: OfferingWithoutId = {
-  description,
+  description:
+    'with one on each side of him — each worthless beyond reason — he stepped down, shed his blood, forgot us & left us.',
   filename: 'penance'
 };
 
 const WakingAnew: OfferingWithoutId = {
-  description,
+  description:
+    'every moment the end of an era. brutal times inflicted on the weak and maladjusted. an entire city underwater at once before the surface breaks.',
   filename: 'waking-anew'
 };
 

@@ -13,10 +13,14 @@ const Lightbox = ({ image, isOpen, onClose }: Props) => {
 
   useEffect(() => {
     // Trap focus by cycling between first and last focusable elements
-    const handleTabKey = (e: KeyboardEvent) => {
+    const handleKeydown = (e: KeyboardEvent) => {
       if (e.key === 'Tab') {
         e.preventDefault();
         closeButtonRef.current?.focus();
+      }
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
       }
     };
 
@@ -25,14 +29,14 @@ const Lightbox = ({ image, isOpen, onClose }: Props) => {
       closeButtonRef.current?.focus();
 
       // Add event listener to trap focus inside the modal
-      document.addEventListener('keydown', handleTabKey);
+      document.addEventListener('keydown', handleKeydown);
     }
 
     // Cleanup when the modal is closed
     return () => {
-      document.removeEventListener('keydown', handleTabKey);
+      document.removeEventListener('keydown', handleKeydown);
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
