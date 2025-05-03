@@ -4,7 +4,7 @@ const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
   return (
     <GenericPopup {...props} title="Get in touch">
       <PopupContent>
-        Reach out, let's build something great together! 🚀
+        Reach out, let's build something great together!
       </PopupContent>
       <PopupContent>
         <ul>

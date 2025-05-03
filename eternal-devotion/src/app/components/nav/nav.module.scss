@@ -28,6 +28,14 @@
   svg {
     width: 180px;
   }
+
+  @media screen and (max-width: 500px) {
+    width: 110px;
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 90px;
+  }
 }
 
 .navLink {
