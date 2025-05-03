@@ -33,4 +33,12 @@
   @media screen and (max-width: 1024px) {
     max-height: 50dvh;
   }
+
+  @media screen and (max-width: 640px) {
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: 400px) {
+    max-width: 80%;
+  }
 }

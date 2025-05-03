@@ -60,7 +60,7 @@ const Hidden2: OfferingWithoutId = {
 
 const Late4Heaven: OfferingWithoutId = {
   description:
-    "ain't gonna let you in baby, I know how cold it is out there. trust me that it ain't better inside the gaze of such judgement.",
+    "ain't gonna let you in baby, I know how cold it is out there. alone together; a shroud, a headstone or the promise of rest.",
   filename: 'late-4-heaven'
 };
 
