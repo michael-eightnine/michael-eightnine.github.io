@@ -10,7 +10,9 @@ const ContactPopup = (props: Omit<GenericPopupProps, 'children' | 'title'>) => {
         <ul>
           <li>
             <span>Contact:</span>
-            <a href="mailto:msmith0892@gmail.com">msmith0892[at]gmail</a>
+            <a href="mailto:goodthingswell@gmail.com">
+              goodthingswell[at]gmail
+            </a>
           </li>
           <li>
             <span>Resume:</span>
