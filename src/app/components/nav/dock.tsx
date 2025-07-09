@@ -3,6 +3,7 @@ import { classnames } from 'utils';
 import { PopupID } from 'components/popup';
 
 import DockButton from './dock_button';
+
 import styles from './dock.module.scss';
 
 type Props = {

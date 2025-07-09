@@ -1,11 +1,12 @@
 import { useCallback, useContext, useState } from 'react';
-import { Globe } from 'svg';
 
+import { Globe } from 'svg';
 import { PopupContext } from 'components/popup';
 
 import AnimatedTitle from './animated_title';
-import styles from './nav.module.scss';
 import Dock from './dock';
+
+import styles from './nav.module.scss';
 
 type Props = {
   onAnimationEnd: () => void;

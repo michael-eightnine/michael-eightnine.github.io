@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
-import NavLink from 'components/nav/nav_link';
-import { classnames, createOfferingPath } from 'utils';
+
 import { rollTheDice, useOfferingNavigationIds, type Die } from 'content';
+import { classnames, createOfferingPath } from 'utils';
+import NavLink from 'components/nav/nav_link';
 
 import PaintingDescription from './painting_description';
+
 import styles from './painting_nav.module.scss';
 
 const PaintingDie = ({ die }: { die: Die }) => (

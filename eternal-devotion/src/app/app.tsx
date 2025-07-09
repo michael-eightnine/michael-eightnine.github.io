@@ -1,9 +1,10 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router';
+
+import { createOfferingPath } from 'utils';
+import NavBar from 'components/nav';
 import { Offering, Origins } from 'routes';
 
 import styles from './app.module.scss';
-import NavBar from 'components/nav';
-import { createOfferingPath } from 'utils';
 
 const AppLayout = () => {
   return (

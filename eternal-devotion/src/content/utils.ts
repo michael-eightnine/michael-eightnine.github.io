@@ -74,3 +74,43 @@ export const rollTheDice = (): Die[] => {
     };
   });
 };
+
+export const getOfferingById = (id: string) => {
+  return offeringsConfig[id];
+};
+
+export const getAdjacentOfferingFilenames = (currentId: string) => {
+  const { prevId, nextId, prevEnabled, nextEnabled } = (() => {
+    const offeringsCount = Object.keys(offeringsConfig).length;
+    const idAsNumber = Number(currentId);
+    const atEnd = idAsNumber === offeringsCount;
+    const atStart = idAsNumber === 1;
+    const nextId = idAsNumber + 1;
+    const prevId = idAsNumber - 1;
+
+    return {
+      prevId,
+      prevEnabled: !atStart,
+      nextId,
+      nextEnabled: !atEnd
+    };
+  })();
+
+  const filenames: string[] = [];
+
+  if (prevEnabled) {
+    const prevOffering = offeringsConfig[prevId.toString()];
+    if (prevOffering) {
+      filenames.push(prevOffering.filename);
+    }
+  }
+
+  if (nextEnabled) {
+    const nextOffering = offeringsConfig[nextId.toString()];
+    if (nextOffering) {
+      filenames.push(nextOffering.filename);
+    }
+  }
+
+  return filenames;
+};

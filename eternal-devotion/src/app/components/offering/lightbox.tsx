@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+
 import styles from './lightbox.module.scss';
 
 type Props = {
@@ -41,8 +42,15 @@ const Lightbox = ({ image, isOpen, onClose }: Props) => {
   if (!isOpen) return null;
 
   return (
-    <div className={styles.lightbox} ref={lightboxRef} role="dialog">
+    <div
+      aria-labelledby="lightbox-title"
+      aria-modal="true"
+      className={styles.lightbox}
+      ref={lightboxRef}
+      role="dialog"
+    >
       <button
+        aria-label="Close lightbox"
         onClick={onClose}
         ref={(el) => {
           el?.focus();
@@ -51,6 +59,12 @@ const Lightbox = ({ image, isOpen, onClose }: Props) => {
       >
         [close]
       </button>
+      <div
+        id="lightbox-title"
+        style={{ position: 'absolute', left: '-9999px' }}
+      >
+        Image lightbox
+      </div>
       {image}
     </div>
   );

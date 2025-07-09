@@ -16,11 +16,12 @@ import {
 } from 'utils';
 import { Code, Contact, Info } from 'svg';
 
-import styles from './popup.module.scss';
 import { GenericPopupProps, PopupID } from './types';
 import { PopupContext } from './popup_context';
 import PopupHeader from './popup_header';
 import useDraggablePopup from './use_draggable_popup';
+
+import styles from './popup.module.scss';
 
 const getHeaderIcon = (popupId: GenericPopupProps['popupId']) => {
   switch (popupId) {

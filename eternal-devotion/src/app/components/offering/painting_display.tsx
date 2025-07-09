@@ -1,6 +1,7 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { Offering, createContentPathname, IMAGE_SIZES } from 'content';
+
 import Lightbox from './lightbox';
 
 type Props = {
@@ -13,6 +14,7 @@ const formats = ['avif', 'webp'] as const;
 const PaintingDisplay = ({ className, filename }: Props) => {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const srcSet = useMemo(
     () =>
@@ -39,6 +41,10 @@ const PaintingDisplay = ({ className, filename }: Props) => {
     []
   );
 
+  const handleImageLoad = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
+
   const renderImage = useCallback(
     (
       isLightbox = false,
@@ -60,6 +66,8 @@ const PaintingDisplay = ({ className, filename }: Props) => {
         <img
           alt="the big picture"
           className={className}
+          loading="eager"
+          onLoad={isLightbox ? undefined : handleImageLoad}
           ref={ref}
           sizes={sizesProp}
           src={`${createContentPathname(`${filename}-1280.webp`)}`}
@@ -68,7 +76,7 @@ const PaintingDisplay = ({ className, filename }: Props) => {
         />
       );
     },
-    [className, filename, sizesProp, srcSet]
+    [className, filename, sizesProp, srcSet, handleImageLoad]
   );
 
   const handleLightboxClose = useCallback(() => {
@@ -76,9 +84,44 @@ const PaintingDisplay = ({ className, filename }: Props) => {
     imageRef.current?.focus();
   }, []);
 
+  // Reset loading state when filename changes
+  useEffect(() => {
+    setImageLoaded(false);
+  }, [filename]);
+
   return (
     <>
-      {renderImage(false, imageRef)}
+      <div style={{ position: 'relative' }}>
+        {!imageLoaded && (
+          <div
+            className={className}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: '#f5f5f5',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 1
+            }}
+          >
+            <div
+              style={{
+                width: '40px',
+                height: '40px',
+                border: '2px solid #ddd',
+                borderTop: '2px solid #333',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite'
+              }}
+            />
+          </div>
+        )}
+        {renderImage(false, imageRef)}
+      </div>
       <Lightbox
         image={renderImage(true)}
         isOpen={lightboxOpen}

@@ -9,7 +9,6 @@ import {
 
 import { classnames } from 'utils';
 import { Background } from 'svg';
-
 import {
   ContactPopup,
   PopupContextProvider,
@@ -20,6 +19,7 @@ import {
 import { PopupContext } from 'components/popup';
 import Nav from 'components/nav';
 import MovingWordmark from 'components/moving_wordmark';
+
 import { useGameQueryParam } from './game';
 
 const GameScene = lazy(() =>
