@@ -1,4 +1,11 @@
-import { useCallback, useContext, useMemo, useState } from 'react';
+import {
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  lazy,
+  Suspense
+} from 'react';
 
 import { classnames } from 'utils';
 import { Background } from 'svg';
@@ -13,7 +20,18 @@ import {
 import { PopupContext } from 'components/popup';
 import Nav from 'components/nav';
 import MovingWordmark from 'components/moving_wordmark';
-import { GameScene, useGameQueryParam } from './game';
+import { useGameQueryParam } from './game';
+
+const GameScene = lazy(() =>
+  import('./game/scene').then(
+    (module) =>
+      new Promise<typeof module>((resolve) => {
+        // Add artificial delay in development to test loading state
+        const delay = process.env.NODE_ENV === 'development' ? 2000 : 0;
+        setTimeout(() => resolve(module), delay);
+      })
+  )
+);
 
 import styles from './app.module.scss';
 
@@ -63,7 +81,20 @@ export function App() {
   }, [instances]);
 
   if (gameEnabled) {
-    return <GameScene onExitGame={toggleGameParam} />;
+    return (
+      <Suspense
+        fallback={
+          <div className={styles.loadingContainer}>
+            <div className={styles.loading}>
+              <div className={styles.spinner} />
+              <p>Loading game...</p>
+            </div>
+          </div>
+        }
+      >
+        <GameScene onExitGame={toggleGameParam} />
+      </Suspense>
+    );
   }
 
   return (

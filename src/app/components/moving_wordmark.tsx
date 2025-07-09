@@ -38,7 +38,9 @@ function MovingWordmark({ className }: Props) {
       // Use requestAnimationFrame to update the element's position smoothly
       if (!animationFrameId) {
         animationFrameId = requestAnimationFrame(() => {
-          element.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
+          if (element) {
+            element.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
+          }
           animationFrameId = null;
         });
       }
@@ -48,21 +50,20 @@ function MovingWordmark({ className }: Props) {
       document.removeEventListener('mousemove', handleMouseMove);
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
       }
     };
 
     // Don't bind mousemove if on mobile and cleanup any previously bound listeners
     if (movingDisabled || !element) {
       cleanup();
-      return;
+      return cleanup;
     }
 
     // Attach mousemove event listener
     document.addEventListener('mousemove', handleMouseMove);
 
-    return () => {
-      cleanup();
-    };
+    return cleanup;
   }, [movingDisabled]);
 
   // Handles initializing a resize observer as the wordmark should not respond to mouse move events on smaller viewports

@@ -27,7 +27,7 @@ const Dock = ({ onOpenGame, visible }: Props) => {
         <Contact className={styles.dockIcon} />
       </DockButton>
       <button
-        aria-haspopup
+        aria-haspopup="false"
         aria-labelledby={'game'}
         className={styles.dockButton}
         onClick={onOpenGame}

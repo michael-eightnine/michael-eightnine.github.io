@@ -148,6 +148,8 @@ const GenericPopup = ({
 
   return (
     <div
+      aria-label={title}
+      aria-modal="true"
       className={classnames(styles.popup, styles[`popup__${transitionState}`], {
         [styles.popup__dragging]: isDragging
       })}

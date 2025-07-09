@@ -22,7 +22,7 @@ const DockButton = ({ id, children, title }: Props & ChildrenProps) => {
 
   return (
     <button
-      aria-haspopup
+      aria-haspopup="dialog"
       aria-labelledby={buttonId}
       className={styles.dockButton}
       disabled={closeAllProcessing}

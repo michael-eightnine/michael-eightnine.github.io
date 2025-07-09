@@ -29,7 +29,11 @@ const PopupHeader = ({
       </div>
       <span>{title}</span>
 
-      <button className={styles.headerButton} onClick={onClose}>
+      <button
+        aria-label={`Close ${title}`}
+        className={styles.headerButton}
+        onClick={onClose}
+      >
         <Close className={styles.headerButtonIcon} />
       </button>
     </header>
