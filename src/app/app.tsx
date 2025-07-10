@@ -22,16 +22,7 @@ import MovingWordmark from 'components/moving_wordmark';
 
 import { useGameQueryParam } from './game';
 
-const GameScene = lazy(() =>
-  import('./game/scene').then(
-    (module) =>
-      new Promise<typeof module>((resolve) => {
-        // Add artificial delay in development to test loading state
-        const delay = process.env.NODE_ENV === 'development' ? 2000 : 0;
-        setTimeout(() => resolve(module), delay);
-      })
-  )
-);
+const GameScene = lazy(() => import('./game/scene'));
 
 import styles from './app.module.scss';
 
@@ -85,10 +76,7 @@ export function App() {
       <Suspense
         fallback={
           <div className={styles.loadingContainer}>
-            <div className={styles.loading}>
-              <div className={styles.spinner} />
-              <p>Loading game...</p>
-            </div>
+            <p className={styles.loading}>Loading game...</p>
           </div>
         }
       >
