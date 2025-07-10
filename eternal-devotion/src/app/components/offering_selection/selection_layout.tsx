@@ -11,7 +11,7 @@ const SelectionLayout = () => {
           callToAction={group.callToAction}
           descriptionList={group.descriptionList}
           id={groupId}
-          imageUrl={createContentPathname(group.filename) + '.jpg'}
+          imageUrl={`${createContentPathname(group.filename, 'root')}.jpg`}
           index={index}
           key={groupId}
           title={group.title}

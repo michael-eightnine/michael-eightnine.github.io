@@ -5,6 +5,7 @@ export const IMAGE_SIZES = [320, 420, 640, 940, 1280, 1920] as const;
 
 type OfferingWithoutId = Omit<Offering, 'id'>;
 
+// Penance
 const BodyOvMine: OfferingWithoutId = {
   description:
     "no, don't mourn him. he was dead long before we ever touched him. this stuff means nothing — it all goes.",
@@ -88,6 +89,43 @@ const WakingAnew: OfferingWithoutId = {
   filename: 'waking-anew'
 };
 
+// Meat
+
+const MeatChrist: OfferingWithoutId = {
+  description: 'the copy go here',
+  filename: 'meat-christ'
+};
+
+const MeatHouse: OfferingWithoutId = {
+  description: 'the copy go here',
+  filename: 'meat-house'
+};
+
+const MeatMatter: OfferingWithoutId = {
+  description: 'the copy go here',
+  filename: 'meat-matter'
+};
+
+const MeatPlate: OfferingWithoutId = {
+  description: 'the copy go here',
+  filename: 'meat-plate'
+};
+
+const MeatScales: OfferingWithoutId = {
+  description: 'the copy go here',
+  filename: 'meat-scales'
+};
+
+const MeatSoup: OfferingWithoutId = {
+  description: 'the copy go here',
+  filename: 'meat-soup'
+};
+
+const DinnerMeatUp: OfferingWithoutId = {
+  description: 'the copy go here',
+  filename: 'dinner-meat-up'
+};
+
 export type OfferingsGroup = {
   id: string;
   callToAction: string;
@@ -131,14 +169,14 @@ const PenanceGroup: OfferingsGroup = {
     OpenMyHeart,
     ChangeWithMe,
     Dead2Day,
-    Hellbound
-    // Late4Heaven,
-    // Hidden2,
-    // HeavenAboveHere,
-    // HelpWitU,
-    // Cups,
-    // BurningBush,
-    // WakingAnew
+    Hellbound,
+    Late4Heaven,
+    Hidden2,
+    HeavenAboveHere,
+    HelpWitU,
+    Cups,
+    BurningBush,
+    WakingAnew
   ])
 };
 
@@ -149,25 +187,18 @@ const MeatGroup: OfferingsGroup = {
   descriptionList: [
     '2025.',
     'flesh interfaces; matter of meat',
-    '7 offerings from a selection of 12',
+    '7 offerings from a selection of 10',
     'a very special thanks to 9M9H9E9'
   ],
-  filename: 'penance',
+  filename: 'meat',
   offeringsConfig: createOfferingsConfig([
-    // BodyOvMine,
-    // NewWays2Feel,
-    // Penance,
-    // OpenMyHeart,
-    // ChangeWithMe,
-    // Dead2Day,
-    // Hellbound,
-    Late4Heaven,
-    Hidden2,
-    HeavenAboveHere,
-    HelpWitU,
-    Cups,
-    BurningBush,
-    WakingAnew
+    MeatChrist,
+    MeatHouse,
+    MeatMatter,
+    MeatPlate,
+    MeatScales,
+    MeatSoup,
+    DinnerMeatUp
   ])
 };
 

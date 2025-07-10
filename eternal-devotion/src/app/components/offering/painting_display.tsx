@@ -23,7 +23,7 @@ const PaintingDisplay = ({ className, filename }: Props) => {
             ...acc,
             ...IMAGE_SIZES.map(
               (size) =>
-                `${createContentPathname(`${filename}-${size}.${format}`)} ${size}w`
+                `${createContentPathname(`${filename}-${size}.${format}`, 'painting')} ${size}w`
             )
           ];
         }, [] as string[])
@@ -64,7 +64,7 @@ const PaintingDisplay = ({ className, filename }: Props) => {
           loading="eager"
           ref={ref}
           sizes={sizesProp}
-          src={`${createContentPathname(`${filename}-1280.webp`)}`}
+          src={`${createContentPathname(`${filename}-1280.webp`, 'painting')}`}
           srcSet={srcSet}
           {...(isLightbox ? {} : interactiveProps)}
         />

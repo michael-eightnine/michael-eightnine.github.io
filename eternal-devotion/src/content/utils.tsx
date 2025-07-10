@@ -62,11 +62,26 @@ export const useCurrentOfferingPosition = () => {
   };
 };
 
-export const createContentPathname = (filename: string, isDice = false) => {
+export const createContentPathname = (
+  filename: string,
+  type: 'dice' | 'painting' | 'root'
+) => {
   const baseUrl = import.meta.env.BASE_URL;
-  const subdirectory = isDice ? 'dice' : 'optimized_images';
+  let subdirectory = '';
+  switch (type) {
+    case 'dice':
+      subdirectory = 'dice';
+      break;
+    case 'painting':
+      subdirectory = 'optimized_images';
+      break;
+  }
 
-  return `${baseUrl}/${subdirectory}/${filename}`;
+  if (subdirectory) {
+    return `${baseUrl}/${subdirectory}/${filename}`;
+  }
+
+  return `${baseUrl}/${filename}`;
 };
 
 const generateDiceNumber = () => Math.floor(Math.random() * DICE_COUNT) + 1;
@@ -76,7 +91,7 @@ export const rollTheDice = (): Die[] => {
   return Array.from({ length: displayedDiceCount }).map(() => {
     const value = generateDiceNumber();
     return {
-      src: createContentPathname(`${value}.jpg`, true),
+      src: createContentPathname(`${value}.jpg`, 'dice'),
       value
     };
   });
