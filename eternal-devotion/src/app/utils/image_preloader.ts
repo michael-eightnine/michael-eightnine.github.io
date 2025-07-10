@@ -4,7 +4,7 @@ const preloadedImages = new Set<string>();
 
 export const preloadImage = (filename: string): Promise<void> => {
   return new Promise((resolve) => {
-    const imageUrl = createContentPathname(`${filename}-1280.webp`);
+    const imageUrl = createContentPathname(`${filename}-1280.avif`);
 
     // Skip if already preloaded
     if (preloadedImages.has(imageUrl)) {

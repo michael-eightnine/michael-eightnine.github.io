@@ -1,6 +1,7 @@
 import { useParams } from 'react-router';
 import offeringsConfig, { DICE_COUNT } from './config';
 import type { Die } from './types';
+import { useCallback } from 'react';
 
 export const useCurrentOffering = () => {
   const { id } = useParams();
@@ -79,38 +80,29 @@ export const getOfferingById = (id: string) => {
   return offeringsConfig[id];
 };
 
-export const getAdjacentOfferingFilenames = (currentId: string) => {
-  const { prevId, nextId, prevEnabled, nextEnabled } = (() => {
-    const offeringsCount = Object.keys(offeringsConfig).length;
-    const idAsNumber = Number(currentId);
-    const atEnd = idAsNumber === offeringsCount;
-    const atStart = idAsNumber === 1;
-    const nextId = idAsNumber + 1;
-    const prevId = idAsNumber - 1;
+export const useAdjacentOfferingFilenames = () => {
+  const { prevId, nextId, prevEnabled, nextEnabled } =
+    useOfferingNavigationIds();
 
-    return {
-      prevId,
-      prevEnabled: !atStart,
-      nextId,
-      nextEnabled: !atEnd
-    };
-  })();
+  const getAdjacentOfferingFilenames = useCallback(() => {
+    const filenames: string[] = [];
 
-  const filenames: string[] = [];
-
-  if (prevEnabled) {
-    const prevOffering = offeringsConfig[prevId.toString()];
-    if (prevOffering) {
-      filenames.push(prevOffering.filename);
+    if (prevEnabled) {
+      const prevOffering = offeringsConfig[prevId.toString()];
+      if (prevOffering) {
+        filenames.push(prevOffering.filename);
+      }
     }
-  }
 
-  if (nextEnabled) {
-    const nextOffering = offeringsConfig[nextId.toString()];
-    if (nextOffering) {
-      filenames.push(nextOffering.filename);
+    if (nextEnabled) {
+      const nextOffering = offeringsConfig[nextId.toString()];
+      if (nextOffering) {
+        filenames.push(nextOffering.filename);
+      }
     }
-  }
 
-  return filenames;
+    return filenames;
+  }, [prevId, nextId, prevEnabled, nextEnabled]);
+
+  return getAdjacentOfferingFilenames;
 };
