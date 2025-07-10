@@ -25,8 +25,8 @@ const PaintingNav = () => {
     useOfferingNavigationIds();
 
   useEffect(() => {
-    setDice(rollTheDice());
-  }, [id]);
+    setDice(rollTheDice(groupId));
+  }, [id, groupId]);
 
   const diceMatchCount = useMemo(() => {
     if (!dice) return 0;

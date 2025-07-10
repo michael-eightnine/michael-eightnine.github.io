@@ -26,7 +26,7 @@ const GameScene = lazy(() => import('./game/scene'));
 
 import styles from './app.module.scss';
 
-export function App() {
+export const App = () => {
   const { instances, addInstance, resetInstances } = useContext(PopupContext);
   const { gameEnabled, toggleGameParam } = useGameQueryParam({
     onGameEnabled: resetInstances
@@ -97,7 +97,7 @@ export function App() {
       <main>{mappedInstances}</main>
     </div>
   );
-}
+};
 
 const AppWithContext = () => (
   <PopupContextProvider>

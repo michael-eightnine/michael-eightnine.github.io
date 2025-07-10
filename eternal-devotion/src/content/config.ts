@@ -192,13 +192,13 @@ const MeatGroup: OfferingsGroup = {
   ],
   filename: 'meat',
   offeringsConfig: createOfferingsConfig([
-    MeatChrist,
-    MeatHouse,
     MeatMatter,
-    MeatPlate,
+    MeatChrist,
     MeatScales,
+    DinnerMeatUp,
     MeatSoup,
-    DinnerMeatUp
+    MeatPlate,
+    MeatHouse
   ])
 };
 

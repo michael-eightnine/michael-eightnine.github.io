@@ -64,13 +64,14 @@ export const useCurrentOfferingPosition = () => {
 
 export const createContentPathname = (
   filename: string,
-  type: 'dice' | 'painting' | 'root'
-) => {
+  type: 'dice' | 'painting' | 'root',
+  groupId?: string
+): string => {
   const baseUrl = import.meta.env.BASE_URL;
   let subdirectory = '';
   switch (type) {
     case 'dice':
-      subdirectory = 'dice';
+      subdirectory = groupId ? `dice/${groupId}` : 'dice';
       break;
     case 'painting':
       subdirectory = 'optimized_images';
@@ -86,12 +87,12 @@ export const createContentPathname = (
 
 const generateDiceNumber = () => Math.floor(Math.random() * DICE_COUNT) + 1;
 
-export const rollTheDice = (): Die[] => {
+export const rollTheDice = (groupId: string): Die[] => {
   const displayedDiceCount = 3;
   return Array.from({ length: displayedDiceCount }).map(() => {
     const value = generateDiceNumber();
     return {
-      src: createContentPathname(`${value}.jpg`, 'dice'),
+      src: createContentPathname(`${value}.jpg`, 'dice', groupId),
       value
     };
   });
