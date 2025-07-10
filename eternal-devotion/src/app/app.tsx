@@ -4,6 +4,7 @@ import NavBar from 'components/nav';
 import { Offering, Origins, OfferingSelection } from 'routes';
 
 import styles from './app.module.scss';
+import { getSelectionPath } from 'utils';
 
 const AppLayout = () => {
   return (
@@ -24,11 +25,17 @@ const App = () => {
   return (
     <Routes>
       <Route element={<AppLayout />}>
-        <Route element={<Navigate replace to="/selection" />} path="/" />
-        <Route element={<OfferingSelection />} path="/selection" />
+        <Route
+          element={<Navigate replace to={getSelectionPath()} />}
+          path="/"
+        />
+        <Route element={<OfferingSelection />} path={getSelectionPath()} />
         <Route element={<Offering />} path="/offering/:groupId/:id" />
         <Route element={<Origins />} path="/origins" />
-        <Route element={<Navigate replace to="/selection" />} path="*" />
+        <Route
+          element={<Navigate replace to={getSelectionPath()} />}
+          path="*"
+        />
       </Route>
     </Routes>
   );
