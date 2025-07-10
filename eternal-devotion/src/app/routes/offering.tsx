@@ -9,7 +9,7 @@ const Offering = () => {
 
   // You've fallen astray
   if (!currentOffering) {
-    return <Navigate replace to={createOfferingPath('1')} />;
+    return <Navigate replace to={createOfferingPath('1', '1')} />;
   }
 
   return (

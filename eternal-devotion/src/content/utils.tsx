@@ -4,26 +4,29 @@ import type { Die } from './types';
 import { useCallback } from 'react';
 
 export const useCurrentOffering = () => {
-  const { id } = useParams();
+  const { groupId, id } = useParams();
 
-  if (!id) return null;
+  if (!id || !groupId) return null;
 
-  return offeringsConfig[id];
+  return offeringsConfig[groupId].offeringsConfig[id];
 };
 
 export const useOfferingNavigationIds = () => {
-  const { id } = useParams();
+  const { id, groupId } = useParams();
 
-  const offeringsCount = Object.keys(offeringsConfig).length;
-
-  if (!id) {
+  if (!id || !groupId) {
     return {
-      prevId: offeringsCount,
+      prevId: Infinity,
       prevEnabled: false,
       nextId: 2,
-      nextEnabled: true
+      nextEnabled: true,
+      groupId: '1'
     };
   }
+
+  const offeringsCount = Object.keys(
+    offeringsConfig[groupId].offeringsConfig
+  ).length;
 
   const idAsNumber = Number(id);
   const atEnd = idAsNumber === offeringsCount;
@@ -35,13 +38,16 @@ export const useOfferingNavigationIds = () => {
     prevId,
     prevEnabled: !atStart,
     nextId,
-    nextEnabled: !atEnd
+    nextEnabled: !atEnd,
+    groupId: groupId!
   };
 };
 
 export const useCurrentOfferingPosition = () => {
-  const { id } = useParams();
-  const offeringsCount = Object.keys(offeringsConfig).length;
+  const { id, groupId } = useParams();
+  const offeringsCount = Object.keys(
+    offeringsConfig[groupId!].offeringsConfig
+  ).length;
 
   if (!id) {
     return {
@@ -76,33 +82,35 @@ export const rollTheDice = (): Die[] => {
   });
 };
 
-export const getOfferingById = (id: string) => {
-  return offeringsConfig[id];
+export const getOfferingById = (groupId: string, id: string) => {
+  return offeringsConfig[groupId].offeringsConfig[id];
 };
 
 export const useAdjacentOfferingFilenames = () => {
-  const { prevId, nextId, prevEnabled, nextEnabled } =
+  const { prevId, nextId, prevEnabled, nextEnabled, groupId } =
     useOfferingNavigationIds();
 
   const getAdjacentOfferingFilenames = useCallback(() => {
     const filenames: string[] = [];
 
     if (prevEnabled) {
-      const prevOffering = offeringsConfig[prevId.toString()];
+      const prevOffering =
+        offeringsConfig[groupId].offeringsConfig[prevId.toString()];
       if (prevOffering) {
         filenames.push(prevOffering.filename);
       }
     }
 
     if (nextEnabled) {
-      const nextOffering = offeringsConfig[nextId.toString()];
+      const nextOffering =
+        offeringsConfig[groupId].offeringsConfig[nextId.toString()];
       if (nextOffering) {
         filenames.push(nextOffering.filename);
       }
     }
 
     return filenames;
-  }, [prevId, nextId, prevEnabled, nextEnabled]);
+  }, [prevEnabled, nextEnabled, groupId, prevId, nextId]);
 
   return getAdjacentOfferingFilenames;
 };

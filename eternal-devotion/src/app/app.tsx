@@ -1,8 +1,7 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router';
 
-import { createOfferingPath } from 'utils';
 import NavBar from 'components/nav';
-import { Offering, Origins } from 'routes';
+import { Offering, Origins, OfferingSelection } from 'routes';
 
 import styles from './app.module.scss';
 
@@ -25,16 +24,11 @@ const App = () => {
   return (
     <Routes>
       <Route element={<AppLayout />}>
-        <Route
-          element={<Navigate replace to={createOfferingPath('1')} />}
-          path="/"
-        />
-        <Route element={<Offering />} path="/offering/:id" />
+        <Route element={<Navigate replace to="/selection" />} path="/" />
+        <Route element={<OfferingSelection />} path="/selection" />
+        <Route element={<Offering />} path="/offering/:groupId/:id" />
         <Route element={<Origins />} path="/origins" />
-        <Route
-          element={<Navigate replace to={createOfferingPath('1')} />}
-          path="*"
-        />
+        <Route element={<Navigate replace to="/selection" />} path="*" />
       </Route>
     </Routes>
   );

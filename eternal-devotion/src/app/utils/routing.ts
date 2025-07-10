@@ -1,2 +1,2 @@
-export const createOfferingPath = (offeringId: string) =>
-  `/offering/${offeringId}`;
+export const createOfferingPath = (groupId: string, offeringId: string) =>
+  `/offering/${groupId}/${offeringId}`;

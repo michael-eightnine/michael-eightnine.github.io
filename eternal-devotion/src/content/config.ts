@@ -88,31 +88,92 @@ const WakingAnew: OfferingWithoutId = {
   filename: 'waking-anew'
 };
 
-const offeringsConfig: Record<Offering['id'], Offering> = [
-  BodyOvMine,
-  NewWays2Feel,
-  Penance,
-  OpenMyHeart,
-  ChangeWithMe,
-  Dead2Day,
-  Hellbound,
-  Late4Heaven,
-  Hidden2,
-  HeavenAboveHere,
-  HelpWitU,
-  Cups,
-  BurningBush,
-  WakingAnew
-].reduce((acc, current, index) => {
-  const offering: Offering = {
-    ...current,
-    id: `${index + 1}`
-  };
+export type OfferingsGroup = {
+  id: string;
+  callToAction: string;
+  title: string;
+  descriptionList: string[];
+  filename: string;
+  offeringsConfig: Record<Offering['id'], Offering>;
+};
 
-  return {
-    ...acc,
-    [offering.id]: offering
-  };
-}, {});
+const createOfferingsConfig = (
+  includedOfferings: Omit<Offering, 'id'>[]
+): OfferingsGroup['offeringsConfig'] => {
+  return includedOfferings.reduce((acc, current, index) => {
+    const offering: Offering = {
+      ...current,
+      id: `${index + 1}`
+    };
+
+    return {
+      ...acc,
+      [offering.id]: offering
+    };
+  }, {});
+};
+
+const PenanceGroup: OfferingsGroup = {
+  id: 'penance',
+  title: 'penance',
+  callToAction: 'with a heavy heart',
+  descriptionList: [
+    '2024 — 2025.',
+    'good times create regretful men',
+    '14 offerings from a selection of 38',
+    'why the website exists'
+  ],
+  filename: 'penance',
+  offeringsConfig: createOfferingsConfig([
+    BodyOvMine,
+    NewWays2Feel,
+    Penance,
+    OpenMyHeart,
+    ChangeWithMe,
+    Dead2Day,
+    Hellbound
+    // Late4Heaven,
+    // Hidden2,
+    // HeavenAboveHere,
+    // HelpWitU,
+    // Cups,
+    // BurningBush,
+    // WakingAnew
+  ])
+};
+
+const MeatGroup: OfferingsGroup = {
+  id: 'meat',
+  title: 'meat',
+  callToAction: 'with no reservations',
+  descriptionList: [
+    '2025.',
+    'flesh interfaces; matter of meat',
+    '7 offerings from a selection of 12',
+    'a very special thanks to 9M9H9E9'
+  ],
+  filename: 'penance',
+  offeringsConfig: createOfferingsConfig([
+    // BodyOvMine,
+    // NewWays2Feel,
+    // Penance,
+    // OpenMyHeart,
+    // ChangeWithMe,
+    // Dead2Day,
+    // Hellbound,
+    Late4Heaven,
+    Hidden2,
+    HeavenAboveHere,
+    HelpWitU,
+    Cups,
+    BurningBush,
+    WakingAnew
+  ])
+};
+
+const offeringsConfig: Record<OfferingsGroup['id'], OfferingsGroup> = {
+  [PenanceGroup.id]: PenanceGroup,
+  [MeatGroup.id]: MeatGroup
+};
 
 export default offeringsConfig;

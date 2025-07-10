@@ -21,7 +21,7 @@ const PaintingDie = ({ die }: { die: Die }) => (
 const PaintingNav = () => {
   const [dice, setDice] = useState<Die[] | null>(null);
   const { id } = useParams();
-  const { prevId, prevEnabled, nextId, nextEnabled } =
+  const { prevId, prevEnabled, nextId, nextEnabled, groupId } =
     useOfferingNavigationIds();
 
   useEffect(() => {
@@ -58,13 +58,13 @@ const PaintingNav = () => {
         <NavLink
           enabled={prevEnabled}
           label="prev"
-          path={createOfferingPath(prevId.toString())}
+          path={createOfferingPath(groupId, prevId.toString())}
         />
         {dice && <PaintingDie die={dice[2]} />}
         <NavLink
           enabled={nextEnabled}
           label="next"
-          path={createOfferingPath(nextId.toString())}
+          path={createOfferingPath(groupId, nextId.toString())}
         />
       </div>
       <PaintingDescription />

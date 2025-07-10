@@ -1,6 +1,6 @@
 import { useMatch } from 'react-router';
 
-import { createOfferingPath } from 'utils';
+import { offeringsConfig } from 'content';
 
 import NavLink from './nav_link';
 import LogoLink from './logo_link';
@@ -8,14 +8,15 @@ import LogoLink from './logo_link';
 import styles from './nav.module.scss';
 
 const NavBar = () => {
-  const offeringLinkActive = !!useMatch(createOfferingPath(':id'));
+  const selectionLinkActive = !!useMatch('/selection');
+  const offeringsGroupCount = Object.keys(offeringsConfig).length;
 
   return (
     <nav className={styles.navBar}>
       <NavLink
-        isActive={offeringLinkActive}
-        label="for viewing"
-        path={createOfferingPath('1')}
+        isActive={selectionLinkActive}
+        label={`for viewing (${offeringsGroupCount})`}
+        path={'/selection'}
       />
       <NavLink label="for reading" path="/origins" />
       <LogoLink />
