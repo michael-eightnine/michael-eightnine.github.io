@@ -8,7 +8,7 @@ const OriginsLayout = () => (
     <img
       alt="myself"
       className={styles.image}
-      src={`${createContentPathname('me.png', 'root')}.png`}
+      src={`${createContentPathname('me.png', 'root')}`}
     />
     <div className={styles.copy}>
       <OriginsCopy />

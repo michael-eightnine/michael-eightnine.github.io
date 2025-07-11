@@ -9,7 +9,11 @@ import PaintingNav from './painting_nav';
 
 import styles from './painting_row.module.scss';
 
-const PaintingRow = () => {
+type Props = {
+  className: string;
+};
+
+const PaintingRow = ({ className }: Props) => {
   const currentOffering = useCurrentOffering();
   const { id } = useParams();
   const getAdjacentOfferingFilenames = useAdjacentOfferingFilenames();
@@ -26,15 +30,13 @@ const PaintingRow = () => {
 
   return (
     !!currentOffering && (
-      <>
-        <div className={styles.paintingRow}>
-          <PaintingDisplay
-            className={styles.painting}
-            filename={currentOffering.filename}
-          />
-          <PaintingNav />
-        </div>
-      </>
+      <div className={`${styles.paintingRow} ${className}`}>
+        <PaintingDisplay
+          className={styles.painting}
+          filename={currentOffering.filename}
+        />
+        <PaintingNav />
+      </div>
     )
   );
 };

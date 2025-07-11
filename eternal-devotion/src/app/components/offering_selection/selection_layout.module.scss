@@ -1,15 +1,31 @@
 // Layout
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: min-content 1fr 1fr;
   column-gap: 10dvw;
   align-items: center;
   padding: var(--padding--medium);
   height: 100%;
 
+  @media (max-width: 1160px) {
+    column-gap: 2rem;
+  }
+
+  @media (max-width: 970px) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    max-height: 100%;
+    overflow: auto;
+  }
+
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
     row-gap: 2rem;
+    padding: var(--padding--small);
   }
 }
 
@@ -24,6 +40,40 @@
   to {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-family: var(--font--serif);
+  font-style: italic;
+  line-height: 1.5;
+  white-space: nowrap;
+
+  @media (max-width: 970px) {
+    grid-column: 1 / -1;
+    text-align: center;
+
+    br {
+      display: none;
+      line-height: 1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+    padding-top: 1rem;
+  }
+}
+
+.subheading {
+  font-size: 0.875rem;
+  font-family: var(--font--mono);
+  font-style: normal;
+  margin-top: 1rem;
+
+  @media (max-width: 600px) {
+    margin-top: 0;
   }
 }
 
@@ -52,21 +102,26 @@
     outline-style: dashed;
     outline-offset: 3px;
 
-    .cta {
-      transform: translateY(0);
-    }
+    // Only apply transform on mouse-based devices as hover effects look bad on touch devices
+    @media (pointer: fine) {
+      .cta {
+        transform: translateY(0);
+      }
 
-    .character:last-of-type {
-      color: var(--color--white);
+      .character:last-of-type {
+        color: var(--color--white);
+      }
     }
   }
 
+  @media (max-width: 970px) {
+    align-self: flex-end;
+  }
+
   @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
     max-height: 50dvh;
     max-width: none;
-    flex-direction: row;
+    aspect-ratio: unset;
   }
 }
 
@@ -79,8 +134,7 @@
   background-color: var(--color--black);
 
   @media (max-width: 600px) {
-    height: 100%;
-    width: 50%;
+    height: 5rem;
   }
 }
 
