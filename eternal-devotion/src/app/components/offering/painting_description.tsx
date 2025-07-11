@@ -1,4 +1,5 @@
 import { useCurrentOffering } from 'content';
+
 import styles from './painting_description.module.scss';
 
 const PaintingDescription = () => {

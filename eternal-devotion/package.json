@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "generateDice": "node ./scripts/generate_dice.js",
     "generateImages": "node ./scripts/generate_images.js",
     "dev": "vite",
     "build": "tsc -b && vite build",

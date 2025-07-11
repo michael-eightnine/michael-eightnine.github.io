@@ -1,8 +1,10 @@
-import styles from './navigation.module.scss';
+import { useEffect } from 'react';
+
 import { Area, AreaId, NavDirection } from '../types';
 
 import Button from './button';
-import { useEffect } from 'react';
+
+import styles from './navigation.module.scss';
 
 type Props = {
   onClick: (id: AreaId) => void;

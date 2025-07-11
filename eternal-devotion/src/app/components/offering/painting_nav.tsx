@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
-import NavLink from 'components/nav/nav_link';
-import { classnames, createOfferingPath } from 'utils';
+
 import { rollTheDice, useOfferingNavigationIds, type Die } from 'content';
+import { classnames, createOfferingPath } from 'utils';
+import NavLink from 'components/nav/nav_link';
 
 import PaintingDescription from './painting_description';
+
 import styles from './painting_nav.module.scss';
 
 const PaintingDie = ({ die }: { die: Die }) => (
@@ -19,12 +21,12 @@ const PaintingDie = ({ die }: { die: Die }) => (
 const PaintingNav = () => {
   const [dice, setDice] = useState<Die[] | null>(null);
   const { id } = useParams();
-  const { prevId, prevEnabled, nextId, nextEnabled } =
+  const { prevId, prevEnabled, nextId, nextEnabled, groupId } =
     useOfferingNavigationIds();
 
   useEffect(() => {
-    setDice(rollTheDice());
-  }, [id]);
+    setDice(rollTheDice(groupId));
+  }, [id, groupId]);
 
   const diceMatchCount = useMemo(() => {
     if (!dice) return 0;
@@ -56,13 +58,13 @@ const PaintingNav = () => {
         <NavLink
           enabled={prevEnabled}
           label="prev"
-          path={createOfferingPath(prevId.toString())}
+          path={createOfferingPath(groupId, prevId.toString())}
         />
         {dice && <PaintingDie die={dice[2]} />}
         <NavLink
           enabled={nextEnabled}
           label="next"
-          path={createOfferingPath(nextId.toString())}
+          path={createOfferingPath(groupId, nextId.toString())}
         />
       </div>
       <PaintingDescription />

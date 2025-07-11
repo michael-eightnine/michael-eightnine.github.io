@@ -3,6 +3,7 @@ import { classnames } from 'utils';
 import { PopupID } from 'components/popup';
 
 import DockButton from './dock_button';
+
 import styles from './dock.module.scss';
 
 type Props = {
@@ -27,7 +28,7 @@ const Dock = ({ onOpenGame, visible }: Props) => {
         <Contact className={styles.dockIcon} />
       </DockButton>
       <button
-        aria-haspopup
+        aria-haspopup="false"
         aria-labelledby={'game'}
         className={styles.dockButton}
         onClick={onOpenGame}

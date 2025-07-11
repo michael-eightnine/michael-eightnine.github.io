@@ -1,8 +1,14 @@
-import { useCallback, useContext, useMemo, useState } from 'react';
+import {
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  lazy,
+  Suspense
+} from 'react';
 
 import { classnames } from 'utils';
 import { Background } from 'svg';
-
 import {
   ContactPopup,
   PopupContextProvider,
@@ -13,11 +19,14 @@ import {
 import { PopupContext } from 'components/popup';
 import Nav from 'components/nav';
 import MovingWordmark from 'components/moving_wordmark';
-import { GameScene, useGameQueryParam } from './game';
+
+import { useGameQueryParam } from './game';
+
+const GameScene = lazy(() => import('./game/scene'));
 
 import styles from './app.module.scss';
 
-export function App() {
+export const App = () => {
   const { instances, addInstance, resetInstances } = useContext(PopupContext);
   const { gameEnabled, toggleGameParam } = useGameQueryParam({
     onGameEnabled: resetInstances
@@ -63,7 +72,17 @@ export function App() {
   }, [instances]);
 
   if (gameEnabled) {
-    return <GameScene onExitGame={toggleGameParam} />;
+    return (
+      <Suspense
+        fallback={
+          <div className={styles.loadingContainer}>
+            <p className={styles.loading}>Loading game...</p>
+          </div>
+        }
+      >
+        <GameScene onExitGame={toggleGameParam} />
+      </Suspense>
+    );
   }
 
   return (
@@ -78,7 +97,7 @@ export function App() {
       <main>{mappedInstances}</main>
     </div>
   );
-}
+};
 
 const AppWithContext = () => (
   <PopupContextProvider>

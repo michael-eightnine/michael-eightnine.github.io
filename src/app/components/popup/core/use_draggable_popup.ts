@@ -53,20 +53,21 @@ const useDraggablePopup = () => {
 
   // Bind event listeners when dragging begins, unbind when dragging ends and as a cleanup function
   useEffect(() => {
+    const cleanup = () => {
+      window.removeEventListener('mousemove', handleDrag);
+      window.removeEventListener('mouseup', handleDragDrop);
+      document.body.classList.remove('no-select');
+    };
+
     if (isDragging) {
       window.addEventListener('mousemove', handleDrag);
       window.addEventListener('mouseup', handleDragDrop);
       document.body.classList.add('no-select');
     } else {
-      window.removeEventListener('mousemove', handleDrag);
-      window.removeEventListener('mouseup', handleDragDrop);
-      document.body.classList.remove('no-select');
+      cleanup();
     }
-    return () => {
-      window.removeEventListener('mousemove', handleDrag);
-      window.removeEventListener('mouseup', handleDragDrop);
-      document.body.classList.remove('no-select');
-    };
+
+    return cleanup;
   }, [handleDrag, handleDragDrop, isDragging]);
 
   // If no placement coordinates are available an empty object is returned, as this memoized object is spread as

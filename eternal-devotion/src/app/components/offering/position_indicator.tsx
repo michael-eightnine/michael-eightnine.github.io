@@ -2,12 +2,16 @@ import { useCurrentOfferingPosition } from 'content';
 
 import styles from './position_indicator.module.scss';
 
-const PositionIndicator = () => {
+type Props = {
+  className: string;
+};
+
+const PositionIndicator = ({ className }: Props) => {
   const { current, total } = useCurrentOfferingPosition();
   const [totalOne, totalTwo] = total.toString().split('');
 
   return (
-    <div className={styles.indicator}>
+    <div className={`${styles.indicator} ${className}`}>
       <span
         style={{
           width: `${current.toString().length}ch`

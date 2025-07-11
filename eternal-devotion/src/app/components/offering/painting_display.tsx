@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 
 import { Offering, createContentPathname, IMAGE_SIZES } from 'content';
+
 import Lightbox from './lightbox';
 
 type Props = {
@@ -22,7 +23,7 @@ const PaintingDisplay = ({ className, filename }: Props) => {
             ...acc,
             ...IMAGE_SIZES.map(
               (size) =>
-                `${createContentPathname(`${filename}-${size}.${format}`)} ${size}w`
+                `${createContentPathname(`${filename}-${size}.${format}`, 'painting')} ${size}w`
             )
           ];
         }, [] as string[])
@@ -60,9 +61,10 @@ const PaintingDisplay = ({ className, filename }: Props) => {
         <img
           alt="the big picture"
           className={className}
+          loading="eager"
           ref={ref}
           sizes={sizesProp}
-          src={`${createContentPathname(`${filename}-1280.webp`)}`}
+          src={`${createContentPathname(`${filename}-1280.webp`, 'painting')}`}
           srcSet={srcSet}
           {...(isLightbox ? {} : interactiveProps)}
         />

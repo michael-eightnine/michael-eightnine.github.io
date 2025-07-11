@@ -1,9 +1,10 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router';
-import { Offering, Origins } from 'routes';
+
+import NavBar from 'components/nav';
+import { Offering, Origins, OfferingSelection } from 'routes';
 
 import styles from './app.module.scss';
-import NavBar from 'components/nav';
-import { createOfferingPath } from 'utils';
+import { getSelectionPath } from 'utils';
 
 const AppLayout = () => {
   return (
@@ -25,13 +26,14 @@ const App = () => {
     <Routes>
       <Route element={<AppLayout />}>
         <Route
-          element={<Navigate replace to={createOfferingPath('1')} />}
+          element={<Navigate replace to={getSelectionPath()} />}
           path="/"
         />
-        <Route element={<Offering />} path="/offering/:id" />
+        <Route element={<OfferingSelection />} path={getSelectionPath()} />
+        <Route element={<Offering />} path="/offering/:groupId/:id" />
         <Route element={<Origins />} path="/origins" />
         <Route
-          element={<Navigate replace to={createOfferingPath('1')} />}
+          element={<Navigate replace to={getSelectionPath()} />}
           path="*"
         />
       </Route>

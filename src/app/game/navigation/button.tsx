@@ -1,4 +1,5 @@
 import { Arrow } from 'svg';
+
 import { NavDirection } from '../types';
 
 import styles from './navigation.module.scss';

@@ -1,7 +1,8 @@
 import { NavLink as RouterNavLink } from 'react-router';
 
-import styles from './nav.module.scss';
 import { classnames } from 'utils';
+
+import styles from './nav.module.scss';
 
 type Props = {
   isActive?: boolean;
