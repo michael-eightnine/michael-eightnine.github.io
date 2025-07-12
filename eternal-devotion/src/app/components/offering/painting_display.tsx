@@ -1,9 +1,9 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import { Offering, createContentPathname, IMAGE_SIZES } from 'content';
 
 import Lightbox from './lightbox';
-import { createPortal } from 'react-dom';
 
 type Props = {
   filename: Offering['filename'];
