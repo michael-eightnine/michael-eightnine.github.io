@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import { Offering, createContentPathname, IMAGE_SIZES } from 'content';
 
@@ -81,11 +82,14 @@ const PaintingDisplay = ({ className, filename }: Props) => {
   return (
     <>
       {renderImage(false, imageRef)}
-      <Lightbox
-        image={renderImage(true)}
-        isOpen={lightboxOpen}
-        onClose={handleLightboxClose}
-      />
+      {createPortal(
+        <Lightbox
+          image={renderImage(true)}
+          isOpen={lightboxOpen}
+          onClose={handleLightboxClose}
+        />,
+        document.body
+      )}
     </>
   );
 };
