@@ -3,6 +3,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { Offering, createContentPathname, IMAGE_SIZES } from 'content';
 
 import Lightbox from './lightbox';
+import { createPortal } from 'react-dom';
 
 type Props = {
   filename: Offering['filename'];
@@ -81,11 +82,14 @@ const PaintingDisplay = ({ className, filename }: Props) => {
   return (
     <>
       {renderImage(false, imageRef)}
-      <Lightbox
-        image={renderImage(true)}
-        isOpen={lightboxOpen}
-        onClose={handleLightboxClose}
-      />
+      {createPortal(
+        <Lightbox
+          image={renderImage(true)}
+          isOpen={lightboxOpen}
+          onClose={handleLightboxClose}
+        />,
+        document.body
+      )}
     </>
   );
 };
