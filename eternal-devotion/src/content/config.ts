@@ -131,6 +131,18 @@ const DinnerMeatUp: OfferingWithoutId = {
   filename: 'dinner-meat-up'
 };
 
+const RoastBeast: OfferingWithoutId = {
+  description:
+    'it cuts like butter, only a small squealing. a light barking. the delicacy of extremities, chewy, warm, slightly salted. 2 lbs deli sliced still dripping',
+  filename: 'roast-beast'
+};
+
+const TenderedMeat: OfferingWithoutId = {
+  description:
+    "hammered — tenderized or simply beaten until unruly? crackling shell, wrapped tight with twine and plastic. raised locally; we don't let the children watch",
+  filename: 'tendered-meat'
+};
+
 export type OfferingsGroup = {
   id: string;
   callToAction: string;
@@ -192,18 +204,20 @@ const MeatGroup: OfferingsGroup = {
   descriptionList: [
     '2025.',
     'flesh interfaces; matter of meat',
-    '7 offerings from a selection of 10',
+    '9 offerings from a selection of 14',
     'a very special thanks to 9M9H9E9'
   ],
   filename: 'meat',
   offeringsConfig: createOfferingsConfig([
+    RoastBeast,
     MeatMatter,
     MeatChrist,
     MeatScales,
     DinnerMeatUp,
     MeatSoup,
     MeatPlate,
-    MeatHouse
+    MeatHouse,
+    TenderedMeat
   ])
 };
 
