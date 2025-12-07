@@ -81,6 +81,18 @@
       }
     </script>
 
+    <!-- Single Page Apps for GitHub Pages -->
+    <script>
+      // Redirect from 404.html preserves the intended route
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
     <title>Michael Smith - Frontend Engineer Portfolio</title>
   </head>
   <body>
