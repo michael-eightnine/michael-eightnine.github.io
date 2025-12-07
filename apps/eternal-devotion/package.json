@@ -1,0 +1,39 @@
+{
+  "name": "eternal-devotion",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "generateImages": "node ./scripts/generate_images.js",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "fs-extra": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-router": "*",
+    "sharp": "*"
+  },
+  "devDependencies": {
+    "@eslint/js": "*",
+    "@types/fs-extra": "*",
+    "@types/node": "*",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "@vitejs/plugin-react": "*",
+    "eslint": "*",
+    "eslint-plugin-react": "*",
+    "eslint-plugin-react-hooks": "*",
+    "eslint-plugin-react-refresh": "*",
+    "globals": "*",
+    "prettier": "*",
+    "sass-embedded": "*",
+    "scss-reset": "*",
+    "typescript": "*",
+    "typescript-eslint": "*",
+    "vite": "*"
+  }
+}

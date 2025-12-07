@@ -5,8 +5,8 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import react from 'eslint-plugin-react';
 
-export default tseslint.config(
-  { ignores: ['dist'] },
+// Shared base configuration that workspaces can extend
+export const baseConfig = tseslint.config(
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
@@ -30,4 +30,17 @@ export default tseslint.config(
       ]
     },
   },
+);
+
+// Root-level configuration with monorepo ignores
+export default tseslint.config(
+  {
+    ignores: [
+      '**/dist/**',
+      '**/node_modules/**',
+      '**/.husky/**',
+      '**/build/**'
+    ]
+  },
+  ...baseConfig,
 )

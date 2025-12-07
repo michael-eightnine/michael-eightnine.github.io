@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "paths": {
+      "content": ["./src/content/index.ts"],
+      "components/*": ["./src/app/components/*"],
+      "routes": ["./src/app/routes/index.ts"],
+      "svg": ["./src/app/svg/index.ts"],
+      "utils": ["./src/app/utils/index.ts"]
+    }
+  },
+  "include": ["src"]
+}
