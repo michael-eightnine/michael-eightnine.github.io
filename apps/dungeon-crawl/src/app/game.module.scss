@@ -1,0 +1,102 @@
+// nav_bar.tsx
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: var(--color--black);
+  padding: var(--padding--medium);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  font-family: var(--font--mono);
+  animation: fadeIn var(--transition--slow) ease-in;
+
+  @media screen and (max-width: 600px) {
+    padding: 0.5rem;
+  }
+}
+
+.inner {
+  border: 1px solid var(--color--blue);
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  padding: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: var(--color--white);
+
+  @media screen and (max-width: 600px) {
+    padding: var(--padding--medium);
+  }
+}
+
+.image {
+  width: 100%;
+  flex: 1 1 100%;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  border: 1px solid var(--color--blue);
+  border-bottom: none;
+}
+
+.heldItem {
+  padding: 0.5rem;
+  color: var(--color--black);
+  background-color: var(--color--white);
+  bottom: 1rem;
+  right: 1rem;
+  position: absolute;
+  font-size: 14px;
+
+  strong {
+    color: var(--color--blue);
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
+    right: 0.5rem;
+    bottom: 0.5rem;
+  }
+}
+
+.exitButton {
+  background-color: var(--color--white);
+  padding: 0.25rem 0.5rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: var(--color--blue);
+  height: 2rem;
+  border: 1px solid var(--color--blue);
+  font-weight: bold;
+  transition:
+    color var(--transition--standard) ease,
+    background-color var(--transition--standard) ease;
+
+  @media screen and (max-width: 600px) {
+    top: 0rem;
+    right: 0rem;
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color--blue);
+      color: var(--color--white);
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "devDependencies": {
+    "@eslint/js": "*",
+    "@types/node": "*",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "@vitejs/plugin-react": "*",
+    "autoprefixer": "^10.4.20",
+    "eslint": "*",
+    "eslint-plugin-react": "*",
+    "eslint-plugin-react-hooks": "*",
+    "eslint-plugin-react-refresh": "*",
+    "globals": "*",
+    "postcss": "^8.4.49",
+    "prettier": "*",
+    "tailwindcss": "^3.4.18",
+    "typescript": "*",
+    "typescript-eslint": "*",
+    "vite": "*"
+  }
+}
