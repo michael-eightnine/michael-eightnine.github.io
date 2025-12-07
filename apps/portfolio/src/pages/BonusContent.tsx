@@ -46,7 +46,7 @@ const BonusContent: React.FC = () => {
       <ContentParagraph>
         <a
           className="standardLink"
-          href="/dungeon-crawl"
+          href="/popup-portfolio"
           rel="noopener noreferrer"
           target="_blank"
         >

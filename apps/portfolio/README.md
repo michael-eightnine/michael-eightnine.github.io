@@ -114,7 +114,7 @@ Theme values are defined in `src/index.css` using Tailwind v4's `@theme` syntax:
 
 - `color-primary` - Blue (#00f)
 - `color-light` - White (#fff)
-- `color-dark` - Black (#000)
+- `color-dark` - Off Black (#222)
 
 **Spacing:**
 

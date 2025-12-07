@@ -5,6 +5,7 @@ import {
   mobileNavLinksContainerVariants,
   navLinksItemVariants
 } from 'utils/animationUtils';
+import Asterisk from 'components/svg/Asterisk';
 
 const navItems = [
   { path: '/', label: 'Professional Focus' },
@@ -16,7 +17,7 @@ const navItems = [
 const NavigationActiveIndicator: React.FC = () => (
   <motion.span
     aria-hidden
-    className="absolute right-0 top-0.25 font-mono text-2xl pointer-events-none"
+    className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none"
     layoutId="nav-active-indicator"
     transition={{
       type: 'spring',
@@ -24,7 +25,7 @@ const NavigationActiveIndicator: React.FC = () => (
       damping: 15
     }}
   >
-    *
+    <Asterisk className="w-full h-full text-light" />
   </motion.span>
 );
 
