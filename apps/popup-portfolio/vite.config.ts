@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/popup-portfolio',
   css: {
     modules: {
       // Enable CSS Modules for all .scss files

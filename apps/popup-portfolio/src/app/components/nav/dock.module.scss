@@ -22,6 +22,10 @@
   width: var(--dock--size);
   background-color: var(--color--blue);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 
   box-shadow:
     0.5rem -0.5rem 0px var(--color--white),

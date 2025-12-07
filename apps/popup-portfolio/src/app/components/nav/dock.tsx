@@ -30,6 +30,8 @@ const Dock = ({ visible }: Props) => {
         aria-label="Dungeon Crawl Game"
         className={styles.dockButton}
         href="/dungeon-crawl"
+        rel="noopener noreferrer"
+        target="_blank"
         title="Dungeon Crawl"
       >
         <Game className={styles.dockIcon} />

@@ -36,33 +36,31 @@ jobs:
           node-version: 20
           cache: "yarn"
 
-      # Build Main Portfolio App
-      - name: Install dependencies (Portfolio)
+      # Install all workspace dependencies
+      - name: Install workspace dependencies
         run: yarn install --frozen-lockfile
-      - name: Build Portfolio
-        run: yarn build
 
-      # Build Contained Eternal Devotion App
-      - name: Install dependencies (Eternal Devotion)
+      # Build Main Portfolio App (React 19 + Tailwind)
+      - name: Build Portfolio
+        run: yarn workspace portfolio build
+
+      # Build Popup Portfolio App (Classic Portfolio)
+      - name: Build Popup Portfolio
         run: |
-          cd eternal-devotion
-          yarn install --frozen-lockfile
+          yarn workspace popup-portfolio build
+          mv apps/popup-portfolio/dist apps/portfolio/dist/popup-portfolio
+
+      # Build Eternal Devotion App
       - name: Build Eternal Devotion
         run: |
-          cd eternal-devotion
-          yarn build
-          mv dist ../dist/eternal-devotion
+          yarn workspace eternal-devotion build
+          mv apps/eternal-devotion/dist apps/portfolio/dist/eternal-devotion
 
       # Build Dungeon Crawl App
-      - name: Install dependencies (Dungeon Crawl)
-        run: |
-          cd dungeon-crawl
-          yarn install --frozen-lockfile
       - name: Build Dungeon Crawl
         run: |
-          cd dungeon-crawl
-          yarn build
-          mv dist ../dist/dungeon-crawl
+          yarn workspace dungeon-crawl build
+          mv apps/dungeon-crawl/dist apps/portfolio/dist/dungeon-crawl
 
       # Prepare GitHub Pages
       - name: Setup Pages
@@ -72,7 +70,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./dist"
+          path: "./apps/portfolio/dist"
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
