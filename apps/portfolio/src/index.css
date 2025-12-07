@@ -1,3 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Ensure SVG filters render correctly */
+svg {
+  color-interpolation-filters: linearRGB;
+}

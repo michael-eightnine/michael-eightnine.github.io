@@ -10,24 +10,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "motion": "^11.15.0",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "react-router": "*"
   },
   "devDependencies": {
     "@eslint/js": "*",
+    "@tailwindcss/postcss": "4.1.17",
     "@types/node": "*",
     "@types/react": "*",
     "@types/react-dom": "*",
     "@vitejs/plugin-react": "*",
-    "autoprefixer": "^10.4.20",
     "eslint": "*",
     "eslint-plugin-react": "*",
     "eslint-plugin-react-hooks": "*",
     "eslint-plugin-react-refresh": "*",
     "globals": "*",
-    "postcss": "^8.4.49",
     "prettier": "*",
-    "tailwindcss": "^3.4.18",
+    "tailwindcss": "4.1.17",
     "typescript": "*",
     "typescript-eslint": "*",
     "vite": "*"
