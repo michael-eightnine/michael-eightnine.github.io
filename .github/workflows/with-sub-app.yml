@@ -52,7 +52,18 @@ jobs:
           cd eternal-devotion
           yarn build
           mv dist ../dist/eternal-devotion
-          
+
+      # Build Dungeon Crawl App
+      - name: Install dependencies (Dungeon Crawl)
+        run: |
+          cd dungeon-crawl
+          yarn install --frozen-lockfile
+      - name: Build Dungeon Crawl
+        run: |
+          cd dungeon-crawl
+          yarn build
+          mv dist ../dist/dungeon-crawl
+
       # Prepare GitHub Pages
       - name: Setup Pages
         uses: actions/configure-pages@v4

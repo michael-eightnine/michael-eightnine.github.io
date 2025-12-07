@@ -10,10 +10,9 @@ import styles from './nav.module.scss';
 
 type Props = {
   onAnimationEnd: () => void;
-  onOpenGame: () => void;
 };
 
-const NavBar = ({ onAnimationEnd, onOpenGame }: Props) => {
+const NavBar = ({ onAnimationEnd }: Props) => {
   const [showDock, setShowDock] = useState(false);
   const { closeAllPopups, closeAllProcessing, instances } =
     useContext(PopupContext);
@@ -39,7 +38,7 @@ const NavBar = ({ onAnimationEnd, onOpenGame }: Props) => {
         </button>
         <AnimatedTitle onAnimationEnd={handleAnimationEnd} />
       </nav>
-      <Dock onOpenGame={onOpenGame} visible={showDock} />
+      <Dock visible={showDock} />
     </div>
   );
 };

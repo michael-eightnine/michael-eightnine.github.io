@@ -1,4 +1,4 @@
-import { classnames } from 'utils';
+import { classnames } from '../utils';
 
 import styles from './map.module.scss';
 import { AreaId } from '../types';

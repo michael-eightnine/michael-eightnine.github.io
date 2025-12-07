@@ -7,11 +7,10 @@ import DockButton from './dock_button';
 import styles from './dock.module.scss';
 
 type Props = {
-  onOpenGame: () => void;
   visible: boolean;
 };
 
-const Dock = ({ onOpenGame, visible }: Props) => {
+const Dock = ({ visible }: Props) => {
   return (
     <div
       className={classnames(styles.dock, {
@@ -27,17 +26,15 @@ const Dock = ({ onOpenGame, visible }: Props) => {
       <DockButton id={PopupID.Contact} title="Contact">
         <Contact className={styles.dockIcon} />
       </DockButton>
-      <button
-        aria-haspopup="false"
-        aria-labelledby={'game'}
+      <a
+        aria-label="Dungeon Crawl Game"
         className={styles.dockButton}
-        onClick={onOpenGame}
+        href="/dungeon-crawl"
+        title="Dungeon Crawl"
       >
         <Game className={styles.dockIcon} />
-        <span className={styles.dockButtonTooltip} id={'game'}>
-          Dungeon Crawl
-        </span>
-      </button>
+        <span className={styles.dockButtonTooltip}>Dungeon Crawl</span>
+      </a>
     </div>
   );
 };

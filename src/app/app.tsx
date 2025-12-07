@@ -1,11 +1,4 @@
-import {
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-  lazy,
-  Suspense
-} from 'react';
+import { useCallback, useContext, useMemo, useState } from 'react';
 
 import { classnames } from 'utils';
 import { Background } from 'svg';
@@ -20,17 +13,10 @@ import { PopupContext } from 'components/popup';
 import Nav from 'components/nav';
 import MovingWordmark from 'components/moving_wordmark';
 
-import { useGameQueryParam } from './game';
-
-const GameScene = lazy(() => import('./game/scene'));
-
 import styles from './app.module.scss';
 
 export const App = () => {
-  const { instances, addInstance, resetInstances } = useContext(PopupContext);
-  const { gameEnabled, toggleGameParam } = useGameQueryParam({
-    onGameEnabled: resetInstances
-  });
+  const { instances, addInstance } = useContext(PopupContext);
   const [headerLoaded, setHeaderLoaded] = useState(false);
 
   const onAnimationEnd = useCallback(() => {
@@ -71,20 +57,6 @@ export const App = () => {
     });
   }, [instances]);
 
-  if (gameEnabled) {
-    return (
-      <Suspense
-        fallback={
-          <div className={styles.loadingContainer}>
-            <p className={styles.loading}>Loading game...</p>
-          </div>
-        }
-      >
-        <GameScene onExitGame={toggleGameParam} />
-      </Suspense>
-    );
-  }
-
   return (
     <div
       className={classnames(styles.page, {
@@ -93,7 +65,7 @@ export const App = () => {
     >
       <Background className={styles.background} />
       <MovingWordmark className={styles.wordmark} />
-      <Nav onAnimationEnd={onAnimationEnd} onOpenGame={toggleGameParam} />
+      <Nav onAnimationEnd={onAnimationEnd} />
       <main>{mappedInstances}</main>
     </div>
   );

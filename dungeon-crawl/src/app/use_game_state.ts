@@ -39,6 +39,12 @@ const useGameState = () => {
     []
   );
 
+  const handleRestartGame = useCallback(() => {
+    setCurrentArea(null);
+    setInventory(getDefaultInventory());
+    setGameComplete(false);
+  }, []);
+
   /**
    * Determines if a given item can be picked up by the player
    * Some items require another item to already be held, indicated by the `item.requires` field
@@ -75,6 +81,7 @@ const useGameState = () => {
     getAreaItemAvailable,
     handleChangeArea,
     handlePickupItem,
+    handleRestartGame,
     handleStartGame,
     inventory
   };

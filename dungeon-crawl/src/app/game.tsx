@@ -1,5 +1,5 @@
 import useGameState from './use_game_state';
-import styles from './scene.module.scss';
+import styles from './game.module.scss';
 import { Navigation } from './navigation';
 import { DialogBox } from './dialog';
 import { AreaId, ItemId } from './types';
@@ -58,11 +58,7 @@ const getImage = (areaId: AreaId) => {
   }
 };
 
-type Props = {
-  onExitGame: () => void;
-};
-
-const Scene = ({ onExitGame }: Props) => {
+const Game = () => {
   const {
     currentArea,
     handleChangeArea,
@@ -70,6 +66,7 @@ const Scene = ({ onExitGame }: Props) => {
     getAreaItemAvailable,
     gameComplete,
     handlePickupItem,
+    handleRestartGame,
     inventory
   } = useGameState();
 
@@ -78,7 +75,7 @@ const Scene = ({ onExitGame }: Props) => {
   }
 
   if (gameComplete) {
-    return <ExitInterstitial onEndGame={onExitGame} />;
+    return <ExitInterstitial onEndGame={handleRestartGame} />;
   }
 
   const { areaId, navigationDirections, item, parentAreaId, subAreaId } =
@@ -112,11 +109,8 @@ const Scene = ({ onExitGame }: Props) => {
           subAreaId={subAreaId}
         />
       </div>
-      <button className={styles.exitButton} onClick={onExitGame}>
-        Exit
-      </button>
     </div>
   );
 };
 
-export default Scene;
+export default Game;
