@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { NavLink } from 'react-router';
 import {
   navLinksContainerVariants,
+  mobileNavLinksContainerVariants,
   navLinksItemVariants
 } from 'utils/animationUtils';
 
@@ -10,16 +11,42 @@ const navItems = [
   { path: '/work-experience', label: 'Work Experience' },
   { path: '/connect-contact', label: 'Connect & Contact' },
   { path: '/bonus-content', label: 'Bonus Content' }
-];
+] as const;
 
-const NavigationLinks: React.FC = () => {
+const NavigationActiveIndicator: React.FC = () => (
+  <motion.span
+    className="absolute right-0 top-0.25 font-mono text-2xl pointer-events-none"
+    layoutId="nav-active-indicator"
+    transition={{
+      type: 'spring',
+      stiffness: 200,
+      damping: 15
+    }}
+  >
+    *
+  </motion.span>
+);
+
+type Props = {
+  onLinkClick?: () => void;
+  useMobileVariant?: boolean;
+};
+
+const NavigationLinks: React.FC<Props> = ({
+  onLinkClick,
+  useMobileVariant = false
+}) => {
+  const containerVariants = useMobileVariant
+    ? mobileNavLinksContainerVariants
+    : navLinksContainerVariants;
+
   return (
-    <nav className="pt-24">
+    <nav className="mt-16 md:mt-24">
       <motion.ul
         animate="animate"
         className="font-mono space-y-2"
         initial="initial"
-        variants={navLinksContainerVariants}
+        variants={containerVariants}
       >
         {navItems.map(({ path, label }) => (
           <motion.li key={path} variants={navLinksItemVariants}>
@@ -27,6 +54,7 @@ const NavigationLinks: React.FC = () => {
               className={({ isActive }) =>
                 isActive ? 'relative block' : 'relative block group'
               }
+              onClick={onLinkClick}
               to={path}
             >
               {({ isActive }) => (
@@ -38,19 +66,7 @@ const NavigationLinks: React.FC = () => {
                   }`}
                 >
                   {label}
-                  {isActive && (
-                    <motion.span
-                      className="absolute right-0 top-0.25 font-mono text-2xl"
-                      layoutId="nav-active-indicator"
-                      transition={{
-                        type: 'spring',
-                        stiffness: 350,
-                        damping: 30
-                      }}
-                    >
-                      *
-                    </motion.span>
-                  )}
+                  {isActive && <NavigationActiveIndicator />}
                 </span>
               )}
             </NavLink>

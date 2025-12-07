@@ -32,7 +32,7 @@ const Background = () => (
         <feSpecularLighting
           height="100%"
           in="turbulence"
-          lightingColor="#00f"
+          lightingColor="var(--color-primary)"
           result="specularLighting"
           specularConstant=".7"
           specularExponent="20"
@@ -46,7 +46,11 @@ const Background = () => (
       </filter>
     </defs>
     <path d="M0 0h700v700H0z" fill="transparent" />
-    <path d="M0 0h700v700H0z" fill="#0000ff" filter="url(#background-filter)" />
+    <path
+      d="M0 0h700v700H0z"
+      fill="var(--color-primary)"
+      filter="url(#background-filter)"
+    />
   </svg>
 );
 

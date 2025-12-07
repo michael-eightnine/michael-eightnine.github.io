@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  /* Color palette */
+  --color-primary: #00f;
+  --color-light: #fff;
+  --color-dark: #000;
+
+  /* Spacing values */
+  --spacing-header-height: 72px;
+  --spacing-header-offset: 104px;
+  --spacing-nav-width: 320px;
+
+  /* Border radius */
+  --radius-small: 8px;
+}
+
 /* Ensure SVG filters render correctly */
 svg {
   color-interpolation-filters: linearRGB;

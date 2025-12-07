@@ -6,7 +6,7 @@ import { fadeInUp, navSectionDelay } from 'utils/animationUtils';
 
 const NavigationBar: React.FC = () => {
   return (
-    <div className="py-12 px-8 flex flex-col text-white h-full">
+    <div className="py-12 px-8 flex flex-col text-light h-full">
       <motion.div
         animate={fadeInUp.animate}
         initial={fadeInUp.initial}
