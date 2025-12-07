@@ -2,14 +2,14 @@
 name: Vite 2 GH
 
 on:
-  # Runs on pushes targeting the main branch
+  # Runs on pushes targeting the master branch
   push:
-    branches: ["main"]
+    branches: ["master"]
 
-  # Runs when a pull request is merged into the main branch
+  # Runs when a pull request is merged into the master branch
   pull_request:
     branches:
-      - main
+      - master
     types:
       - closed
 

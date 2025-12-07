@@ -15,5 +15,15 @@ export default defineConfig({
       contexts: path.resolve(__dirname, 'src/contexts'),
       utils: path.resolve(__dirname, 'src/utils')
     }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router'],
+          'animation-vendor': ['motion']
+        }
+      }
+    }
   }
 });

@@ -9,13 +9,17 @@ import { MobileMenuProvider } from 'contexts/MobileMenuContext';
 import MobileHeader from 'components/navigation/MobileHeader';
 import MobileMenuOverlay from 'components/navigation/MobileMenuOverlay';
 import { useMediaQuery } from 'utils/useMediaQuery';
+import NavigationBar from 'components/navigation/NavigationBar';
 
 type Props = {
   content: React.ReactNode;
-  navigation: React.ReactNode;
 };
 
-const Layout: React.FC<Props> = ({ content, navigation }) => {
+/**
+ * Primary layout component, handles mounting of mobile vs desktop nav
+ * Content is provided as prop, derived from routing config in implementing component
+ */
+const Layout: React.FC<Props> = ({ content }) => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
   // Use different animation timings for mobile vs desktop
@@ -35,7 +39,7 @@ const Layout: React.FC<Props> = ({ content, navigation }) => {
             initial={sidebarSlide.initial}
             transition={sidebarSlide.transition}
           >
-            {navigation}
+            <NavigationBar />
           </motion.aside>
         )}
         {!isDesktop && <MobileMenuOverlay />}

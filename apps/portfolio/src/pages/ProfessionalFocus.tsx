@@ -23,8 +23,7 @@ const ProfessionalFocus: React.FC = () => {
         TypeScript, GraphQL, and Apollo. More recently, I've been exploring
         AI-assisted development workflows and building applications that
         leverage agentic logic, including traces and autonomous workflows, to
-        create smarter, more adaptive user experiences. I can dive in myself or
-        guide a team through challenging projects.
+        create smarter, more adaptive user experiences.
       </ContentParagraph>
       <ContentParagraph>
         At Dscout, I get involved early with product and design. I help shape
@@ -34,7 +33,8 @@ const ProfessionalFocus: React.FC = () => {
       </ContentParagraph>
       <ContentParagraph>
         I enjoy the mix of architecture, hands-on development, and collaboration
-        that comes with a principal role. My focus is on building solid
+        that comes with a principal role. I can dive in myself or guide a team
+        through challenging projects. Either way, my focus is on building solid
         front-end foundations, creating clear and usable experiences, and
         helping teams ship work they can be proud of.
       </ContentParagraph>

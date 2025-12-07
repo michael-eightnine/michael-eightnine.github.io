@@ -27,9 +27,11 @@ const WorkSection: React.FC<Props & ChildrenProps> = ({
         >
           {isExpanded ? '−' : '+'}
         </button>
-        <div className="flex items-baseline justify-between gap-4 grow">
-          <h1 className="text-2xl text-primary font-mono font-bold">{title}</h1>
-          <p className="font-mono text-sm text-dark self-end">{yearsActive}</p>
+        <div className="flex items-start lg:items-baseline lg:justify-between lg:gap-4 gap-0 grow lg:flex-row flex-col">
+          <h1 className="lg:text-2xl sm:text-xl text-lg text-primary font-mono font-bold leading-[1.25]">
+            {title}
+          </h1>
+          <p className="font-mono text-sm text-dark">{yearsActive}</p>
         </div>
       </div>
       <AnimatePresence initial={false}>

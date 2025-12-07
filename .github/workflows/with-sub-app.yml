@@ -3,10 +3,10 @@ name: Vite 2 GH - Multi Repo
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
   pull_request:
     branches:
-      - main
+      - master
     types:
       - closed
   workflow_dispatch:

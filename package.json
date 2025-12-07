@@ -15,8 +15,8 @@
     "build:popup-portfolio": "yarn workspace popup-portfolio build",
     "build:eternal-devotion": "yarn workspace eternal-devotion build",
     "build:dungeon-crawl": "yarn workspace dungeon-crawl build",
-    "build:all": "yarn workspaces foreach -pt run build",
-    "lint": "yarn workspaces foreach -pt run lint",
+    "build:all": "yarn build && yarn build:popup-portfolio && yarn build:eternal-devotion && yarn build:dungeon-crawl",
+    "lint": "yarn workspace portfolio run lint && yarn workspace popup-portfolio run lint && yarn workspace eternal-devotion run lint && yarn workspace dungeon-crawl run lint",
     "preview": "yarn workspace portfolio preview",
     "prepare": "husky"
   },

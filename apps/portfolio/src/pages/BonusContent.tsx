@@ -55,7 +55,7 @@ const BonusContent: React.FC = () => {
         is my previous professional portfolio, built within this repo. While
         visually similar to this site, it experimented with extreme UX patterns
         inspired by early web popup windows and custom animation coordination.
-        It was retired in late 2025 in favor of the site you’re reading now.
+        It was retired in late 2025 in favor of this website.
       </ContentParagraph>
     </PageTransition>
   );

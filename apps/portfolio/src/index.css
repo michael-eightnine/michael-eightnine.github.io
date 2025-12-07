@@ -29,5 +29,5 @@ svg {
 }
 
 @utility contentHeader {
-  @apply text-2xl text-primary pb-3 mb-4 font-mono border-primary border-b-2 font-bold;
+  @apply lg:text-2xl sm:text-xl text-lg text-primary pb-3 mb-4 font-mono border-primary border-b-2 font-bold;
 }

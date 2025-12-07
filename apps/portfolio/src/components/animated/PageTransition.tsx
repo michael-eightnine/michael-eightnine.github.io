@@ -5,6 +5,9 @@ type Props = {
   className?: string;
 };
 
+/**
+ * Motion enhanced wrapper for `pages` components. Each should represent one route
+ */
 const PageTransition: React.FC<Props & ChildrenProps> = ({
   children,
   className = ''
