@@ -1,9 +1,11 @@
 import NavigationBar from 'components/navigation/NavigationBar';
 import RouterContent from 'components/animated/RouterContent';
-import Layout from './components/layout/Layout';
+import AppLayout from './components/layout/AppLayout';
 
-function App() {
-  return <Layout content={<RouterContent />} navigation={<NavigationBar />} />;
-}
+const App: React.FC = () => {
+  return (
+    <AppLayout content={<RouterContent />} navigation={<NavigationBar />} />
+  );
+};
 
 export default App;

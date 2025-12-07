@@ -29,17 +29,17 @@ const Layout: React.FC<Props> = ({ content, navigation }) => {
         </div>
         {!isDesktop && <MobileHeader />}
         {isDesktop && (
-          <motion.div
+          <motion.aside
             animate={sidebarSlide.animate}
             className="flex-none min-h-screen w-[var(--spacing-nav-width)] bg-primary relative z-10"
             initial={sidebarSlide.initial}
             transition={sidebarSlide.transition}
           >
             {navigation}
-          </motion.div>
+          </motion.aside>
         )}
         {!isDesktop && <MobileMenuOverlay />}
-        <motion.div
+        <motion.main
           animate={contentAnimation.animate}
           className={`grow h-screen overflow-auto relative bg-transparent z-10 ${
             isDesktop ? 'px-8 py-12' : 'p-6 pt-[var(--spacing-header-offset)]'
@@ -48,7 +48,7 @@ const Layout: React.FC<Props> = ({ content, navigation }) => {
           transition={contentAnimation.transition}
         >
           {content}
-        </motion.div>
+        </motion.main>
       </div>
     </MobileMenuProvider>
   );

@@ -13,9 +13,21 @@
 
   /* Border radius */
   --radius-small: 8px;
+
+  /* Font families */
+  --font-family-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-serif: "Roboto Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 /* Ensure SVG filters render correctly */
 svg {
   color-interpolation-filters: linearRGB;
+}
+
+@utility standardLink {
+  @apply font-mono text-primary hover:underline focus-visible:underline focus:outline-none
+}
+
+@utility contentHeader {
+  @apply text-2xl text-primary pb-3 mb-4 font-mono border-primary border-b-2 font-bold;
 }

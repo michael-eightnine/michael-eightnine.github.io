@@ -15,6 +15,7 @@ const navItems = [
 
 const NavigationActiveIndicator: React.FC = () => (
   <motion.span
+    aria-hidden
     className="absolute right-0 top-0.25 font-mono text-2xl pointer-events-none"
     layoutId="nav-active-indicator"
     transition={{
@@ -52,7 +53,9 @@ const NavigationLinks: React.FC<Props> = ({
           <motion.li key={path} variants={navLinksItemVariants}>
             <NavLink
               className={({ isActive }) =>
-                isActive ? 'relative block' : 'relative block group'
+                isActive
+                  ? 'relative block focus:outline-none group'
+                  : 'relative block group focus:outline-none'
               }
               onClick={onLinkClick}
               to={path}
@@ -62,7 +65,7 @@ const NavigationLinks: React.FC<Props> = ({
                   className={`relative inline-flex items-center w-full ${
                     !isActive
                       ? 'hover:underline group-focus-visible:underline'
-                      : ''
+                      : 'group-focus-visible:underline'
                   }`}
                 >
                   {label}
