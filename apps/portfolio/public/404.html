@@ -6,10 +6,24 @@
     <script>
       // Single Page Apps for GitHub Pages
       // https://github.com/rafgraph/spa-github-pages
-      // Store the current path and redirect to index.html with the path as a query parameter
+      // Store the current path and redirect to the appropriate index.html
+
       sessionStorage.redirect = location.href;
+
+      // Detect which sub-app we're in and redirect to its root
+      var path = location.pathname;
+      var targetIndex = '/index.html';
+
+      if (path.startsWith('/eternal-devotion')) {
+        targetIndex = '/eternal-devotion/index.html';
+      } else if (path.startsWith('/dungeon-crawl')) {
+        targetIndex = '/dungeon-crawl/index.html';
+      } else if (path.startsWith('/popup-portfolio')) {
+        targetIndex = '/popup-portfolio/index.html';
+      }
+
+      location.replace(targetIndex);
     </script>
-    <meta http-equiv="refresh" content="0;URL='./index.html'" />
   </head>
   <body>
     <!-- IE requires at least 512 bytes of content to show non-default 404 -->
