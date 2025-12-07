@@ -1,4 +1,6 @@
 import { motion } from 'motion/react';
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router';
 import Background from 'components/svg/Background';
 import {
   contentMount,
@@ -21,9 +23,18 @@ type Props = {
  */
 const Layout: React.FC<Props> = ({ content }) => {
   const isDesktop = useMediaQuery('(min-width: 768px)');
+  const location = useLocation();
+  const mainRef = useRef<HTMLDivElement>(null);
 
   // Use different animation timings for mobile vs desktop
   const contentAnimation = isDesktop ? contentMount : mobileContentMount;
+
+  // Scroll to top on route change
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [location.pathname]);
 
   return (
     <MobileMenuProvider>
@@ -49,6 +60,7 @@ const Layout: React.FC<Props> = ({ content }) => {
             isDesktop ? 'px-8 py-12' : 'p-6 pt-[var(--spacing-header-offset)]'
           }`}
           initial={contentAnimation.initial}
+          ref={mainRef}
           transition={contentAnimation.transition}
         >
           {content}
