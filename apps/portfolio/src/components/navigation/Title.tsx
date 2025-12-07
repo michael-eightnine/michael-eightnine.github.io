@@ -1,4 +1,4 @@
-import Globe from 'svg/Globe';
+import Globe from 'components/svg/Globe';
 
 const Title: React.FC = () => {
   return (

@@ -1,5 +1,9 @@
 import { motion } from 'motion/react';
 import { NavLink } from 'react-router';
+import {
+  navLinksContainerVariants,
+  navLinksItemVariants
+} from 'utils/animationUtils';
 
 const navItems = [
   { path: '/', label: 'Professional Focus' },
@@ -8,29 +12,6 @@ const navItems = [
   { path: '/bonus-content', label: 'Bonus Content' }
 ];
 
-const containerVariants = {
-  initial: { opacity: 0 },
-  animate: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 1.1
-    }
-  }
-};
-
-const itemVariants = {
-  initial: { opacity: 0, x: -10 },
-  animate: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.5,
-      ease: 'easeOut'
-    }
-  }
-};
-
 const NavigationLinks: React.FC = () => {
   return (
     <nav className="pt-24">
@@ -38,19 +19,40 @@ const NavigationLinks: React.FC = () => {
         animate="animate"
         className="font-mono space-y-2"
         initial="initial"
-        variants={containerVariants}
+        variants={navLinksContainerVariants}
       >
         {navItems.map(({ path, label }) => (
-          <motion.li key={path} variants={itemVariants}>
+          <motion.li key={path} variants={navLinksItemVariants}>
             <NavLink
               className={({ isActive }) =>
-                isActive
-                  ? 'underline opacity-100'
-                  : 'opacity-70 hover:opacity-100 transition-opacity'
+                isActive ? 'relative block' : 'relative block group'
               }
               to={path}
             >
-              {label}
+              {({ isActive }) => (
+                <span
+                  className={`relative inline-flex items-center w-full ${
+                    !isActive
+                      ? 'hover:underline group-focus-visible:underline'
+                      : ''
+                  }`}
+                >
+                  {label}
+                  {isActive && (
+                    <motion.span
+                      className="absolute right-0 top-0.25 font-mono text-2xl"
+                      layoutId="nav-active-indicator"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 350,
+                        damping: 30
+                      }}
+                    >
+                      *
+                    </motion.span>
+                  )}
+                </span>
+              )}
             </NavLink>
           </motion.li>
         ))}

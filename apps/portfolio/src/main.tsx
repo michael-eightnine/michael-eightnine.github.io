@@ -3,10 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import './index.css';
 import App from './App';
-import ProfessionalFocus from './pages/professional-focus';
-import WorkExperience from './pages/work-experience';
-import ConnectContact from './pages/connect-contact';
-import BonusContent from './pages/bonus-content';
+import ProfessionalFocus from './pages/ProfessionalFocus';
+import WorkExperience from './pages/WorkExperience';
+import ConnectContact from './pages/ConnectContact';
+import BonusContent from './pages/BonusContent';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

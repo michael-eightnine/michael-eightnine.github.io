@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import Background from 'svg/Background';
+import Background from 'components/svg/Background';
 import { contentMount, sidebarSlide } from 'utils/animationUtils';
 
 type Props = {

@@ -3,8 +3,8 @@
 // Page transition animations (left to right)
 export const pageTransition = {
   animate: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: 100 },
-  initial: { opacity: 0, x: -100 },
+  exit: { opacity: 0, x: 50 },
+  initial: { opacity: 0, x: -50 },
   transition: { duration: 0.4, ease: 'easeInOut' }
 };
 
@@ -59,4 +59,28 @@ export const navSectionDelay = {
   title: 0.9, // Start after sidebar slides in (0.8s duration)
   links: 1.1, // Links start slightly after title
   wordmark: 1.6 // Wordmark comes in last
+};
+
+// Navigation links variants (for use with Framer Motion variants prop)
+export const navLinksContainerVariants = {
+  initial: { opacity: 0 },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 1.1
+    }
+  }
+};
+
+export const navLinksItemVariants = {
+  initial: { opacity: 0, x: -10 },
+  animate: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut'
+    }
+  }
 };

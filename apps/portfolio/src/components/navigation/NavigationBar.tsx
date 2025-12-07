@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import Wordmark from 'svg/Wordmark';
+import Wordmark from 'components/svg/Wordmark';
 import Title from './Title';
 import NavigationLinks from './NavigationLinks';
 import { fadeInUp, navSectionDelay } from 'utils/animationUtils';
