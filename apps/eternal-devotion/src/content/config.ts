@@ -221,9 +221,34 @@ const MeatGroup: OfferingsGroup = {
   ])
 };
 
+const FurnitureGroup: OfferingsGroup = {
+  id: 'furniture',
+  title: 'fixtures',
+  callToAction: 'with a sense of place',
+  descriptionList: [
+    '2026.',
+    'adornments to dwell between',
+    '? offerings from a selection of ??',
+    'not quite mid century modern'
+  ],
+  filename: 'meat',
+  offeringsConfig: createOfferingsConfig([
+    RoastBeast,
+    MeatMatter,
+    MeatChrist,
+    MeatScales,
+    DinnerMeatUp,
+    MeatSoup,
+    MeatPlate,
+    MeatHouse,
+    TenderedMeat
+  ])
+};
+
 const offeringsConfig: Record<OfferingsGroup['id'], OfferingsGroup> = {
   [PenanceGroup.id]: PenanceGroup,
-  [MeatGroup.id]: MeatGroup
+  [MeatGroup.id]: MeatGroup,
+  [FurnitureGroup.id]: FurnitureGroup
 };
 
 export default offeringsConfig;
