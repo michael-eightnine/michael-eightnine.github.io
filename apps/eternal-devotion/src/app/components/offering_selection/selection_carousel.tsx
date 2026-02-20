@@ -1,5 +1,6 @@
-import { useRef, useState, useEffect, useCallback, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
+import { useCarousel } from './use_carousel';
 import styles from './selection_layout.module.scss';
 
 type Props = {
@@ -7,86 +8,22 @@ type Props = {
 };
 
 const SelectionCarousel = ({ children }: Props) => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const startSentinelRef = useRef<HTMLDivElement>(null);
-  const endSentinelRef = useRef<HTMLDivElement>(null);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(true);
-  const [showStartFade, setShowStartFade] = useState(false);
-  const [showEndFade, setShowEndFade] = useState(true);
-
-  const updateArrowVisibility = useCallback(() => {
-    if (!carouselRef.current) return;
-
-    const isHorizontal = window.innerWidth > 600;
-
-    if (isHorizontal) {
-      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-      setShowLeftArrow(scrollLeft > 10);
-      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
-    } else {
-      const { scrollTop, scrollHeight, clientHeight } = carouselRef.current;
-      setShowLeftArrow(scrollTop > 10);
-      setShowRightArrow(scrollTop < scrollHeight - clientHeight - 10);
-    }
-  }, []);
-
-  useEffect(() => {
-    updateArrowVisibility();
-    window.addEventListener('resize', updateArrowVisibility);
-    return () => window.removeEventListener('resize', updateArrowVisibility);
-  }, [updateArrowVisibility]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === startSentinelRef.current) {
-            setShowStartFade(!entry.isIntersecting);
-          } else if (entry.target === endSentinelRef.current) {
-            setShowEndFade(!entry.isIntersecting);
-          }
-        });
-      },
-      {
-        root: carouselRef.current,
-        threshold: 1.0
-      }
-    );
-
-    if (startSentinelRef.current) {
-      observer.observe(startSentinelRef.current);
-    }
-    if (endSentinelRef.current) {
-      observer.observe(endSentinelRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const handleScroll = (direction: 'prev' | 'next') => {
-    if (!carouselRef.current) return;
-
-    const isHorizontal = window.innerWidth > 600;
-    const scrollAmount = isHorizontal
-      ? carouselRef.current.clientWidth
-      : carouselRef.current.clientHeight;
-
-    if (isHorizontal) {
-      carouselRef.current.scrollBy({
-        left: direction === 'next' ? scrollAmount : -scrollAmount,
-        behavior: 'smooth'
-      });
-    } else {
-      carouselRef.current.scrollBy({
-        top: direction === 'next' ? scrollAmount : -scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const {
+    carouselRef,
+    startSentinelRef,
+    endSentinelRef,
+    showLeftArrow,
+    showRightArrow,
+    showStartFade,
+    showEndFade,
+    updateArrowVisibility,
+    handleScroll
+  } = useCarousel();
 
   return (
-    <div
+    <section
+      aria-label="Offering selection"
+      aria-roledescription="carousel"
       className={styles.carouselContainer}
       data-fade-end={showEndFade}
       data-fade-start={showStartFade}
@@ -96,31 +33,31 @@ const SelectionCarousel = ({ children }: Props) => {
         onScrollEnd={updateArrowVisibility}
         ref={carouselRef}
       >
-        <div className={styles.sentinel} ref={startSentinelRef} />
+        <div
+          aria-hidden="true"
+          className={styles.sentinel}
+          ref={startSentinelRef}
+        />
         {children}
-        <div className={styles.sentinel} ref={endSentinelRef} />
+        <div
+          aria-hidden="true"
+          className={styles.sentinel}
+          ref={endSentinelRef}
+        />
       </div>
-      <div className={styles.arrows}>
-        {showLeftArrow && (
+      {(showRightArrow || showLeftArrow) && (
+        <div className={styles.arrows}>
           <button
-            aria-label="Previous card"
+            aria-label={showRightArrow ? 'Next offering' : 'Previous offering'}
             className={styles.arrow}
-            onClick={() => handleScroll('prev')}
+            onClick={() => handleScroll(showRightArrow ? 'next' : 'prev')}
+            type="button"
           >
-            ←
+            {showRightArrow ? '→' : '←'}
           </button>
-        )}
-        {showRightArrow && (
-          <button
-            aria-label="Next card"
-            className={styles.arrow}
-            onClick={() => handleScroll('next')}
-          >
-            →
-          </button>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </section>
   );
 };
 

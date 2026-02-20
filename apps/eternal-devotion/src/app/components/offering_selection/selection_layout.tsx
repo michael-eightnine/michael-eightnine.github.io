@@ -1,8 +1,8 @@
 import { createContentPathname, offeringsConfig } from 'content';
 
-import styles from './selection_layout.module.scss';
 import SelectionCard from './selection_card';
 import SelectionCarousel from './selection_carousel';
+import styles from './selection_layout.module.scss';
 
 const SelectionLayout = () => {
   return (

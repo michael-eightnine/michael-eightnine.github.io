@@ -229,7 +229,7 @@ const FurnitureGroup: OfferingsGroup = {
     '2026.',
     'adornments to dwell between',
     '? offerings from a selection of ??',
-    'not quite mid century modern'
+    'not quite mid-century modern'
   ],
   filename: 'meat',
   offeringsConfig: createOfferingsConfig([
@@ -246,9 +246,9 @@ const FurnitureGroup: OfferingsGroup = {
 };
 
 const offeringsConfig: Record<OfferingsGroup['id'], OfferingsGroup> = {
-  [PenanceGroup.id]: PenanceGroup,
+  [FurnitureGroup.id]: FurnitureGroup,
   [MeatGroup.id]: MeatGroup,
-  [FurnitureGroup.id]: FurnitureGroup
+  [PenanceGroup.id]: PenanceGroup
 };
 
 export default offeringsConfig;

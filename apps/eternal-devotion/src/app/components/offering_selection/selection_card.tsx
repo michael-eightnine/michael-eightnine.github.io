@@ -1,9 +1,9 @@
 import { Link } from 'react-router';
 
 import { createOfferingPath } from 'utils';
+import { offeringsConfig } from 'content';
 
 import styles from './selection_layout.module.scss';
-import { offeringsConfig } from 'content';
 
 type Props = Omit<
   (typeof offeringsConfig)[string],
