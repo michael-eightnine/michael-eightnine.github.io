@@ -31,11 +31,12 @@ $mobile-breakpoint: 600px;
 .carouselContainer {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   height: 100%;
   min-width: 0;
   position: relative;
   justify-content: center;
+  overflow: hidden;
 
   &::before,
   &::after {
@@ -93,7 +94,6 @@ $mobile-breakpoint: 600px;
 
 .carouselTrack {
   display: flex;
-  gap: 2rem;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -219,6 +219,14 @@ $mobile-breakpoint: 600px;
   transform: scale(0.75);
   opacity: 0;
 
+  // The carousel containing these cards has sentinel elements at the start and end for the "fade" UI affordance
+  // This means using `gap` for spacing results in additional space, so fall back to older margin and last of type approach
+  margin-right: 2rem;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
   @media (min-width: 601px) {
     scroll-snap-align: center;
     scroll-snap-type: proximity;
@@ -247,6 +255,12 @@ $mobile-breakpoint: 600px;
     width: 100%;
     max-height: 50dvh;
     aspect-ratio: unset;
+    margin-right: 0;
+    margin-bottom: 2rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 }
 
