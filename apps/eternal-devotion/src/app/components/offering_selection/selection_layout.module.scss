@@ -1,7 +1,9 @@
+$mobile-breakpoint: 600px;
+
 // Layout
 .grid {
   display: grid;
-  grid-template-columns: min-content 1fr 1fr;
+  grid-template-columns: min-content 1fr;
   column-gap: 10dvw;
   align-items: center;
   padding: var(--padding--medium);
@@ -12,8 +14,7 @@
   }
 
   @media (max-width: 970px) {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 2rem;
+    grid-template-columns: 1fr;
     row-gap: 2rem;
     width: 100%;
     height: auto;
@@ -22,10 +23,132 @@
     overflow: auto;
   }
 
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
+  @media (max-width: $mobile-breakpoint) {
     padding: var(--padding--small);
+  }
+}
+
+.carouselContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+  min-width: 0;
+  position: relative;
+  justify-content: center;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition--fast);
+    z-index: 1;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color--paper), transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color--paper), transparent);
+  }
+
+  &[data-fade-start='true']::before {
+    opacity: 1;
+  }
+
+  &[data-fade-end='true']::after {
+    opacity: 1;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    &::before,
+    &::after {
+      width: 100%;
+      height: 4rem;
+      left: 0;
+      right: 0;
+      bottom: auto;
+    }
+
+    &::before {
+      top: 0;
+      background: linear-gradient(to bottom, var(--color--paper), transparent);
+    }
+
+    &::after {
+      top: auto;
+      bottom: 0;
+      background: linear-gradient(to top, var(--color--paper), transparent);
+    }
+  }
+}
+
+.carouselTrack {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  padding: 0.5rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    scroll-snap-type: none;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 70dvh;
+  }
+}
+
+.sentinel {
+  flex-shrink: 0;
+  width: 1px;
+  height: 1px;
+  visibility: hidden;
+}
+
+.arrows {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  align-self: center;
+
+  @media (max-width: $mobile-breakpoint) {
+    display: none;
+  }
+}
+
+.arrow {
+  background-color: var(--color--black);
+  color: var(--color--white);
+  border: none;
+  padding: 0.5rem 1.25rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: opacity var(--transition--fast);
+  font-family: var(--font--mono);
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:active {
+    opacity: 0.75;
   }
 }
 
@@ -60,7 +183,7 @@
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: $mobile-breakpoint) {
     font-size: 1.5rem;
     padding-top: 1rem;
   }
@@ -72,7 +195,7 @@
   font-style: normal;
   margin-top: 1rem;
 
-  @media (max-width: 600px) {
+  @media (max-width: $mobile-breakpoint) {
     margin-top: 0;
   }
 }
@@ -88,12 +211,26 @@
   position: relative;
   text-decoration: none;
   aspect-ratio: 2.5 / 3.5;
-  max-width: 450px;
+  width: min(350px, 40vw);
+  flex-shrink: 0;
   overflow: hidden;
   animation: scaleIn var(--transition--standard)
     cubic-bezier(0.3, 1.2, 0.68, 1.15) forwards;
   transform: scale(0.75);
   opacity: 0;
+
+  // The carousel containing these cards has sentinel elements at the start and end for the "fade" UI affordance
+  // This means using `gap` for spacing results in additional space, so fall back to older margin and last of type approach
+  margin-right: 2rem;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  @media (min-width: 601px) {
+    scroll-snap-align: center;
+    scroll-snap-type: proximity;
+  }
 
   &:hover,
   &:focus-visible {
@@ -114,14 +251,16 @@
     }
   }
 
-  @media (max-width: 970px) {
-    align-self: flex-end;
-  }
-
-  @media (max-width: 600px) {
+  @media (max-width: $mobile-breakpoint) {
+    width: 100%;
     max-height: 50dvh;
-    max-width: none;
     aspect-ratio: unset;
+    margin-right: 0;
+    margin-bottom: 2rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -174,6 +313,7 @@
   letter-spacing: 0.15em;
   margin: 0;
   font-weight: normal;
+  white-space: nowrap;
 }
 
 .description {

@@ -1,7 +1,8 @@
 import { createContentPathname, offeringsConfig } from 'content';
 
-import styles from './selection_layout.module.scss';
 import SelectionCard from './selection_card';
+import SelectionCarousel from './selection_carousel';
+import styles from './selection_layout.module.scss';
 
 const SelectionLayout = () => {
   return (
@@ -12,17 +13,19 @@ const SelectionLayout = () => {
         made
         <div className={styles.subheading}>[but nothing's ever final]</div>
       </div>
-      {Object.entries(offeringsConfig).map(([groupId, group], index) => (
-        <SelectionCard
-          callToAction={group.callToAction}
-          descriptionList={group.descriptionList}
-          id={groupId}
-          imageUrl={createContentPathname(`${group.filename}.jpg`, 'root')}
-          index={index}
-          key={groupId}
-          title={group.title}
-        />
-      ))}
+      <SelectionCarousel>
+        {Object.entries(offeringsConfig).map(([groupId, group], index) => (
+          <SelectionCard
+            callToAction={group.callToAction}
+            descriptionList={group.descriptionList}
+            id={groupId}
+            imageUrl={createContentPathname(`${group.filename}.jpg`, 'root')}
+            index={index}
+            key={groupId}
+            title={group.title}
+          />
+        ))}
+      </SelectionCarousel>
     </div>
   );
 };
