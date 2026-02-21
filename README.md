@@ -11,7 +11,7 @@ Yarn workspaces monorepo containing multiple single-page applications:
 - **`/`** - Main portfolio (React 19 + Tailwind v4 + Framer Motion)
 - **`/popup-portfolio`** - Original 2024 portfolio (preserved for historical purposes)
 - **`/eternal-devotion`** - Watercolor paintings and prose collection
-- **`/dungeon-crawl`** - Text-based roguelike game
+- **`/dungeon-crawl`** - Text-based "adventure" game
 
 ## Tech Stack
 
