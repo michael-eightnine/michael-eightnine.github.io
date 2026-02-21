@@ -13,7 +13,7 @@ Yarn workspaces monorepo containing multiple single-page applications:
 - **`/eternal-devotion`** - Watercolor paintings and prose collection
 - **`/dungeon-crawl`** - Text-based "adventure" game
 
-## Tech Stack
+## Tech Stack (varies between SPAs though all use React 19)
 
 - **React 19.0.0** - Latest React with modern patterns
 - **TypeScript 5.6.2** - Type-safe development
@@ -64,11 +64,3 @@ Automated deployment to GitHub Pages via GitHub Actions:
 ├── .github/workflows/       # CI/CD pipelines
 └── package.json            # Workspace configuration
 ```
-
-## Features
-
-- **Responsive Design** - Mobile-first with conditional rendering
-- **Smooth Animations** - Physics-based transitions with Framer Motion
-- **Accessibility** - WCAG compliant with keyboard navigation and focus management
-- **Performance** - Optimized bundles with vendor chunk splitting
-- **SEO** - Complete meta tags and structured data
