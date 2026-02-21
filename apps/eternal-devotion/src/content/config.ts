@@ -273,7 +273,7 @@ const MeatGroup: OfferingsGroup = {
 const FurnitureGroup: OfferingsGroup = {
   id: 'furniture',
   title: 'fire sale',
-  callToAction: 'with a sense of style',
+  callToAction: 'with satisfaction guaranteed',
   descriptionList: [
     '2025 — 2026.',
     'cheapest supply house on earth',
@@ -282,10 +282,10 @@ const FurnitureGroup: OfferingsGroup = {
   ],
   filename: 'furniture',
   offeringsConfig: createOfferingsConfig([
-    CactusCurtain,
+    NightStalker,
     Flowerman,
     InRepose,
-    NightStalker,
+    CactusCurtain,
     OpiumDen,
     Showroom,
     TableDance,
