@@ -55,7 +55,8 @@ export const useCarousel = () => {
   const handleScroll = useCallback((direction: 'prev' | 'next') => {
     if (!carouselRef.current) return;
 
-    const scrollAmount = carouselRef.current.clientWidth;
+    const scrollAmount =
+      carouselRef.current.querySelector('[data-card]')!.clientWidth;
     carouselRef.current.scrollBy({
       left: direction === 'next' ? scrollAmount : -scrollAmount,
       behavior: 'smooth'

@@ -23,6 +23,7 @@ const SelectionCard = ({
   return (
     <Link
       className={styles.card}
+      data-card
       style={{
         animationDelay: `${(index + 1) * 0.25}s`
       }}

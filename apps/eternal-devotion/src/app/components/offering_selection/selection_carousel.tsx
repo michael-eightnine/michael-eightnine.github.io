@@ -47,14 +47,26 @@ const SelectionCarousel = ({ children }: Props) => {
       </div>
       {(showRightArrow || showLeftArrow) && (
         <div className={styles.arrows}>
-          <button
-            aria-label={showRightArrow ? 'Next offering' : 'Previous offering'}
-            className={styles.arrow}
-            onClick={() => handleScroll(showRightArrow ? 'next' : 'prev')}
-            type="button"
-          >
-            {showRightArrow ? '→' : '←'}
-          </button>
+          {showLeftArrow && (
+            <button
+              aria-label="Previous offering"
+              className={styles.arrow}
+              onClick={() => handleScroll('prev')}
+              type="button"
+            >
+              {'←'}
+            </button>
+          )}
+          {showRightArrow && (
+            <button
+              aria-label="Next offering"
+              className={styles.arrow}
+              onClick={() => handleScroll('next')}
+              type="button"
+            >
+              {'→'}
+            </button>
+          )}
         </div>
       )}
     </section>

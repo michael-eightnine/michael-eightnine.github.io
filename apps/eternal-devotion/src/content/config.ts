@@ -143,6 +143,49 @@ const TenderedMeat: OfferingWithoutId = {
   filename: 'tendered-meat'
 };
 
+// Fixtures
+const CactusCurtain: OfferingWithoutId = {
+  description:
+    "hammered — tenderized or simply beaten until unruly? crackling shell, wrapped tight with twine and plastic. raised locally; we don't let the children watch",
+  filename: 'cactus-curtain'
+};
+
+const Flowerman: OfferingWithoutId = {
+  description:
+    "hammered — tenderized or simply beaten until unruly? crackling shell, wrapped tight with twine and plastic. raised locally; we don't let the children watch",
+  filename: 'flowerman'
+};
+
+const InRepose: OfferingWithoutId = {
+  description:
+    "hammered — tenderized or simply beaten until unruly? crackling shell, wrapped tight with twine and plastic. raised locally; we don't let the children watch",
+  filename: 'in-repose'
+};
+
+const NightStalker: OfferingWithoutId = {
+  description:
+    "hammered — tenderized or simply beaten until unruly? crackling shell, wrapped tight with twine and plastic. raised locally; we don't let the children watch",
+  filename: 'night-stalker'
+};
+
+const OpiumDen: OfferingWithoutId = {
+  description:
+    "hammered — tenderized or simply beaten until unruly? crackling shell, wrapped tight with twine and plastic. raised locally; we don't let the children watch",
+  filename: 'opium-den'
+};
+
+const Showroom: OfferingWithoutId = {
+  description:
+    "hammered — tenderized or simply beaten until unruly? crackling shell, wrapped tight with twine and plastic. raised locally; we don't let the children watch",
+  filename: 'showroom'
+};
+
+const TableDance: OfferingWithoutId = {
+  description:
+    "hammered — tenderized or simply beaten until unruly? crackling shell, wrapped tight with twine and plastic. raised locally; we don't let the children watch",
+  filename: 'table-dance'
+};
+
 export type OfferingsGroup = {
   id: string;
   callToAction: string;
@@ -226,22 +269,20 @@ const FurnitureGroup: OfferingsGroup = {
   title: 'fixtures',
   callToAction: 'with a sense of place',
   descriptionList: [
-    '2026.',
+    '2025 — 2026.',
     'adornments to dwell between',
-    '? offerings from a selection of ??',
+    '7 offerings from a selection of 12',
     'not quite mid-century modern'
   ],
-  filename: 'meat',
+  filename: 'furniture',
   offeringsConfig: createOfferingsConfig([
-    RoastBeast,
-    MeatMatter,
-    MeatChrist,
-    MeatScales,
-    DinnerMeatUp,
-    MeatSoup,
-    MeatPlate,
-    MeatHouse,
-    TenderedMeat
+    CactusCurtain,
+    Flowerman,
+    InRepose,
+    NightStalker,
+    OpiumDen,
+    Showroom,
+    TableDance
   ])
 };
 

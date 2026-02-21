@@ -221,6 +221,7 @@ $mobile-breakpoint: 600px;
 
   @media (min-width: 601px) {
     scroll-snap-align: center;
+    scroll-snap-type: proximity;
   }
 
   &:hover,
