@@ -31,6 +31,22 @@ const BonusContent: React.FC = () => {
       <ContentParagraph>
         <a
           className="standardLink"
+          href="https://coonhoundrescue.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          American Black & Tan Coonhound Rescue
+        </a>{' '}
+        is a hound rescue site I built for an organization I've volunteered with
+        my whole life, down to hard boiling eggs for everyone on Sundays. Their
+        previous site was hand-coded HTML with no mobile support; this replaced
+        it with a full NextJS/Sanity/Supabase stack that actively drives
+        adoptions and fundraising.
+      </ContentParagraph>
+      <ContentDivider />
+      <ContentParagraph>
+        <a
+          className="standardLink"
           href="/dungeon-crawl"
           rel="noopener noreferrer"
           target="_blank"
@@ -41,6 +57,7 @@ const BonusContent: React.FC = () => {
         to the point and click games I grew up playing, and often find myself
         revisiting from time to time.
       </ContentParagraph>
+
       <ContentDivider />
 
       <ContentParagraph>
