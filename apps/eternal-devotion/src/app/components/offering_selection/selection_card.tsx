@@ -1,22 +1,26 @@
 import { Link } from 'react-router';
 
-import { createOfferingPath } from 'utils';
-import { offeringsConfig } from 'content';
-
 import styles from './selection_layout.module.scss';
 
-type Props = Omit<
-  (typeof offeringsConfig)[string],
-  'offeringsConfig' | 'filename'
-> & { index: number; imageUrl: string };
+// Card-facing fields, shared by every offering kind. The link target (`to`) is
+// supplied by the parent so paintings and experiences can route differently
+// while the card renders identically.
+type Props = {
+  index: number;
+  title: string;
+  descriptionList: string[];
+  imageUrl: string;
+  callToAction: string;
+  to: string;
+};
 
 const SelectionCard = ({
   index,
   title,
   descriptionList,
-  id,
   imageUrl,
-  callToAction
+  callToAction,
+  to
 }: Props) => {
   const cardCharacter = title.charAt(0).toUpperCase();
 
@@ -27,7 +31,7 @@ const SelectionCard = ({
       style={{
         animationDelay: `${(index + 1) * 0.25}s`
       }}
-      to={createOfferingPath(id, '1')}
+      to={to}
     >
       <span className={styles.character}>{cardCharacter}</span>
       <div

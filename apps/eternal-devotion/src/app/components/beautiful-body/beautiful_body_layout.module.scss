@@ -1,6 +1,7 @@
 // Two-column shell: body left, content/controls right. Follows the offering
 // page convention (see painting_row.module.scss) — a flex row that collapses to
-// a stacked single column at the 1024px breakpoint.
+// a stacked single column at the 1024px breakpoint. Also the positioning
+// context for the floating slice numerals.
 .layout {
   display: flex;
   align-items: center;
@@ -64,17 +65,34 @@
   height: auto;
 }
 
-// Right column — randomize control today, room for future content.
+// Right column — the assembled haiku and the randomize control. A fixed width
+// keeps the column's box stable so varying haiku line lengths don't reflow the
+// row and shift the body on randomize (mirrors the offering description's
+// stable-width, right-aligned block).
 .contentColumn {
   flex: 0 0 auto;
+  width: 16rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  row-gap: 1rem;
+  align-items: flex-end;
+  text-align: right;
+  row-gap: 2rem;
 
   @media screen and (max-width: 1024px) {
+    width: 100%;
     align-items: center;
+    text-align: center;
   }
+}
+
+// Exquisite-corpse haiku — one line per body slice.
+.haiku {
+  font-family: var(--font--serif);
+  font-style: italic;
+}
+
+.haikuLine {
+  display: block;
 }
 
 .randomize {

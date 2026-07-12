@@ -4,7 +4,7 @@ import NavBar from 'components/nav';
 import { Offering, Origins, OfferingSelection, BeautifulBody } from 'routes';
 
 import styles from './app.module.scss';
-import { getSelectionPath } from 'utils';
+import { createExperiencePath, getSelectionPath } from 'utils';
 
 const AppLayout = () => {
   return (
@@ -32,7 +32,12 @@ const App = () => {
         <Route element={<OfferingSelection />} path={getSelectionPath()} />
         <Route element={<Offering />} path="/offering/:groupId/:id" />
         <Route element={<Origins />} path="/origins" />
-        <Route element={<BeautifulBody />} path="/beautiful-body" />
+        {/* Static experience segment; declared before the dynamic offering
+            route so it wins the match. */}
+        <Route
+          element={<BeautifulBody />}
+          path={createExperiencePath('beautiful-body')}
+        />
         <Route
           element={<Navigate replace to={getSelectionPath()} />}
           path="*"

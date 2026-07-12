@@ -1,22 +1,16 @@
-import { useCallback, useState } from 'react';
+import { CHARACTERS, PIECES } from 'content';
 
 import PieceDisplay from './piece_display';
 
 import styles from './beautiful_body_layout.module.scss';
 
-const CHARACTERS = ['regent', 'doctor', 'damsel', 'jailer'] as const;
-const PIECES = ['top', 'mid', 'bottom'] as const;
+type Props = {
+  // Character index per slice, top to bottom.
+  slots: number[];
+  onRandomize: () => void;
+};
 
-const pickRandomCharacter = () =>
-  CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)];
-
-const randomizeSlots = () => PIECES.map(() => pickRandomCharacter());
-
-const BeautifulBodyLayout = () => {
-  const [slots, setSlots] = useState<string[]>(randomizeSlots);
-
-  const randomize = useCallback(() => setSlots(randomizeSlots()), []);
-
+const BeautifulBodyLayout = ({ slots, onRandomize }: Props) => {
   return (
     // Two columns on desktop: the assembled body on the left, controls (and any
     // future copy/metadata) on the right. Collapses to a single column on
@@ -27,17 +21,29 @@ const BeautifulBodyLayout = () => {
           {PIECES.map((piece, index) => (
             <PieceDisplay
               className={styles.piece}
-              filename={`${slots[index]}-${piece}`}
+              filename={`${CHARACTERS[slots[index]].name}-${piece}`}
               key={piece}
             />
           ))}
         </div>
       </div>
       <div className={styles.contentColumn}>
-        <button className={styles.randomize} onClick={randomize} type="button">
+        {/* Exquisite-corpse haiku: line i comes from the character filling
+            slice i (top → 0, mid → 1, bottom → 2). */}
+        <p className={styles.haiku}>
+          {PIECES.map((piece, index) => (
+            <span className={styles.haikuLine} key={piece}>
+              {CHARACTERS[slots[index]].haiku[index]}
+            </span>
+          ))}
+        </p>
+        <button
+          className={styles.randomize}
+          onClick={onRandomize}
+          type="button"
+        >
           randomize
         </button>
-        {/* Future content (title, character breakdown, share, etc.) goes here. */}
       </div>
     </div>
   );
