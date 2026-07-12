@@ -1,0 +1,83 @@
+// Two-column shell: body left, content/controls right. Follows the offering
+// page convention (see painting_row.module.scss) — a flex row that collapses to
+// a stacked single column at the 1024px breakpoint.
+.layout {
+  display: flex;
+  align-items: center;
+  column-gap: 10dvw;
+  // Match the offering page's spacing (see painting_row.module.scss).
+  margin-top: 5dvw;
+  padding: 0 5dvw;
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+    column-gap: 0;
+    row-gap: 3rem;
+    justify-content: center;
+    // Allow the stacked layout to scroll if it outgrows a short viewport.
+    overflow-y: auto;
+  }
+}
+
+// Left column — holds the assembled body and lets it grow to fill the height.
+.bodyColumn {
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  // Collapse the stack toward the vertical center as space tightens.
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 1024px) {
+    // Cap the body height when stacked so the controls remain visible.
+    height: auto;
+    max-height: 60dvh;
+    width: 100%;
+  }
+}
+
+// The shared-width column of slices: every piece fills this width, so the three
+// always butt up flush regardless of their individual aspect ratios. Width is
+// derived from the available height via the fixed body aspect ratio.
+.body {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  // Assembled canvas is 960 x 1440, so the full body is a fixed 2:3.
+  aspect-ratio: 2 / 3;
+
+  @media screen and (max-width: 1024px) {
+    height: auto;
+    max-height: 60dvh;
+  }
+}
+
+.piece {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// Right column — randomize control today, room for future content.
+.contentColumn {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 1rem;
+
+  @media screen and (max-width: 1024px) {
+    align-items: center;
+  }
+}
+
+.randomize {
+  font-family: var(--font--mono);
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router';
 
 import NavBar from 'components/nav';
-import { Offering, Origins, OfferingSelection } from 'routes';
+import { Offering, Origins, OfferingSelection, BeautifulBody } from 'routes';
 
 import styles from './app.module.scss';
 import { getSelectionPath } from 'utils';
@@ -32,6 +32,7 @@ const App = () => {
         <Route element={<OfferingSelection />} path={getSelectionPath()} />
         <Route element={<Offering />} path="/offering/:groupId/:id" />
         <Route element={<Origins />} path="/origins" />
+        <Route element={<BeautifulBody />} path="/beautiful-body" />
         <Route
           element={<Navigate replace to={getSelectionPath()} />}
           path="*"
