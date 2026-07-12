@@ -3,7 +3,10 @@ import { useCallback, useState } from 'react';
 import {
   BeautifulBodyLayout,
   SliceIndicator,
-  randomizeSlots
+  randomizeSlots,
+  sliceFilenames,
+  sliceCharacterNames,
+  saveBody
 } from 'components/beautiful-body';
 
 import styles from './beautiful_body.module.scss';
@@ -15,9 +18,18 @@ const BeautifulBody = () => {
 
   const randomize = useCallback(() => setSlots(randomizeSlots()), []);
 
+  const save = useCallback(() => {
+    const downloadName = `${sliceCharacterNames(slots).join('-')}.png`;
+    void saveBody(sliceFilenames(slots), downloadName);
+  }, [slots]);
+
   return (
     <>
-      <BeautifulBodyLayout onRandomize={randomize} slots={slots} />
+      <BeautifulBodyLayout
+        onRandomize={randomize}
+        onSave={save}
+        slots={slots}
+      />
       <SliceIndicator
         className={styles.indicator}
         values={slots.map((index) => index + 1)}
