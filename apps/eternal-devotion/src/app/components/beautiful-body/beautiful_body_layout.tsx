@@ -31,26 +31,29 @@ const BeautifulBodyLayout = ({ slots, onRandomize, onSave }: Props) => {
           ))}
         </div>
       </div>
+      {/* Right column floats its pieces to fill the height (mirrors the
+          offering page): the randomize control up top where the offering's
+          prev/next sit, the haiku prose box and save spaced down below. */}
       <div className={styles.contentColumn}>
-        {/* Exquisite-corpse haiku: line i comes from the character filling
-            slice i (top → 0, mid → 1, bottom → 2). */}
-        <p className={styles.haiku}>
-          {PIECES.map((piece, index) => (
-            <span className={styles.haikuLine} key={piece}>
-              {CHARACTERS[slots[index]].haiku[index]}
-            </span>
-          ))}
-        </p>
-        <div className={styles.controls}>
-          <button
-            className={styles.control}
-            onClick={onRandomize}
-            type="button"
-          >
-            randomize
-          </button>
+        <button
+          className={styles.randomize}
+          onClick={onRandomize}
+          type="button"
+        >
+          [randomize]
+        </button>
+        <div className={styles.readout}>
+          {/* Exquisite-corpse haiku: line i comes from the character filling
+              slice i (top → 0, mid → 1, bottom → 2). */}
+          <p className={styles.haiku}>
+            {PIECES.map((piece, index) => (
+              <span className={styles.haikuLine} key={piece}>
+                {CHARACTERS[slots[index]].haiku[index]}
+              </span>
+            ))}
+          </p>
           <button className={styles.control} onClick={onSave} type="button">
-            save me 4 later
+            [save me 4 later]
           </button>
         </div>
       </div>

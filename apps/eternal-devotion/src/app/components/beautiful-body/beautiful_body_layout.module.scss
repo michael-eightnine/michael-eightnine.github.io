@@ -24,9 +24,10 @@
   }
 }
 
-// Left column — holds the assembled body and lets it grow to fill the height.
+// Left column — occupies only the width the body needs (its aspect-derived
+// width at full column height); the content column takes the rest.
 .bodyColumn {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   min-height: 0;
   height: 100%;
   display: flex;
@@ -65,44 +66,89 @@
   height: auto;
 }
 
-// Right column — the assembled haiku and the randomize control. A fixed width
-// keeps the column's box stable so varying haiku line lengths don't reflow the
-// row and shift the body on randomize (mirrors the offering description's
-// stable-width, right-aligned block).
+// Right column — fills the width the body leaves. Randomize up top, then the
+// haiku + save readout below.
 .contentColumn {
-  flex: 0 0 auto;
-  width: 16rem;
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    max-width: 22rem;
+    row-gap: 2rem;
+  }
+}
+
+// The lower readout: haiku prose box + save, right-aligned like the offering
+// description block.
+.readout {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  row-gap: 2rem;
+  row-gap: 1rem;
 
   @media screen and (max-width: 1024px) {
-    width: 100%;
     align-items: center;
     text-align: center;
   }
 }
 
-// Exquisite-corpse haiku — one line per body slice.
+// Exquisite-corpse haiku — one line per body slice, in the offering page's
+// white-on-black prose box (see painting_description.module.scss). Fills the
+// content column's width.
 .haiku {
-  font-family: var(--font--serif);
-  font-style: italic;
+  width: 100%;
+  font-family: var(--font--mono);
+  line-height: 1.5;
+  font-size: 0.875rem;
+  text-align: right;
+  padding: 0.5rem;
+  color: var(--color--white);
+  background-color: var(--color--black);
 }
 
 .haikuLine {
   display: block;
 }
 
-.controls {
-  display: flex;
-  flex-direction: column;
-  align-items: inherit;
-  row-gap: 0.75rem;
+// Bracketed labels reusing the nav link's motif: serif italic, letter-spaced,
+// inverting to white-on-black on hover/focus.
+.control,
+.randomize {
+  font-family: var(--font--serif);
+  font-style: italic;
+  letter-spacing: 0.15em;
+  color: var(--color--black);
+  cursor: pointer;
+  padding: 0.25rem 0.45rem;
+  border: none;
+  background-color: transparent;
+  transition:
+    color var(--transition--fast) ease,
+    background-color var(--transition--fast) ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color--black);
+    color: var(--color--white);
+  }
+}
+
+// Primary action: floats top-left of the column, larger to lead the hierarchy
+// over the smaller, right-aligned save label.
+.randomize {
+  align-self: flex-start;
+  font-size: 1.75rem;
+
+  @media screen and (max-width: 1024px) {
+    align-self: center;
+  }
 }
 
 .control {
-  font-family: var(--font--mono);
-  cursor: pointer;
+  font-size: 0.875rem;
 }
