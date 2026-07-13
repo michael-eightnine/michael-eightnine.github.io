@@ -14,19 +14,51 @@ export type Character = {
 export const CHARACTERS: readonly Character[] = [
   {
     name: 'regent',
-    haiku: ['regent line one', 'regent line two', 'regent line three']
+    haiku: [
+      'never heard of surprises',
+      'new flesh purchaser',
+      'caught in traffic signal'
+    ]
   },
   {
     name: 'doctor',
-    haiku: ['doctor line one', 'doctor line two', 'doctor line three']
+    haiku: [
+      'blue splinters in gloved hand',
+      're-assuredly confident diagnosis',
+      'well beyond facility failure'
+    ]
   },
   {
     name: 'damsel',
-    haiku: ['damsel line one', 'damsel line two', 'damsel line three']
+    haiku: [
+      'O! goodness me',
+      'waiting beyond saving (for a time)',
+      'walking on nothing at all'
+    ]
   },
   {
     name: 'jailer',
-    haiku: ['jailer line one', 'jailer line two', 'jailer line three']
+    haiku: [
+      'rank slime mold. hole 4 head',
+      'a frock 4 me a frock 4 u',
+      'astonishingly undead'
+    ]
+  },
+  {
+    name: 'maid',
+    haiku: [
+      'upper stairwell; lower bell tower',
+      "i'm getting lost in your spurs",
+      'finding new places 2 hide'
+    ]
+  },
+  {
+    name: 'snail',
+    haiku: [
+      'came in with a bad case of it',
+      'bright flesh right below the surface',
+      'breathing even barely'
+    ]
   }
 ] as const;
 
