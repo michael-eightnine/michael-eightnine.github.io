@@ -40,7 +40,7 @@ const BeautifulBodyLayout = ({ slots, onRandomize, onSave }: Props) => {
           onClick={onRandomize}
           type="button"
         >
-          [randomize]
+          [change w/ me]
         </button>
         <div className={styles.readout}>
           {/* Exquisite-corpse haiku: line i comes from the character filling

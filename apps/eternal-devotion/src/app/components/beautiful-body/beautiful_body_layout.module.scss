@@ -17,28 +17,42 @@
     flex-direction: column;
     align-items: center;
     column-gap: 0;
-    row-gap: 3rem;
+    row-gap: 2rem;
+    // Center the stack as a unit: fixed row-gaps keep the rows tight together,
+    // and any leftover height becomes symmetric breathing room above/below so
+    // nothing kisses the inset rules.
     justify-content: center;
-    // Allow the stacked layout to scroll if it outgrows a short viewport.
-    overflow-y: auto;
+    // Never scroll: the stack fits within main's height. Drop the top margin so
+    // it doesn't eat into the height budget, and clip anything that would spill.
+    margin-top: 0;
+    overflow: hidden;
   }
 }
 
-// Left column — occupies only the width the body needs (its aspect-derived
-// width at full column height); the content column takes the rest.
+// Left column — claims at least half the row width on large (two-column)
+// screens, with the aspect-sized body centered within it; the content column
+// takes whatever is left.
 .bodyColumn {
+  // Claims roughly half the row (min-width floor), with the aspect-sized body
+  // centered within it; the content column takes the rest.
   flex: 0 0 auto;
+  min-width: 50%;
   min-height: 0;
   height: 100%;
   display: flex;
-  // Collapse the stack toward the vertical center as space tightens.
+  // Center the body within the column (and collapse toward center as space
+  // tightens).
   justify-content: center;
   align-items: center;
 
   @media screen and (max-width: 1024px) {
-    // Cap the body height when stacked so the controls remain visible.
+    min-width: 0;
+    // When stacked, the body takes its natural (aspect-derived) size but may
+    // shrink so the whole stack fits — never grows to absorb slack (which would
+    // open a gap between it and the controls). Capped so the controls fit.
+    flex: 0 1 auto;
     height: auto;
-    max-height: 60dvh;
+    max-height: 55dvh;
     width: 100%;
   }
 }
@@ -55,8 +69,9 @@
   aspect-ratio: 2 / 3;
 
   @media screen and (max-width: 1024px) {
-    height: auto;
-    max-height: 60dvh;
+    // Fill the body column's (capped) height; width follows via the aspect ratio.
+    height: 100%;
+    max-height: 100%;
   }
 }
 
@@ -76,9 +91,11 @@
   row-gap: 1.5rem;
 
   @media screen and (max-width: 1024px) {
+    // Natural height when stacked so the body column absorbs the leftover space.
+    flex: 0 0 auto;
     width: 100%;
     max-width: 22rem;
-    row-gap: 2rem;
+    row-gap: 1rem;
   }
 }
 
@@ -121,6 +138,7 @@
 .randomize {
   font-family: var(--font--serif);
   font-style: italic;
+  font-size: 0.875rem;
   letter-spacing: 0.15em;
   color: var(--color--black);
   cursor: pointer;
@@ -138,17 +156,11 @@
   }
 }
 
-// Primary action: floats top-left of the column, larger to lead the hierarchy
-// over the smaller, right-aligned save label.
+// Primary action: floats top-left of the column.
 .randomize {
   align-self: flex-start;
-  font-size: 1.75rem;
 
   @media screen and (max-width: 1024px) {
     align-self: center;
   }
-}
-
-.control {
-  font-size: 0.875rem;
 }
