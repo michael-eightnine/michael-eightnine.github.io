@@ -18,3 +18,9 @@ export const sliceFilenames = (slots: number[]) =>
 // name a saved body, e.g. `damsel-jailer-doctor`.
 export const sliceCharacterNames = (slots: number[]) =>
   slots.map((index) => CHARACTERS[index].name);
+
+// The display label for each slice: the character index as a letter (0 → A,
+// 1 → B, …). Letters keep the slice indicator a single glyph regardless of
+// count, so it never shifts the way a two-digit number would.
+export const sliceLabels = (slots: number[]) =>
+  slots.map((index) => String.fromCharCode(65 + index));

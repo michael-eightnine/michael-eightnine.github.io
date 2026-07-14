@@ -15,7 +15,7 @@ const AppLayout = () => {
       </main>
       <footer className={styles.footer}>
         <span>thanks 4 visiting</span>
-        <span>this is a website of paintings</span>
+        <span>this was a website of paintings</span>
       </footer>
     </div>
   );

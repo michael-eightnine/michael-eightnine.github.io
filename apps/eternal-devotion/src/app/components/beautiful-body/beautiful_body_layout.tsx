@@ -33,7 +33,7 @@ const BeautifulBodyLayout = ({ slots, onRandomize, onSave }: Props) => {
       </div>
       {/* Right column floats its pieces to fill the height (mirrors the
           offering page): the randomize control up top where the offering's
-          prev/next sit, the haiku prose box and save spaced down below. */}
+          prev/next sit, the prose box and save spaced down below. */}
       <div className={styles.contentColumn}>
         <button
           className={styles.randomize}
@@ -43,12 +43,12 @@ const BeautifulBodyLayout = ({ slots, onRandomize, onSave }: Props) => {
           [change w/ me]
         </button>
         <div className={styles.readout}>
-          {/* Exquisite-corpse haiku: line i comes from the character filling
+          {/* Exquisite-corpse prose: line i comes from the character filling
               slice i (top → 0, mid → 1, bottom → 2). */}
-          <p className={styles.haiku}>
+          <p className={styles.prose}>
             {PIECES.map((piece, index) => (
-              <span className={styles.haikuLine} key={piece}>
-                {CHARACTERS[slots[index]].haiku[index]}
+              <span className={styles.proseLine} key={piece}>
+                {CHARACTERS[slots[index]].prose[index]}
               </span>
             ))}
           </p>

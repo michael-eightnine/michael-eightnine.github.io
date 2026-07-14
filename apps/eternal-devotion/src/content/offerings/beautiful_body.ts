@@ -3,18 +3,18 @@ import type { ExperienceGroup } from '../types';
 export type Character = {
   // Image filename base (e.g. `regent` → regent-top, regent-mid, regent-bottom).
   name: string;
-  // One haiku, three lines. When this character fills a slice, it contributes
-  // the line at that slice's position (top → line 0, mid → 1, bottom → 2), so
-  // the assembled poem is itself an exquisite corpse.
-  haiku: [string, string, string];
+  // Three lines of prose. When this character fills a slice, it contributes the
+  // line at that slice's position (top → line 0, mid → 1, bottom → 2), so the
+  // assembled text is itself an exquisite corpse.
+  prose: [string, string, string];
 };
 
 // The characters, in index order. A slice's value is its index here; the image
-// filename, the giant floating numeral, and the haiku line all derive from it.
+// filename, the giant floating numeral, and the prose line all derive from it.
 export const CHARACTERS: readonly Character[] = [
   {
     name: 'regent',
-    haiku: [
+    prose: [
       'never heard of surprises',
       'new flesh purchaser',
       'caught in traffic signal'
@@ -22,15 +22,15 @@ export const CHARACTERS: readonly Character[] = [
   },
   {
     name: 'doctor',
-    haiku: [
+    prose: [
       'blue splinters in gloved hand',
-      're-assuredly confident diagnosis',
+      'warmly nurturing something terrible',
       'well beyond facility failure'
     ]
   },
   {
     name: 'damsel',
-    haiku: [
+    prose: [
       'O! goodness me',
       'waiting beyond saving (for a time)',
       'walking on nothing at all'
@@ -38,27 +38,31 @@ export const CHARACTERS: readonly Character[] = [
   },
   {
     name: 'jailer',
-    haiku: [
+    prose: [
       'rank slime mold. hole 4 head',
       'a frock 4 me a frock 4 u',
-      'astonishingly undead'
+      'the key fits, the lock is gone'
     ]
   },
   {
     name: 'maid',
-    haiku: [
-      'upper stairwell; lower bell tower',
+    prose: [
+      'quietly waiting behind the veil',
       "i'm getting lost in your spurs",
       'finding new places 2 hide'
     ]
   },
   {
     name: 'snail',
-    haiku: [
+    prose: [
       'came in with a bad case of it',
       'bright flesh right below the surface',
       'breathing even barely'
     ]
+  },
+  {
+    name: 'bodybuilder',
+    prose: ['A', 'B', 'C']
   }
 ] as const;
 

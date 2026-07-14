@@ -82,42 +82,48 @@
 }
 
 // Right column — fills the width the body leaves. Randomize up top, then the
-// haiku + save readout below.
+// prose + save readout below. On desktop the gap above the box (to change w/ me)
+// is deliberately tighter than the gap below (to save me 4 later) — leaning into
+// the site's off-kilter composition rather than centering the box.
 .contentColumn {
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  row-gap: 1.5rem;
+  // Tight gap between change w/ me and the poem box.
+  row-gap: 0.5rem;
 
   @media screen and (max-width: 1024px) {
     // Natural height when stacked so the body column absorbs the leftover space.
     flex: 0 0 auto;
     width: 100%;
     max-width: 22rem;
+    // Even spacing when stacked — the asymmetry is a desktop compositional call.
     row-gap: 1rem;
   }
 }
 
-// The lower readout: haiku prose box + save, right-aligned like the offering
-// description block.
+// The lower readout: prose box + save, right-aligned like the offering
+// description block. Looser gap below the box (to save me 4 later) than above.
 .readout {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  row-gap: 1rem;
+  row-gap: 2.5rem;
 
   @media screen and (max-width: 1024px) {
-    align-items: center;
-    text-align: center;
+    // Keep save right-aligned (prose box stays full-width); paired with the
+    // left-aligned change button this gives the stack a diagonal, not a
+    // centered column.
+    row-gap: 1rem;
   }
 }
 
-// Exquisite-corpse haiku — one line per body slice, in the offering page's
+// Exquisite-corpse prose — one line per body slice, in the offering page's
 // white-on-black prose box (see painting_description.module.scss). Fills the
 // content column's width.
-.haiku {
+.prose {
   width: 100%;
   font-family: var(--font--mono);
   line-height: 1.5;
@@ -128,7 +134,7 @@
   background-color: var(--color--black);
 }
 
-.haikuLine {
+.proseLine {
   display: block;
 }
 
@@ -156,11 +162,9 @@
   }
 }
 
-// Primary action: floats top-left of the column.
+// Primary action: floats top-left of the column (both desktop and mobile, so
+// the stacked layout reads with a left-top / right-bottom diagonal rather than
+// a limp centered stack).
 .randomize {
   align-self: flex-start;
-
-  @media screen and (max-width: 1024px) {
-    align-self: center;
-  }
 }

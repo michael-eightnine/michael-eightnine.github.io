@@ -14,13 +14,15 @@
   font-family: var(--font--serif);
   font-style: italic;
   display: flex;
-  column-gap: 0.5ch;
+  // Tightened to offset the fixed-width label boxes so the indicator's total
+  // width stays clear of the nav.
+  column-gap: 0;
   pointer-events: none;
 
   span {
     line-height: 0.85;
 
-    // Even 0.5x steps across all five spans (3 values + 2 slashes) so the
+    // Even 0.5x steps across all five spans (3 labels + 2 slashes) so the
     // cascade stays contained near the top rather than trailing off — the
     // offering page only staggers 4 spans, we have 5.
     &:nth-child(2) {
@@ -42,5 +44,14 @@
     &:nth-child(5) {
       padding-top: calc(var(--indicator--size) * var(--indicator--stagger) * 2);
     }
+  }
+
+  // Fix each letter to a common footprint and center the glyph, so swapping
+  // characters (narrow I vs. wide W) never shifts the layout. Sized to fit the
+  // widest italic capital (W ≈ 1.1em) so it holds for the whole A–Z range.
+  .label {
+    display: inline-block;
+    width: 1.15em;
+    text-align: center;
   }
 }

@@ -6,6 +6,7 @@ import {
   randomizeSlots,
   sliceFilenames,
   sliceCharacterNames,
+  sliceLabels,
   saveBody
 } from 'components/beautiful-body';
 
@@ -32,7 +33,7 @@ const BeautifulBody = () => {
       />
       <SliceIndicator
         className={styles.indicator}
-        values={slots.map((index) => index + 1)}
+        labels={sliceLabels(slots)}
       />
     </>
   );
