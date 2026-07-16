@@ -10,7 +10,7 @@ export type Character = {
 };
 
 // The characters, in index order. A slice's value is its index here; the image
-// filename, the giant floating numeral, and the prose line all derive from it.
+// filename, the giant floating character, and the prose line all derive from it.
 export const CHARACTERS: readonly Character[] = [
   {
     name: 'regent',
@@ -62,6 +62,18 @@ export const CHARACTERS: readonly Character[] = [
   },
   {
     name: 'bodybuilder',
+    prose: ['A', 'B', 'C']
+  },
+  {
+    name: 'hardbody',
+    prose: ['A', 'B', 'C']
+  },
+  {
+    name: 'robot',
+    prose: ['A', 'B', 'C']
+  },
+  {
+    name: 'stylist',
     prose: ['A', 'B', 'C']
   }
 ] as const;
