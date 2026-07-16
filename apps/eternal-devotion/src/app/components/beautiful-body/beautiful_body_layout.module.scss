@@ -69,9 +69,15 @@
   aspect-ratio: 2 / 3;
 
   @media screen and (max-width: 1024px) {
-    // Fill the body column's (capped) height; width follows via the aspect ratio.
-    height: 100%;
-    max-height: 100%;
+    // Stacked: give the body a DEFINITE height (a viewport unit, not 100% of a
+    // content-derived column). That fixes both failure modes at once — it fits
+    // the viewport height, and because the height (and thus the aspect-derived
+    // width) no longer depends on the images, the pieces reserve their space up
+    // front, so there's no load shift.
+    height: 55dvh;
+    max-height: 55dvh;
+    width: auto;
+    max-width: 100%;
   }
 }
 
@@ -79,7 +85,9 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 2/1;
+  // Reserve each slice's height from its width (source canvas 960x480 = 2:1),
+  // so the space is held before the image loads — prevents load layout shift.
+  aspect-ratio: 2 / 1;
 }
 
 // Right column — fills the width the body leaves. Randomize up top, then the
