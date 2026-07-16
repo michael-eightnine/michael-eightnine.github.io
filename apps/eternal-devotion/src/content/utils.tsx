@@ -1,14 +1,31 @@
 import { useParams } from 'react-router';
 import offeringsConfig, { DICE_COUNT } from './config';
+import type { PaintingsGroup } from './types';
 import type { Die } from './types';
 import { useCallback } from 'react';
+
+// The painting-flow hooks below only ever run under /offering/:groupId/:id,
+// where the group is always a paintings group. This narrows the union to that
+// member; it throws if ever handed an experience group (a programming error).
+const getPaintingsGroup = (groupId: string): PaintingsGroup => {
+  const group = offeringsConfig[groupId];
+  if (group?.kind !== 'paintings') {
+    throw new Error(`Expected a paintings offering group: ${groupId}`);
+  }
+  return group;
+};
 
 export const useCurrentOffering = () => {
   const { groupId, id } = useParams();
 
   if (!id || !groupId) return null;
 
-  return offeringsConfig[groupId].offeringsConfig[id];
+  // Entry guard for the painting route: return null (→ redirect) for an unknown
+  // or non-painting group rather than throwing.
+  const group = offeringsConfig[groupId];
+  if (group?.kind !== 'paintings') return null;
+
+  return group.offeringsConfig[id] ?? null;
 };
 
 export const useOfferingNavigationIds = () => {
@@ -25,7 +42,7 @@ export const useOfferingNavigationIds = () => {
   }
 
   const offeringsCount = Object.keys(
-    offeringsConfig[groupId].offeringsConfig
+    getPaintingsGroup(groupId).offeringsConfig
   ).length;
 
   const idAsNumber = Number(id);
@@ -46,7 +63,7 @@ export const useOfferingNavigationIds = () => {
 export const useCurrentOfferingPosition = () => {
   const { id, groupId } = useParams();
   const offeringsCount = Object.keys(
-    offeringsConfig[groupId!].offeringsConfig
+    getPaintingsGroup(groupId!).offeringsConfig
   ).length;
 
   if (!id) {
@@ -99,7 +116,7 @@ export const rollTheDice = (groupId: string): Die[] => {
 };
 
 export const getOfferingById = (groupId: string, id: string) => {
-  return offeringsConfig[groupId].offeringsConfig[id];
+  return getPaintingsGroup(groupId).offeringsConfig[id];
 };
 
 export const useAdjacentOfferingFilenames = () => {
@@ -111,7 +128,7 @@ export const useAdjacentOfferingFilenames = () => {
 
     if (prevEnabled) {
       const prevOffering =
-        offeringsConfig[groupId].offeringsConfig[prevId.toString()];
+        getPaintingsGroup(groupId).offeringsConfig[prevId.toString()];
       if (prevOffering) {
         filenames.push(prevOffering.filename);
       }
@@ -119,7 +136,7 @@ export const useAdjacentOfferingFilenames = () => {
 
     if (nextEnabled) {
       const nextOffering =
-        offeringsConfig[groupId].offeringsConfig[nextId.toString()];
+        getPaintingsGroup(groupId).offeringsConfig[nextId.toString()];
       if (nextOffering) {
         filenames.push(nextOffering.filename);
       }

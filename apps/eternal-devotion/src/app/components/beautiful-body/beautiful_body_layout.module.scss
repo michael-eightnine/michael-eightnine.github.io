@@ -1,0 +1,170 @@
+// Two-column shell: body left, content/controls right. Follows the offering
+// page convention (see painting_row.module.scss) — a flex row that collapses to
+// a stacked single column at the 1024px breakpoint. Also the positioning
+// context for the floating slice numerals.
+.layout {
+  display: flex;
+  align-items: center;
+  column-gap: 10dvw;
+  // Match the offering page's spacing (see painting_row.module.scss).
+  margin-top: 5dvw;
+  padding: 0 5dvw;
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    align-items: center;
+    column-gap: 0;
+    row-gap: 2rem;
+    // Center the stack as a unit: fixed row-gaps keep the rows tight together,
+    // and any leftover height becomes symmetric breathing room above/below so
+    // nothing kisses the inset rules.
+    justify-content: center;
+    // Never scroll: the stack fits within main's height. Drop the top margin so
+    // it doesn't eat into the height budget, and clip anything that would spill.
+    margin-top: 0;
+    overflow: hidden;
+  }
+}
+
+// Left column — claims at least half the row width on large (two-column)
+// screens, with the aspect-sized body centered within it; the content column
+// takes whatever is left.
+.bodyColumn {
+  // Claims roughly half the row (min-width floor), with the aspect-sized body
+  // centered within it; the content column takes the rest.
+  flex: 0 0 auto;
+  min-width: 50%;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  // Center the body within the column (and collapse toward center as space
+  // tightens).
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 1024px) {
+    min-width: 0;
+    // When stacked, the body takes its natural (aspect-derived) size but may
+    // shrink so the whole stack fits — never grows to absorb slack (which would
+    // open a gap between it and the controls). Capped so the controls fit.
+    flex: 0 1 auto;
+    height: auto;
+    max-height: 55dvh;
+    width: 100%;
+  }
+}
+
+// The shared-width column of slices: every piece fills this width, so the three
+// always butt up flush regardless of their individual aspect ratios. Width is
+// derived from the available height via the fixed body aspect ratio.
+.body {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  // Assembled canvas is 960 x 1440, so the full body is a fixed 2:3.
+  aspect-ratio: 2 / 3;
+
+  @media screen and (max-width: 1024px) {
+    // Fill the body column's (capped) height; width follows via the aspect ratio.
+    height: 100%;
+    max-height: 100%;
+  }
+}
+
+.piece {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+// Right column — fills the width the body leaves. Randomize up top, then the
+// prose + save readout below. On desktop the gap above the box (to change w/ me)
+// is deliberately tighter than the gap below (to save me 4 later) — leaning into
+// the site's off-kilter composition rather than centering the box.
+.contentColumn {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  // Tight gap between change w/ me and the poem box.
+  row-gap: 0.5rem;
+
+  @media screen and (max-width: 1024px) {
+    // Natural height when stacked so the body column absorbs the leftover space.
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 22rem;
+    // Even spacing when stacked — the asymmetry is a desktop compositional call.
+    row-gap: 1rem;
+  }
+}
+
+// The lower readout: prose box + save, right-aligned like the offering
+// description block. Looser gap below the box (to save me 4 later) than above.
+.readout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  row-gap: 2.5rem;
+
+  @media screen and (max-width: 1024px) {
+    // Keep save right-aligned (prose box stays full-width); paired with the
+    // left-aligned change button this gives the stack a diagonal, not a
+    // centered column.
+    row-gap: 1rem;
+  }
+}
+
+// Exquisite-corpse prose — one line per body slice, in the offering page's
+// white-on-black prose box (see painting_description.module.scss). Fills the
+// content column's width.
+.prose {
+  width: 100%;
+  font-family: var(--font--mono);
+  line-height: 1.5;
+  font-size: 0.875rem;
+  text-align: right;
+  padding: 0.5rem;
+  color: var(--color--white);
+  background-color: var(--color--black);
+}
+
+.proseLine {
+  display: block;
+}
+
+// Bracketed labels reusing the nav link's motif: serif italic, letter-spaced,
+// inverting to white-on-black on hover/focus.
+.control,
+.randomize {
+  font-family: var(--font--serif);
+  font-style: italic;
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  color: var(--color--black);
+  cursor: pointer;
+  padding: 0.25rem 0.45rem;
+  border: none;
+  background-color: transparent;
+  transition:
+    color var(--transition--fast) ease,
+    background-color var(--transition--fast) ease;
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color--black);
+    color: var(--color--white);
+  }
+}
+
+// Primary action: floats top-left of the column (both desktop and mobile, so
+// the stacked layout reads with a left-top / right-bottom diagonal rather than
+// a limp centered stack).
+.randomize {
+  align-self: flex-start;
+}

@@ -1,0 +1,19 @@
+// Entrance animation ported from offering.module.scss so the floating numerals
+// drop in like the offering page's position indicator.
+@keyframes indicatorIn {
+  from {
+    transform: translateY(-2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.indicator {
+  opacity: 0;
+  transform: translateY(-2rem);
+  animation: indicatorIn var(--transition--standard) forwards;
+  animation-delay: var(--transition--slow);
+}

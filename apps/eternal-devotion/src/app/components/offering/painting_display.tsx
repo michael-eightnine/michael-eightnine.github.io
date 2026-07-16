@@ -1,7 +1,8 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { Offering, createContentPathname, IMAGE_SIZES } from 'content';
+import { Offering } from 'content';
+import { buildResponsiveImage } from 'utils';
 
 import Lightbox from './lightbox';
 
@@ -10,35 +11,13 @@ type Props = {
   className: React.HTMLProps<HTMLElement>['className'];
 };
 
-const formats = ['avif', 'webp'] as const;
-
 const PaintingDisplay = ({ className, filename }: Props) => {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  const srcSet = useMemo(
-    () =>
-      formats
-        .reduce((acc, format) => {
-          return [
-            ...acc,
-            ...IMAGE_SIZES.map(
-              (size) =>
-                `${createContentPathname(`${filename}-${size}.${format}`, 'painting')} ${size}w`
-            )
-          ];
-        }, [] as string[])
-        .join(', '),
+  const { src, srcSet, sizes } = useMemo(
+    () => buildResponsiveImage(filename),
     [filename]
-  );
-
-  const sizesProp = useMemo(
-    () =>
-      IMAGE_SIZES.map(
-        (size, index) =>
-          `(max-width: ${size}px) ${index === 0 ? size / 2 : IMAGE_SIZES[index - 1]}px`
-      ).join(', ') + `, ${IMAGE_SIZES[IMAGE_SIZES.length - 1]}px`,
-    []
   );
 
   const renderImage = useCallback(
@@ -64,14 +43,14 @@ const PaintingDisplay = ({ className, filename }: Props) => {
           className={className}
           loading="eager"
           ref={ref}
-          sizes={sizesProp}
-          src={`${createContentPathname(`${filename}-1280.webp`, 'painting')}`}
+          sizes={sizes}
+          src={src}
           srcSet={srcSet}
           {...(isLightbox ? {} : interactiveProps)}
         />
       );
     },
-    [className, filename, sizesProp, srcSet]
+    [className, sizes, src, srcSet]
   );
 
   const handleLightboxClose = useCallback(() => {

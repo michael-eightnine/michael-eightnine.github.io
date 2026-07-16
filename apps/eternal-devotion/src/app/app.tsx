@@ -1,10 +1,10 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router';
 
 import NavBar from 'components/nav';
-import { Offering, Origins, OfferingSelection } from 'routes';
+import { Offering, Origins, OfferingSelection, BeautifulBody } from 'routes';
 
 import styles from './app.module.scss';
-import { getSelectionPath } from 'utils';
+import { createExperiencePath, getSelectionPath } from 'utils';
 
 const AppLayout = () => {
   return (
@@ -15,7 +15,7 @@ const AppLayout = () => {
       </main>
       <footer className={styles.footer}>
         <span>thanks 4 visiting</span>
-        <span>this is a website of paintings</span>
+        <span>this was a website of paintings</span>
       </footer>
     </div>
   );
@@ -32,6 +32,12 @@ const App = () => {
         <Route element={<OfferingSelection />} path={getSelectionPath()} />
         <Route element={<Offering />} path="/offering/:groupId/:id" />
         <Route element={<Origins />} path="/origins" />
+        {/* Static experience segment; declared before the dynamic offering
+            route so it wins the match. */}
+        <Route
+          element={<BeautifulBody />}
+          path={createExperiencePath('beautiful-body')}
+        />
         <Route
           element={<Navigate replace to={getSelectionPath()} />}
           path="*"
