@@ -62,19 +62,31 @@ export const CHARACTERS: readonly Character[] = [
   },
   {
     name: 'bodybuilder',
-    prose: ['A', 'B', 'C']
+    prose: [
+      "can't seem 2 cut it out",
+      'self flagellating (for good reason)',
+      'flying home in chains'
+    ]
   },
   {
     name: 'hardbody',
-    prose: ['A', 'B', 'C']
+    prose: [
+      'red blood/green vial',
+      'reassurance of a lover',
+      'forgot about dying'
+    ]
   },
   {
     name: 'robot',
-    prose: ['A', 'B', 'C']
+    prose: [
+      'packed bags, wished unwell',
+      'jaws of life requirement',
+      'ambulance delay'
+    ]
   },
   {
     name: 'stylist',
-    prose: ['A', 'B', 'C']
+    prose: ['left heaven 4 hell', 'this house is haunted', 'obviously lying']
   }
 ] as const;
 
