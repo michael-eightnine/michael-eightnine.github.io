@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 
 import { useCarousel } from './use_carousel';
 import styles from './selection_layout.module.scss';
+import { classnames } from 'utils';
 
 type Props = {
   children: ReactNode;
@@ -47,26 +48,30 @@ const SelectionCarousel = ({ children }: Props) => {
       </div>
       {(showRightArrow || showLeftArrow) && (
         <div className={styles.arrows}>
-          {showLeftArrow && (
-            <button
-              aria-label="Previous offering"
-              className={styles.arrow}
-              onClick={() => handleScroll('prev')}
-              type="button"
-            >
-              {'←'}
-            </button>
-          )}
-          {showRightArrow && (
-            <button
-              aria-label="Next offering"
-              className={styles.arrow}
-              onClick={() => handleScroll('next')}
-              type="button"
-            >
-              {'→'}
-            </button>
-          )}
+          <button
+            aria-hidden={!showLeftArrow}
+            aria-label="Previous offering"
+            className={classnames(styles.arrow, {
+              [styles.arrow_active]: showLeftArrow
+            })}
+            disabled={!showLeftArrow}
+            onClick={() => handleScroll('prev')}
+            type="button"
+          >
+            {'←'}
+          </button>
+          <button
+            aria-hidden={!showRightArrow}
+            aria-label="Next offering"
+            className={classnames(styles.arrow, {
+              [styles.arrow_active]: showRightArrow
+            })}
+            disabled={!showRightArrow}
+            onClick={() => handleScroll('next')}
+            type="button"
+          >
+            {'→'}
+          </button>
         </div>
       )}
     </section>

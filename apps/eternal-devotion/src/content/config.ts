@@ -3,6 +3,7 @@ import { BeautifulBodyGroup } from './offerings/beautiful_body';
 import { FurnitureGroup } from './offerings/furniture';
 import { MeatGroup } from './offerings/meat';
 import { PenanceGroup } from './offerings/penance';
+import { IrlGroup } from './offerings/irl';
 
 export const DICE_COUNT = 9 as const;
 export const IMAGE_SIZES = [320, 420, 640, 940, 1280, 1920] as const;
@@ -10,6 +11,7 @@ export const IMAGE_SIZES = [320, 420, 640, 940, 1280, 1920] as const;
 // Assembles the per-offering groups into the homepage/route lookup. Card order
 // follows insertion order here.
 const offeringsConfig: Record<OfferingsGroup['id'], OfferingsGroup> = {
+  [IrlGroup.id]: IrlGroup,
   [BeautifulBodyGroup.id]: BeautifulBodyGroup,
   [FurnitureGroup.id]: FurnitureGroup,
   [MeatGroup.id]: MeatGroup,

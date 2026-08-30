@@ -21,10 +21,7 @@ const PaintingDisplay = ({ className, filename }: Props) => {
   );
 
   const renderImage = useCallback(
-    (
-      isLightbox = false,
-      ref?: React.MutableRefObject<HTMLImageElement | null>
-    ) => {
+    (isLightbox = false, ref?: React.RefObject<HTMLImageElement | null>) => {
       const interactiveProps = {
         onClick: () => setLightboxOpen(true),
         onKeyDown: (e: React.KeyboardEvent) => {

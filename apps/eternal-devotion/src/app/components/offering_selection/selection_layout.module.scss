@@ -142,13 +142,20 @@ $mobile-breakpoint: 600px;
   cursor: pointer;
   transition: opacity var(--transition--fast);
   font-family: var(--font--mono);
+  opacity: 0;
+  pointer-events: none;
 
-  &:hover {
-    opacity: 0.85;
-  }
+  &_active {
+    pointer-events: all;
+    opacity: 1;
 
-  &:active {
-    opacity: 0.75;
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:active {
+      opacity: 0.75;
+    }
   }
 }
 
