@@ -35,6 +35,7 @@ export const IrlGroup: PaintingsGroup = {
     'wet feet on warm beige carpet'
   ],
   filename: 'furniture',
+  bordered: false,
   offeringsConfig: createOfferingsConfig([
     MesquiteFlower,
     Motel,
