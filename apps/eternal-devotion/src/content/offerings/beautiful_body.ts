@@ -41,7 +41,7 @@ export const CHARACTERS: readonly Character[] = [
     prose: [
       'rank slime mold. hole 4 head',
       'a frock 4 me a frock 4 u',
-      'the key fits, the lock is gone'
+      "key fits but door's gone"
     ]
   },
   {

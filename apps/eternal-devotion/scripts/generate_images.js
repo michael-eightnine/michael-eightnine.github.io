@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const INPUT_DIR = path.join(__dirname, '../public/original_assets');
 const OUTPUT_DIR = path.join(__dirname, '../public/optimized_images');
 
-const SIZES =  [320, 420, 640, 940, 1280, 1920];
+const SIZES = [320, 420, 640, 940, 1280, 1920];
 
 async function processImages() {
   await fs.ensureDir(OUTPUT_DIR);
@@ -23,18 +23,18 @@ async function processImages() {
     const fileNameWithoutExt = path.parse(file).name;
 
     for (const size of SIZES) {
-      const filePathAndName = `${OUTPUT_DIR}/${fileNameWithoutExt}-${size}`
-      await sharp(inputPath)
+      const filePathAndName = `${OUTPUT_DIR}/${fileNameWithoutExt}-${size}`;
+      await sharp(inputPath, { unlimited: true })
         .resize(size)
         .toFormat('avif', { quality: 50 })
         .toFile(`${filePathAndName}.avif`);
 
-      await sharp(inputPath)
+      await sharp(inputPath, { unlimited: true })
         .resize(size)
         .toFormat('webp', { quality: 80 })
         .toFile(`${filePathAndName}.webp`);
     }
-    console.log(`Processed ${fileNameWithoutExt}`)
+    console.log(`Processed ${fileNameWithoutExt}`);
   }
 
   return imageFiles.length;

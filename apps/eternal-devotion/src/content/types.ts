@@ -25,6 +25,9 @@ type OfferingsGroupBase = {
 export type PaintingsGroup = OfferingsGroupBase & {
   kind: 'paintings';
   offeringsConfig: Record<Offering['id'], Offering>;
+  // Whether painting images render with the standard black border. Defaults
+  // to true when omitted.
+  bordered?: boolean;
 };
 
 // An interactive offering (e.g. the exquisite-corpse assembler) with its own

@@ -28,6 +28,16 @@ export const useCurrentOffering = () => {
   return group.offeringsConfig[id] ?? null;
 };
 
+export const useCurrentOfferingBordered = () => {
+  const { groupId } = useParams();
+  if (!groupId) return true;
+
+  const group = offeringsConfig[groupId];
+  if (group?.kind !== 'paintings') return true;
+
+  return group.bordered ?? true;
+};
+
 export const useOfferingNavigationIds = () => {
   const { id, groupId } = useParams();
 

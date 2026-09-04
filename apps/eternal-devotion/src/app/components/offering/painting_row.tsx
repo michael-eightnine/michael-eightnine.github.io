@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
 
-import { useCurrentOffering, useAdjacentOfferingFilenames } from 'content';
+import {
+  useCurrentOffering,
+  useCurrentOfferingBordered,
+  useAdjacentOfferingFilenames
+} from 'content';
 import { preloadImages } from 'utils';
 
 import PaintingDisplay from './painting_display';
@@ -15,6 +19,7 @@ type Props = {
 
 const PaintingRow = ({ className }: Props) => {
   const currentOffering = useCurrentOffering();
+  const bordered = useCurrentOfferingBordered();
   const { id } = useParams();
   const getAdjacentOfferingFilenames = useAdjacentOfferingFilenames();
 
@@ -32,6 +37,7 @@ const PaintingRow = ({ className }: Props) => {
     !!currentOffering && (
       <div className={`${styles.paintingRow} ${className}`}>
         <PaintingDisplay
+          bordered={bordered}
           className={styles.painting}
           filename={currentOffering.filename}
         />
