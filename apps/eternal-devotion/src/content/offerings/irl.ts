@@ -5,45 +5,66 @@ type OfferingWithoutId = Omit<Offering, 'id'>;
 
 const MesquiteFlower: OfferingWithoutId = {
   description:
-    "[37.881588] wind, surely just wind, screamed from above the canyon. guide ran. i'll rest here [-110.398245]",
+    "a frantic sizzling above us; more hungry than thirsty these days. guide ran. i'll end up resting here [★⯨]",
   filename: 'the-mesquite-flower'
 };
 
 const Motel: OfferingWithoutId = {
   description:
-    '[38.655671] nicer than we expected/deserved, son lost his last tooth when flossing; relevant dreams [-87.077867]',
+    'accommodations nicer than we expected/deserved, adult son lost his last tooth when flossing; relevant dreams [★★★★★]',
   filename: 'the-motel'
+};
+
+const Dustbowl: OfferingWithoutId = {
+  description:
+    "come visit. the blue flowers drink you; not 2 bad. it'll get you waking up here every morning, w/ me [★]",
+  filename: 'the-dustbowl'
 };
 
 const Showroom: OfferingWithoutId = {
   description:
-    '[32.760237] convincing yet effectively useless. purchased 3. delivery man left through upstairs window [-104.382572]',
+    'convincing yet effectively useless. purchased 3. delivery man kindly le(apt)ft from upstairs window [★★★★]',
   filename: 'the-showroom'
 };
 
 const Well: OfferingWithoutId = {
   description:
-    '[44.916162] no sign of campers; blonde hair present but only from last time. well seems fuller than usual [-122.139826]',
+    'no sign of campers; coarse blonde hair present, only from last time. well seems fuller than usual [★★★⯨]',
   filename: 'the-well'
+};
+
+const Factory: OfferingWithoutId = {
+  description:
+    'astonishing to see how they make it (biologically relevant). still no closer on what they make it out of [★★★★]',
+  filename: 'the-factory'
+};
+
+const Yard: OfferingWithoutId = {
+  description:
+    "grew effortlessly, ferociously, deeply personal. arms burn from another failed uprooting. i can't win  [⯨]",
+  filename: 'the-yard'
 };
 
 export const IrlGroup: PaintingsGroup = {
   kind: 'paintings',
   id: 'irl',
   title: 'in real life',
-  callToAction: 'with an uncomfortable awareness',
+  callToAction: 'with a grounding presence',
   descriptionList: [
     '2026.',
     "i'd rather go somewhere instead",
-    '4 offerings from a selection of ??,',
+    '7 offerings from a selection of ??',
     'wet feet on warm beige carpet'
   ],
-  filename: 'furniture',
+  filename: 'irl',
   bordered: false,
   offeringsConfig: createOfferingsConfig([
     MesquiteFlower,
+    Factory,
+    Well,
+    Yard,
     Motel,
-    Showroom,
-    Well
+    Dustbowl,
+    Showroom
   ])
 };
