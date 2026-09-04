@@ -5,7 +5,7 @@ type OfferingWithoutId = Omit<Offering, 'id'>;
 
 const MesquiteFlower: OfferingWithoutId = {
   description:
-    "a frantic sizzling above us; more hungry than thirsty these days. guide ran. i'll end up resting here [★⯨]",
+    "frantic sizzling spouts above us; more hungry than thirsty these days. guide ran. i'll end up resting here [★⯨]",
   filename: 'the-mesquite-flower'
 };
 
