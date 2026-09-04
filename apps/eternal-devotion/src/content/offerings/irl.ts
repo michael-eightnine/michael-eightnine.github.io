@@ -5,7 +5,7 @@ type OfferingWithoutId = Omit<Offering, 'id'>;
 
 const MesquiteFlower: OfferingWithoutId = {
   description:
-    "frantic sizzling spouts above us; more hungry than thirsty these days. guide ran. i'll end up resting here [★⯨]",
+    "frantic sizzling spouts above us; more hungry than thirsty these days. guide ran. i'll end up resting here [★★]",
   filename: 'the-mesquite-flower'
 };
 
@@ -23,13 +23,13 @@ const Dustbowl: OfferingWithoutId = {
 
 const Showroom: OfferingWithoutId = {
   description:
-    'convincing yet effectively useless. purchased 3. delivery man kindly le(apt)ft from upstairs window [★★★★]',
+    'convincing yet effectively useless. purchased 3. delivery man kindly le(apt)ft from upstairs window [★★★]',
   filename: 'the-showroom'
 };
 
 const Well: OfferingWithoutId = {
   description:
-    'no sign of campers; coarse blonde hair present, only from last time. well seems fuller than usual [★★★⯨]',
+    'no sign of campers; coarse blonde hair present, only from last time. well seems fuller than usual [★★]',
   filename: 'the-well'
 };
 
@@ -41,7 +41,7 @@ const Factory: OfferingWithoutId = {
 
 const Yard: OfferingWithoutId = {
   description:
-    "grew effortlessly, ferociously, deeply personal. arms burn from another failed uprooting. i can't win  [⯨]",
+    "grew effortlessly, ferociously, deeply personal. arms burn from another failed uprooting. i can't win  [☆]",
   filename: 'the-yard'
 };
 
