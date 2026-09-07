@@ -4,11 +4,6 @@ name: Vite 2 GH - Multi Repo
 on:
   push:
     branches: ["master"]
-  pull_request:
-    branches:
-      - master
-    types:
-      - closed
   workflow_dispatch:
 
 permissions:
