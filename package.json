@@ -18,12 +18,13 @@
     "build:all": "yarn build && yarn build:popup-portfolio && yarn build:eternal-devotion && yarn build:dungeon-crawl",
     "lint": "yarn workspace portfolio run lint && yarn workspace popup-portfolio run lint && yarn workspace eternal-devotion run lint && yarn workspace dungeon-crawl run lint",
     "preview": "yarn workspace portfolio preview",
+    "resume:pdf": "node tools/resume/export-pdf.mjs",
     "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@types/fs-extra": "^11.0.4",
     "@tailwindcss/postcss": "4.1.17",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
@@ -36,6 +37,7 @@
     "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
+    "playwright": "^1.63.0",
     "prettier": "^3.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
