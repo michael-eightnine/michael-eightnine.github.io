@@ -52,7 +52,7 @@ const WorkSection: React.FC<Props & ChildrenProps> = ({
               }
             }}
           >
-            <div className="pt-4 [&>p+p]:mt-4">{children}</div>
+            <div className="pt-4 space-y-6">{children}</div>
           </motion.div>
         )}
       </AnimatePresence>

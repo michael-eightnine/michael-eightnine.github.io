@@ -39,9 +39,10 @@ const BonusContent: React.FC = () => {
         </a>{' '}
         is a hound rescue site I built for an organization I've volunteered with
         my whole life, down to hard boiling eggs for everyone on Sundays. Their
-        previous site was hand-coded HTML with no mobile support; this replaced
-        it with a full NextJS/Sanity/Supabase stack that actively drives
-        adoptions and fundraising.
+        previous site was hand-coded HTML with no mobile support, a real problem
+        given that around 80% of visitors come from mobile today. Rebuilding it
+        on a full NextJS/Sanity/Supabase stack has led to faster adoption
+        cycles.
       </ContentParagraph>
       <ContentDivider />
       <ContentParagraph>
@@ -54,8 +55,8 @@ const BonusContent: React.FC = () => {
           Dungeon Crawl
         </a>{' '}
         is a short (but hopefully fun) text based adventure game. A love letter
-        to the point and click games I grew up playing, and often find myself
-        revisiting from time to time.
+        to the point and click games I grew up playing and still find myself
+        revisiting.
       </ContentParagraph>
 
       <ContentDivider />
